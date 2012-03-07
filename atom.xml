@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://ZhangHanDong.github.com/atom.xml" rel="self"/>
   <link href="http://ZhangHanDong.github.com/"/>
-  <updated>2012-03-07T17:47:04+08:00</updated>
+  <updated>2012-03-07T17:55:12+08:00</updated>
   <id>http://ZhangHanDong.github.com/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,5 +12,387 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Shi Yong Solrda Jian Quan Wen Jian Suo Fu Wu Jian Yao Zhi Nan]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/03/07/shi-yong-solrda-jian-quan-wen-jian-suo-fu-wu-jian-yao-zhi-nan/"/>
+    <updated>2012-03-07T00:00:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/03/07/shi-yong-solrda-jian-quan-wen-jian-suo-fu-wu-jian-yao-zhi-nan</id>
+    <content type="html"><![CDATA[<p>&#8212;layout: posttitle: &#8220;使用Solr搭建全文检索服务简要指南&#8221;date: 2012-03-07 14:38comments: truecategories: [Ruby, 全文检索]&#8212;## 一、 安装服务器环境， CentOS, 需要的软件有：  jdk 1.6.0 、apache-solr-3.1.0 、apache-tomcat-7.0.26 、 mmseg4j</p>
+
+<h4>Solr与Sphinx相比较的优势：   * Solr 可以精确控制对索引进行局部更新，而Sphinx只能全局更新.   * Solr 可以对几乎任何对象进行索引，该对象甚至可以不是ActiveRecord.而Sphinx和RDBMS耦合过于紧密.   * Solr 索引的对象ID可以非空或者是字符串，而Sphinx要求被索引对象必须拥有非0整数作为ID.   * Solr 支持Boolean作为查询条件搜索,更加方便   * Solr 支持Facets,而Sphinx为此需要做更多工作   * Solr 是对lucene的包装。所以他可以享受lucene每次升级带来的便利。   <!--more-->#### 安装Java：    sudo yum install java-1.6.0-openjdk.x86_64#### 下载Solr和Tomcat    1. wget  http://labs.renren.com/apache-mirror/tomcat/tomcat-7/v7.0.26/bin/apache-tomcat-7.0.26.tar.gz    2. wget http://mirror.bjtu.edu.cn/apache/lucene/solr/3.1.0/apache-solr-3.1.0.tgz     下载完之后解压并放到/usr/local下:      tar zxvf apache-solr-3.1.0.tgz     tar zxvf apache-tomcat-7.0.26.tar.gz     mv  apache-solr-3.1.0 /usr/local/solr     mv  apache-tomcat-7.0.26 /usr/local/tomcat#### 下载mmseg4j， 中文分词用。     地址： http://code.google.com/p/mmseg4j/downloads/list</h4>
+
+<h2>二、 配置#### 配置环境变量编辑profile文件：    sudo vi /etc/profile添加内容:    export JAVA_HOME=/usr/lib/jvm/jre-1.6.0    export CLASSPATH=.:$JAVA_HOME/lib/rt.jar    export PATH=$PATH:$JAVA_HOME/bin    export TOMCAT_HOME=/usr/local/tomcat    export JAVA_OPT=&#8221;$JAVA_OPTS -Dsolr.solr.home=/usr/local/tomcat/solr_home&#8221;#### 复制solr.war到tomcat/webapps下面    cp /usr/local/solr/dist/apache-solr-3.1.0.war /usr/local/tomcat/webapps/solr.war#### 配置solr.xml文件，先创建Catalina/localhost目录：编辑文件：      vi /usr/local/tomcat/conf/Catalina/localhost/solr.xml添加内容：    <Context docBase="/usr/local/tomcat/webapps/solr.war" debug="0" crossContext="true">        <Environment name="solr/home" type="java.lang.String" value="/usr/local/tomcat/solr_home" override="true" />    </Context>#### 配置tomcat user编辑文件：    vi /usr/local/tomcat/conf/tomcat-users.xml    去掉注释块,加入以下内容:    <role rolename="admin-gui"/>    <role rolename="admin-script"/>    <role rolename="manager-gui"/>    <role rolename="manager-script"/>    <role rolename="manager-jmx"/>    <role rolename="manager-status"/>    <user username="tomcat" password="123456" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-script,admin-gui"/><strong>注意： 这里tomcat/123456 是tomcat的用户名，密码， 在你访问tomcat管理页面的时候需要。</strong>#### 进入tomcat根目录:创建solr_home文件夹. 然后将/usr/local/solr/example/solr下的conf、data、bin三个文件夹复制到solr_home下;#### 进入webapps/solr/WEB-INF，打开web.xml，第37行，注释打开，修改如下：    &lt;env-entry]]]]&gt;         &lt;env-entry-name]]]]&gt;solr/home&lt;/env-entry-name]]]]&gt;         &lt;env-entry-value]]]]&gt;/usr/local/tomcat/solr_home&lt;/env-entry-value]]]]&gt;         &lt;env-entry-type]]]]&gt;java.lang.String&lt;/env-entry-type]]]]&gt;       &lt;/env-entry]]]]&gt;#### 解压下载好的mmseg4j-1.8.4.zip:复制mmseg4j-all-1.8.4.jar到/usr/local/tomcat/webapps/solr/WEB-INF/lib下#### 进入/usr/local/tomcat/solr_home/conf，打开schema.xml, 在<types></types>之间加入：    <fieldType name="textComplex" class="solr.TextField" ]]&gt;      &lt;analyzer]]&gt;          <tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="complex" dicPath="data/"/>      &lt;/analyzer]]&gt;      &lt;/fieldType]]&gt;      <fieldType name="textMaxWord" class="solr.TextField" ]]&gt;              &lt;analyzer]]&gt;                 <tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="max-word"dicPath="data/"/>              &lt;/analyzer]]&gt;      &lt;/fieldType]]&gt;      <fieldType name="textSimple" class="solr.TextField" ]]&gt;              &lt;analyzer]]&gt;                 <tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="simple" dicPath="data/"/>             &lt;/analyzer]]&gt;      &lt;/fieldType]]&gt;#### 然后在解压好的mmseg4j文件夹中找到data文件夹将其内的chars.dic、units.dic、words.dic三个字典文件复制到/usr/local/tomcat/solr_home/data中#### 启动tomcat    /usr/local/tomcat/bin/startup.sh<strong>当然你也可以自己写启动脚本</strong>#### 检测访问 http://localhost:8080/manager/status  输入之前的用户名和密码，就可以看到正常的tomcat首页，然后访问http://localhost:8080/solr/admin/analysis.jsp，选择Field下拉选项中的type，后面输入textComplex，然后在Field value中随便复制一段中文文字，点击Analyz，就可以看到mmseg4j的分词结果了。#### 配置 solrconfig.xml ,   打开 /usr/local/tomcat/solr_admin/conf/solrconfig.xml :     <dataDir>${solr.data.dir:/usr/local/tomcat/solr_home/data}</dataDir>添加auto_commit配置， 找到<updateHandler class="solr.DirectUpdateHandler2">位置， 打开注释：    <autoCommit>         <maxDocs>10000</maxDocs>        <maxTime>1000</maxTime>     </autoCommit><strong>说明：</strong>  * maxDocs：当内存索引数量达到指定值的时候，将内存的索引DUMP到硬盘中，并通知searcher类加载新的索引。  * maxTime:每隔指定的时间段，自动的COMMIT内存中的索引数据，并通知Searcher类加载新的索引。  * 以上两种方式，以最先达到条件执行为准。  ## 三、 Rails#### <a href="http://sunspot.github.com/">Sunspot</a> #### <a href="https://github.com/outoftime/sunspot/tree/master/sunspot_rails">sunspot_rails</a>#### 与Model集成示例：</h2>
+
+<figure class='code'><figcaption><span>initializers/devise.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:links</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">searchable</span> <span class="ss">:auto_index</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:auto_remove</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">text</span> <span class="ss">:ab</span>  <span class="c1">#可以被fulltext或者keywords搜索出来。btw,ywords是fulltext的别名。其实是同一个方法。</span>
+</span><span class='line'>    <span class="n">string</span> <span class="ss">:location</span>
+</span><span class='line'>    <span class="n">integer</span> <span class="ss">:blog_id</span>
+</span><span class='line'>    <span class="n">boolean</span> <span class="ss">:generated</span>   <span class="c1">#支持boolean查询</span>
+</span><span class='line'>    <span class="n">time</span> <span class="ss">:published_at</span><span class="p">,</span> <span class="ss">:stored</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="n">text</span> <span class="ss">:links</span> <span class="k">do</span>   <span class="c1"># 支持这种虚拟属性。</span>
+</span><span class='line'>      <span class="n">links</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">link</span><span class="o">|</span> <span class="n">link</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">link</span><span class="o">.</span><span class="n">title</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong> 请留意auto_index,auto_remove,配置了这两个选项以后，程序就能够自动检测程序，数据是否变得脏了。数据脏又分为dirty?和delete_dirty?,自动方式会自动根据这两种脏脏状态决定是否自动更新索引,还是自动删除。如果这两个选项被设置成false,那么就需要你手动更新索引。 </strong>#### 增量更新：<strong> sunspot会将新增、更新的记录发送至solr，但不会发送commit(只有运行reindex才会发送commit命令,  只有commit之后， 索引才会发生变化)， 可以配置 solr/conf/solrconfig.xml ，启用 autoCommit 参数，设置更新的记录数或者时间(ms)， 更新时如果 solr 服务出问题，则会导致rails操作不成功，所以要把更新操作放到resque后台执行， 这里使用<a href="http://stdout.heyzap.com/2011/08/17/sunspot-resque-session-proxy/">Sunspot-Resque Session Proxy</a> </strong>#### 关于solr中commit和optimize的概念:    -    commit       当你像solr提交索引更新时，只有运行了commit，索引才会发生变化。当然也并不意味着你每次提交都要commit，如果不是那么紧急，你可以多次提交之后，再执行commit操作。    -   optimize       optimize有点像硬盘上整理磁盘碎片的操作。为了提高搜索速度，它会将索引重组在一起，然后移除需要被删除删除或是更新的文档，请注意，solr是没有update的这种操作的，只有增加与删除。solr在优化时，将需要删除或是被替换的索引标记为deleted，然后再创建新的文档替换掉需要被替换的。optimize就是执行此操作。所以在优化的时候，你的索引会增大，然后再减小。optimize操作会创建一个全新的的索引结构，所以，你需要预备出2倍于你commit时索引大小的空间。       ## 参考资料： <a href="http://wiki.apache.org/solr/SolrTomcat">SolrTomcat Wiki</a>  <a href="http://asciicasts.com/episodes/278-search-with-sunspot">Episodes 278</a>  <a href="http://stdout.heyzap.com/2011/08/17/sunspot-resque-session-proxy/">Sunspot-Resque Session Proxy</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[bcrypt与密码安全]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/01/05/bcryptyu-mi-ma-an-quan/"/>
+    <updated>2012-01-05T17:30:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/01/05/bcryptyu-mi-ma-an-quan</id>
+    <content type="html"><![CDATA[<p>最近闹的沸沸扬扬的各大网站用户密码泄露事件， 让网民们震惊了，尽然都是明文保存密码。因为存在某些漏洞，比如sql注入， 可能让Hacker拿到全字段的数据列表，如果是明文密码， 那就帮Hacker省事了， Hacker都不需要暴力破解了。</p>
+
+<p>其实对于密码有很多加密手段，但是最安全的莫过于Bcrypt这种算法了， 详细的参看<a href="http://codahale.com/how-to-safely-store-a-password/">Coda Hala的这篇文章</a>, 也有<a href="http://coolshell.cn/articles/2078.html/comment-page-2#comment-121752">中文版</a>。 其实安全也是相对的， 对于Bcrypt这种算法的优势再于它的慢， 延缓了Hacker暴力破解的时间， 对于用户来说，就相对安全了。</p>
+
+<p>用Rails的同学就有福了。 <a href="https://github.com/plataformatec/devise">devise</a>默认就是支持Bcrypt的。</p>
+
+<figure class='code'><figcaption><span>initializers/devise.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">stretches</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里的stretches被用来做work factor, 数值越大越慢， 如果你发现一个crypt生成值在20毫秒之内，那这个stretches就正好。</p>
+
+<p>另一个措施就是可以在用户输入12345之类的弱密码的时候，禁止其注册，并提示其使用强度比较高的密码。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[内心]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2011/12/30/nei-xin/"/>
+    <updated>2011-12-30T15:48:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2011/12/30/nei-xin</id>
+    <content type="html"><![CDATA[<p>在微博上看到<a href="http://weibo.com/joboto">@周伯通招聘</a>发的这个帖子<a href="http://www.joboto.com/thread/15408">设立职业生涯目标的14步练习法</a>,  就看了看， 并且按照这个步骤完成了自己的练习。结果发现自己内心的那个想法竟然如此墙裂 。。。</p>
+
+<h2>步骤1． （省略,参考上面帖子地址）</h2>
+
+<p>我想拥有的：</p>
+
+<p>一个公司， 不算很大， 最好不要超过20个人。 公司以技术为重， 公司的产品导向是通过科技手段改善人类的生活，做最实用又最有创意的产品。 基于互联网，又高于互联网， 贴近生活与大众, 或者某个垂直行业， 充满了想象力， 去发现生活中美与不同的一面， 带给用户简单，美与便利。</p>
+
+<p>公司里没有HR， 或者说没有那些只会记录员工工作时间的HR， 我觉得真正的HR更像一个保姆，公司的保姆， 除了那些日常的事务， 还应该做的是，维持公司内部员工的工作环境，工作心情， 解决公司员工碰到的各种困难。 公司的企业文化是大家一起来创造的，工作时间随意， 前提是保质保量完成工作任务。 我觉得，只有公司把员工当成家人， 员工才有可能把公司当做家。 公司每周都组织家庭聚会， 一起去郊外旅游， 聚餐， 交流思想。 公司不以上市做为目标， 所以公司不会拿所谓的期权来忽悠人， 每个月的财务会公开， 年底人人都会有分红。分红不是按等级分配，也不是按劳分配， 是按功劳分配， 对公司产品有贡献的人， 才能拿到高比例的分红。 如何去衡量对产品有贡献，可以通过多种手段， 比如，一个漂亮的对策解决了用户反馈的产品问题， 一个漂亮的营销策划方案， 一个漂亮的产品功能改进， 一个漂亮的家庭聚会活动组织，一个漂亮的技术分享或者是贡献等等， 当然漂亮不漂亮，公司的每位同事都会参与打分， 这也是公司人少的好处。</p>
+
+<p>同事间的协作方式，可以是远程协作。 比如，今天不舒服， 可以在家办公，或者是去咖啡馆， 只要是任何有网络的地方。像北京这类地方， 交通拥堵， 在北京郊区或者周边买房租房的优秀人才也不少。 没必要每天都往一个办公室挤。  每周保持2 的天正常会面就ok了。 这样的话， 同事们就不必要每天为了想在北京买房而发愁了， 你在北京周边买也一样， 公司支持你（精神上，公司文化，金钱上估计前三五年还没那个实力）。</p>
+
+<p>我觉得公司也应该有理想， 公司的理想应该反映在其产品上，就向苹果的产品一样， 果粉所热爱的苹果，绝对不是其可以用来装逼的价格， 真正的果粉懂得，因为其提升了人们的审美， 告诉大众什么是美，带给人们好心情； 带给了人们方便， 手势， 快捷键等提升了工作效率。所以，公司的理想通过产品反映给大众， 能提升大众生活精神质量的公司理想， 大众肯定可以接受， 产品自然就会有市场。</p>
+
+<ol>
+<li><p>在你生活中，你认为哪五件事情最有价值？</p>
+
+<ul>
+<li>做有意义的工作</li>
+<li>和家人共处的时光， 能多抽时间陪父母， 抽空去看望老朋友， 多交流。</li>
+<li>信仰（基督教）</li>
+<li>健康。 每周适度的锻炼。（不包括挤公车地铁）</li>
+<li>学习。 必不可少。</li>
+</ul>
+</li>
+<li><p>在你的生活中，有哪三个最重要的目标？</p>
+
+<ul>
+<li>创业。 去建立一个我上面所描写的公司。</li>
+<li>经营一个和谐幸福的家庭。</li>
+<li>保持一个健康的身体。</li>
+</ul>
+</li>
+<li><p>假如你只有六个月的生命，你会如何地运用这六个月？</p>
+
+<ul>
+<li>去旅行。 带着我的爱人， 父母， 岳父岳母和我弟弟。给我的亲戚和其他朋友们邮寄明信片。</li>
+</ul>
+</li>
+<li><p>假如你立刻成为百万富翁，在哪些事情上，你的做法会和今天不一样？</p>
+
+<ul>
+<li>可能对创业的想法更坚定了， 也许会马上踏出那一步.</li>
+</ul>
+</li>
+<li><p>有哪些事是你一直想做，但却不敢尝试去做的？</p>
+
+<ul>
+<li>去创上面描述的公司（虽然以前也创过业）</li>
+</ul>
+</li>
+<li><p>在生活中，有哪些活动，你觉得最重要的？</p>
+
+<ul>
+<li>交流（或者头脑风暴）， 聚餐， 一起去郊游，健身， 做礼拜。</li>
+</ul>
+</li>
+<li><p>假如你确定自己不会失败（拥有充实的时间、资源、能力等），你会敢于梦想哪一件事情？</p>
+
+<ul>
+<li>第一 ， 当然是去创建上面描述的那个公司。</li>
+<li>第二，  去旅行。 带着我的爱人， 父母， 岳父岳母和我弟弟。给我的亲戚和其他朋友们邮寄明信片。</li>
+</ul>
+</li>
+</ol>
+
+
+<h2>步骤2．</h2>
+
+<ul>
+<li>以上所写，我希望可以在10年之内达成。2012 - 2022。</li>
+</ul>
+
+
+<h2>步骤3．</h2>
+
+<p>2012年主要目标:</p>
+
+<ol>
+<li>在AR方向上，能做一些东西出来。  （时限一年， 年底正式发布， 之前会出测试）</li>
+<li>抽出来时间，去看老朋友。</li>
+<li>和老婆的蜜月旅行。（国庆长假+年假）</li>
+<li>坚持锻炼，减肥。</li>
+<li>每个月坚持看一本书。</li>
+</ol>
+
+
+<h2>步骤4．</h2>
+
+<ol>
+<li>用肯定的语气来预期你的结果，说出你希望的而非不希望的； √</li>
+<li>结果要尽可能具体，还要明确订出完成的期限与项目； √</li>
+<li>事情完成时你要能知道完成了； √</li>
+<li>要能抓住主动权，而非任人左右；√</li>
+<li>是否对社会有利。   √</li>
+</ol>
+
+
+<h2>步骤5．</h2>
+
+<ul>
+<li>比较执着， 不撞南墙不回头。脾气急躁， 但是在改。 碰到问题的时候， 缺乏冷静。  合作伙伴已有，财力支持也比较确定。 时限有一些吃紧， 能力，应该达标了。</li>
+</ul>
+
+
+<h2>步骤6．</h2>
+
+<ol>
+<li>专业能力</li>
+<li>同一个志向,或者愿望</li>
+<li>经常性的交流</li>
+<li>利益驱动</li>
+<li>对用户来说， 我做出了正宗并实惠的东西， 不存在欺骗用户的行为。</li>
+<li>业界大佬来帮忙。 是我用真诚换来的。虽然之后的发展让人失望。</li>
+</ol>
+
+
+<h2>步骤7．</h2>
+
+<ul>
+<li>团队， 起步的财力， 共同的目标， 坚持。</li>
+</ul>
+
+
+<h2>步骤8．</h2>
+
+<ul>
+<li>没有足够的财力支持。 补救办法， 参考 《Rework》。</li>
+</ul>
+
+
+<h2>步骤9．</h2>
+
+<ol>
+<li><p>在AR方向上，能做一些东西出来。  （时限一年， 年底正式发布， 之前会出测试)</p>
+
+<ul>
+<li>正式发布</li>
+<li>测试数据采集， 修正bug</li>
+<li>发布beta版</li>
+<li>构建产品， 先出测试版</li>
+<li>产品功能确定</li>
+<li>UE设计</li>
+<li>技术考察</li>
+<li>人员集结, 投资到位</li>
+</ul>
+</li>
+<li><p>抽出来时间，去看老朋友。</p>
+
+<ul>
+<li>每一个月找个周末。</li>
+</ul>
+</li>
+<li><p>和老婆的蜜月旅行。</p>
+
+<ul>
+<li>国庆长假+年假, 2012来年就需要办理签证事宜。</li>
+</ul>
+</li>
+<li><p>坚持锻炼，减肥。</p>
+
+<ul>
+<li>春夏秋，小区会所游泳</li>
+<li>冬，  小区周围跑步</li>
+</ul>
+</li>
+<li><p>每个月坚持看一本书</p>
+
+<ul>
+<li><a href="http://blog.changebox.me/blog/2011/12/28/2012shu-dan/">2012上半年书单</a>已经列出。</li>
+</ul>
+</li>
+</ol>
+
+
+<h2>步骤10．</h2>
+
+<ul>
+<li>向<a href="http://37signals.com">37Signals</a> 看齐。 开始《rework》</li>
+</ul>
+
+
+<h2>步骤11．使目标多样化且有整体意义。 </h2>
+
+<ul>
+<li>已经很多样化了。</li>
+</ul>
+
+
+<h2>步骤12．为自己创造一个适当的环境。 </h2>
+
+<h2>步骤13．经常反省所做的结果。</h2>
+
+<h2>步骤14. </h2>
+
+<ul>
+<li>仔细想了想以后， 要感谢的人有好多。 要学会感恩。在感恩中前进。</li>
+</ul>
+
+
+<h2>总结：</h2>
+
+<p>  <strong>经过这样的练习， 发现自己内心的那个想法竟然那么墙裂。</strong></p>
+
+<p>  <strong>关键的2012， 把握内心所想， 脚踏实地向着目标踏步走！！！</strong></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2012书单]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2011/12/28/2012shu-dan/"/>
+    <updated>2011-12-28T17:51:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2011/12/28/2012shu-dan</id>
+    <content type="html"><![CDATA[<p>2012上半年阅读计划：</p>
+
+<h4>Ruby/Rails类：</h4>
+
+<blockquote><p>《Exceptional Ruby》</p>
+
+<p>《Eloquent Ruby》</p>
+
+<p>《Rails Master源码》(非书)</p></blockquote>
+
+<h4>Node.js 相关</h4>
+
+<blockquote><p>《Pragmatic.CoffeeScript》</p>
+
+<p>《Packtpub.Node.Web.Development》</p></blockquote>
+
+<h4>Ios相关:</h4>
+
+<blockquote><p>《ObjectiveC3rd》</p>
+
+<p>《Big.Nerd.Ranch.iOS.Programming.2nd》</p></blockquote>
+
+<h4>HTML5相关：</h4>
+
+<blockquote><p>《Wrox.HTML5.24-Hour.Trainer》</p>
+
+<p>《Oreilly.HTML5.Cookbook》</p></blockquote>
+
+<h4>SEM:</h4>
+
+<blockquote><p>《Google广告优化与工具》</p></blockquote>
+
+<p>一共九本书， 六个月读完。 平均一个月1.5本。 源码阅读计划分散在每天的时间里。 对于时间，需要进一步统筹计划。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2011年度总结]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2011/12/23/2011nian-du-zong-jie/"/>
+    <updated>2011-12-23T15:18:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2011/12/23/2011nian-du-zong-jie</id>
+    <content type="html"><![CDATA[<p>2011年， 对我的人生来说， 应该算是重要的一年。</p>
+
+<p><strong>有一些好的事情</strong></p>
+
+<blockquote><ol>
+<li>今年我离开了曾经想沉下心和前同事创一番事业的eoe， 跳槽了又跳槽了， 也就是跳了两次，来到了iClick, 开始踏入SEM行业，在iClick，我明白了一个我之前一直不太明白的问题，那就是技术的尽头在哪里。</li>
+<li>今年我拥有了自己人生第一套房子， 要感谢父母， 实话说，凭我自己目前的存款，是买不起房子的，父母给了我这一切， 却不计任何回报。当然，我要好好的回报父母。</li>
+<li>今年我也要结婚成家了， 感谢老婆，感谢老婆陪我走过的这两年多的时光， 感谢老婆为我所做的一切。虽然免不了吵架拌嘴，但是我们的感情越来越深， 我们会越来越幸福。</li>
+<li>今年我也开始信奉基督教， 是受老婆的影响。虽然我一直搞不清楚我该如何去相信上帝的存在，但是我还是祷告，参加了多次教友聚会， 去教堂做礼拜，听牧师证道， 也让我的脾气温和了不少。</li>
+</ol>
+</blockquote>
+
+<p><strong>也有一些比较遗憾的事情</strong></p>
+
+<blockquote><ol>
+<li>因为房子装修的琐碎烦事以及结婚要做的准备， 没有百分百的完成和PCR约定的事情, 比较遗憾。所以，以后不能随便许诺了， 要懂得拒绝，有些事情也不是非我不可。</li>
+<li>时间规划比较混乱， 学习计划没有坚持下来， 来年需要好好改进。人只有不断的学习才能进步， 更何况是程序员。</li>
+<li>没有抽出来时间和多年的朋友交流互通， 很遗憾， 来年一定的抽出时间去看看老朋友们。</li>
+</ol>
+</blockquote>
+
+<p><strong>2012年的目标：</strong></p>
+
+<blockquote><ol>
+<li>需要深入学习了解SEM相关行业知识， 在业务上一定要达到精通。</li>
+<li>每个月坚持看一本书。</li>
+<li>在AR方向上，能做一些东西出来。</li>
+<li>抽出来时间，去看老朋友。</li>
+<li>和老婆的蜜月旅行。</li>
+<li>坚持锻炼，减肥。</li>
+<li>坚持写博。</li>
+</ol>
+</blockquote>
+
+<p>好了， 就以上这七个目标， 2012年坚持不去做计划外的事情。 努力！让2012没有遗憾。</p>
+
+<p>嗨， 未来的自己， 下个圣诞见！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress 使用小记]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2011/12/21/octopress-shi-yong-xiao-ji/"/>
+    <updated>2011-12-21T23:05:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2011/12/21/octopress-shi-yong-xiao-ji</id>
+    <content type="html"><![CDATA[<p>我是从<a href="ruby5.envylabs.com%20Ruby5">Ruby5</a>知道<a href="http://octopress.org/%20Octopress">Octopress</a>的， 之前用rack-Jekyll自己搞过一个blog， 使用起来比较麻烦。看了一下Octopress的文档， 觉得非常棒。 看到<a href="http://blog.xdite.net">Xdite</a>也在推荐使用这个blog系统，也对它感兴趣了。</p>
+
+<p>没费多少时间把它搭建起来了，绑定了blog.changebox.me这个域名。 changebox.me这个域名我买了有一段时间了， 本来想做个养成习惯的web应用， 因为某些原因耽搁了。 现在暂时用来写博吧。</p>
+
+<p>对Octopress感兴趣的同学可以去其<a href="http://octopress.org/%20Octopress">官网</a>看看。</p>
+]]></content>
+  </entry>
   
 </feed>

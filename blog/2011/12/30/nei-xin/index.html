@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
+  <title>内心 - My Octopress Blog</title>
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="&#8212;layout: posttitle: &#8220;使用Solr搭建全文检索服务简要指南&#8221;date: 2012-03-07 14:38comments: truecategories: [Ruby, 全文检索]&#8212;## 一、 安装服务器环境， CentOS, &hellip;">
+  <meta name="description" content="在微博上看到@周伯通招聘发的这个帖子设立职业生涯目标的14步练习法, 就看了看， 并且按照这个步骤完成了自己的练习。结果发现自己内心的那个想法竟然如此墙裂 。。。 步骤1． （省略,参考上面帖子地址） 我想拥有的： 一个公司， 不算很大， 最好不要超过20个人。 公司以技术为重， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ZhangHanDong.github.com">
+  <link rel="canonical" href="http://ZhangHanDong.github.com/blog/2011/12/30/nei-xin">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -62,106 +62,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/03/07/shi-yong-solrda-jian-quan-wen-jian-suo-fu-wu-jian-yao-zhi-nan/">Shi Yong Solrda Jian Quan Wen Jian Suo Fu Wu Jian Yao Zhi Nan</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-07T00:00:00+08:00" pubdate data-updated="true">Mar 7<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>&#8212;layout: posttitle: &#8220;使用Solr搭建全文检索服务简要指南&#8221;date: 2012-03-07 14:38comments: truecategories: [Ruby, 全文检索]&#8212;## 一、 安装服务器环境， CentOS, 需要的软件有：  jdk 1.6.0 、apache-solr-3.1.0 、apache-tomcat-7.0.26 、 mmseg4j</p>
-
-<h4>Solr与Sphinx相比较的优势：   * Solr 可以精确控制对索引进行局部更新，而Sphinx只能全局更新.   * Solr 可以对几乎任何对象进行索引，该对象甚至可以不是ActiveRecord.而Sphinx和RDBMS耦合过于紧密.   * Solr 索引的对象ID可以非空或者是字符串，而Sphinx要求被索引对象必须拥有非0整数作为ID.   * Solr 支持Boolean作为查询条件搜索,更加方便   * Solr 支持Facets,而Sphinx为此需要做更多工作   * Solr 是对lucene的包装。所以他可以享受lucene每次升级带来的便利。   </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/07/shi-yong-solrda-jian-quan-wen-jian-suo-fu-wu-jian-yao-zhi-nan/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/05/bcryptyu-mi-ma-an-quan/">Bcrypt与密码安全</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-05T17:30:00+08:00" pubdate data-updated="true">Jan 5<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近闹的沸沸扬扬的各大网站用户密码泄露事件， 让网民们震惊了，尽然都是明文保存密码。因为存在某些漏洞，比如sql注入， 可能让Hacker拿到全字段的数据列表，如果是明文密码， 那就帮Hacker省事了， Hacker都不需要暴力破解了。</p>
-
-<p>其实对于密码有很多加密手段，但是最安全的莫过于Bcrypt这种算法了， 详细的参看<a href="http://codahale.com/how-to-safely-store-a-password/">Coda Hala的这篇文章</a>, 也有<a href="http://coolshell.cn/articles/2078.html/comment-page-2#comment-121752">中文版</a>。 其实安全也是相对的， 对于Bcrypt这种算法的优势再于它的慢， 延缓了Hacker暴力破解的时间， 对于用户来说，就相对安全了。</p>
-
-<p>用Rails的同学就有福了。 <a href="https://github.com/plataformatec/devise">devise</a>默认就是支持Bcrypt的。</p>
-
-<figure class='code'><figcaption><span>initializers/devise.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">stretches</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">10</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这里的stretches被用来做work factor, 数值越大越慢， 如果你发现一个crypt生成值在20毫秒之内，那这个stretches就正好。</p>
-
-<p>另一个措施就是可以在用户输入12345之类的弱密码的时候，禁止其注册，并提示其使用强度比较高的密码。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/30/nei-xin/">内心</a></h1>
+      <h1 class="entry-title">内心</h1>
     
     
       <p class="meta">
@@ -184,7 +90,7 @@
   </header>
 
 
-  <div class="entry-content"><p>在微博上看到<a href="http://weibo.com/joboto">@周伯通招聘</a>发的这个帖子<a href="http://www.joboto.com/thread/15408">设立职业生涯目标的14步练习法</a>,  就看了看， 并且按照这个步骤完成了自己的练习。结果发现自己内心的那个想法竟然如此墙裂 。。。</p>
+<div class="entry-content"><p>在微博上看到<a href="http://weibo.com/joboto">@周伯通招聘</a>发的这个帖子<a href="http://www.joboto.com/thread/15408">设立职业生涯目标的14步练习法</a>,  就看了看， 并且按照这个步骤完成了自己的练习。结果发现自己内心的那个想法竟然如此墙裂 。。。</p>
 
 <h2>步骤1． （省略,参考上面帖子地址）</h2>
 
@@ -390,90 +296,16 @@
 
 <p>  <strong>关键的2012， 把握内心所想， 脚踏实地向着目标踏步走！！！</strong></p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/28/2012shu-dan/">2012书单</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
 
-<time datetime="2011-12-28T17:51:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>2012上半年阅读计划：</p>
-
-<h4>Ruby/Rails类：</h4>
-
-<blockquote><p>《Exceptional Ruby》</p>
-
-<p>《Eloquent Ruby》</p>
-
-<p>《Rails Master源码》(非书)</p></blockquote>
-
-<h4>Node.js 相关</h4>
-
-<blockquote><p>《Pragmatic.CoffeeScript》</p>
-
-<p>《Packtpub.Node.Web.Development》</p></blockquote>
-
-<h4>Ios相关:</h4>
-
-<blockquote><p>《ObjectiveC3rd》</p>
-
-<p>《Big.Nerd.Ranch.iOS.Programming.2nd》</p></blockquote>
-
-<h4>HTML5相关：</h4>
-
-<blockquote><p>《Wrox.HTML5.24-Hour.Trainer》</p>
-
-<p>《Oreilly.HTML5.Cookbook》</p></blockquote>
-
-<h4>SEM:</h4>
-
-<blockquote><p>《Google广告优化与工具》</p></blockquote>
-
-<p>一共九本书， 六个月读完。 平均一个月1.5本。 源码阅读计划分散在每天的时间里。 对于时间，需要进一步统筹计划。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/23/2011nian-du-zong-jie/">2011年度总结</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -485,103 +317,40 @@
   
 
 
-<time datetime="2011-12-23T15:18:00+08:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>2011年， 对我的人生来说， 应该算是重要的一年。</p>
-
-<p><strong>有一些好的事情</strong></p>
-
-<blockquote><ol>
-<li>今年我离开了曾经想沉下心和前同事创一番事业的eoe， 跳槽了又跳槽了， 也就是跳了两次，来到了iClick, 开始踏入SEM行业，在iClick，我明白了一个我之前一直不太明白的问题，那就是技术的尽头在哪里。</li>
-<li>今年我拥有了自己人生第一套房子， 要感谢父母， 实话说，凭我自己目前的存款，是买不起房子的，父母给了我这一切， 却不计任何回报。当然，我要好好的回报父母。</li>
-<li>今年我也要结婚成家了， 感谢老婆，感谢老婆陪我走过的这两年多的时光， 感谢老婆为我所做的一切。虽然免不了吵架拌嘴，但是我们的感情越来越深， 我们会越来越幸福。</li>
-<li>今年我也开始信奉基督教， 是受老婆的影响。虽然我一直搞不清楚我该如何去相信上帝的存在，但是我还是祷告，参加了多次教友聚会， 去教堂做礼拜，听牧师证道， 也让我的脾气温和了不少。</li>
-</ol>
-</blockquote>
-
-<p><strong>也有一些比较遗憾的事情</strong></p>
-
-<blockquote><ol>
-<li>因为房子装修的琐碎烦事以及结婚要做的准备， 没有百分百的完成和PCR约定的事情, 比较遗憾。所以，以后不能随便许诺了， 要懂得拒绝，有些事情也不是非我不可。</li>
-<li>时间规划比较混乱， 学习计划没有坚持下来， 来年需要好好改进。人只有不断的学习才能进步， 更何况是程序员。</li>
-<li>没有抽出来时间和多年的朋友交流互通， 很遗憾， 来年一定的抽出时间去看看老朋友们。</li>
-</ol>
-</blockquote>
-
-<p><strong>2012年的目标：</strong></p>
-
-<blockquote><ol>
-<li>需要深入学习了解SEM相关行业知识， 在业务上一定要达到精通。</li>
-<li>每个月坚持看一本书。</li>
-<li>在AR方向上，能做一些东西出来。</li>
-<li>抽出来时间，去看老朋友。</li>
-<li>和老婆的蜜月旅行。</li>
-<li>坚持锻炼，减肥。</li>
-<li>坚持写博。</li>
-</ol>
-</blockquote>
-
-<p>好了， 就以上这七个目标， 2012年坚持不去做计划外的事情。 努力！让2012没有遗憾。</p>
-
-<p>嗨， 未来的自己， 下个圣诞见！</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2011-12-30T15:48:00+08:00" pubdate data-updated="true">Dec 30<span>th</span>, 2011</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/21/octopress-shi-yong-xiao-ji/">Octopress 使用小记</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/2012阅读与自我提升/'>2012阅读与自我提升</a>
+  
+</span>
 
 
-<time datetime="2011-12-21T23:05:00+08:00" pubdate data-updated="true">Dec 21<span>st</span>, 2011</time>
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>我是从<a href="ruby5.envylabs.com%20Ruby5">Ruby5</a>知道<a href="http://octopress.org/%20Octopress">Octopress</a>的， 之前用rack-Jekyll自己搞过一个blog， 使用起来比较麻烦。看了一下Octopress的文档， 觉得非常棒。 看到<a href="http://blog.xdite.net">Xdite</a>也在推荐使用这个blog系统，也对它感兴趣了。</p>
-
-<p>没费多少时间把它搭建起来了，绑定了blog.changebox.me这个域名。 changebox.me这个域名我买了有一段时间了， 本来想做个养成习惯的web应用， 因为某些原因耽搁了。 现在暂时用来写博吧。</p>
-
-<p>对Octopress感兴趣的同学可以去其<a href="http://octopress.org/%20Octopress">官网</a>看看。</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ZhangHanDong.github.com/blog/2011/12/30/nei-xin/" data-via="" data-counturl="http://ZhangHanDong.github.com/blog/2011/12/30/nei-xin/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/12/28/2012shu-dan/" title="Previous Post: 2012书单">&laquo; 2012书单</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/01/05/bcryptyu-mi-ma-an-quan/" title="Next Post: bcrypt与密码安全">bcrypt与密码安全 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -618,6 +387,7 @@
 
   
 </aside>
+
 
     </div>
   </div>
