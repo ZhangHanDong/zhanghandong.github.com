@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://ZhangHanDong.github.com/atom.xml" rel="self"/>
   <link href="http://ZhangHanDong.github.com/"/>
-  <updated>2012-03-07T18:00:24+08:00</updated>
+  <updated>2012-03-07T18:10:32+08:00</updated>
   <id>http://ZhangHanDong.github.com/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -14,11 +14,193 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Shi Yong Solrda Jian Quan Wen Jian Suo Fu Wu Jian Yao Zhi Nan]]></title>
-    <link href="http://ZhangHanDong.github.com/blog/2012/03/07/shi-yong-solrda-jian-quan-wen-jian-suo-fu-wu-jian-yao-zhi-nan/"/>
-    <updated>2012-03-07T00:00:00+08:00</updated>
-    <id>http://ZhangHanDong.github.com/blog/2012/03/07/shi-yong-solrda-jian-quan-wen-jian-suo-fu-wu-jian-yao-zhi-nan</id>
-    <content type="html"><![CDATA[<p>&#8212;layout: posttitle: &#8220;使用Solr搭建全文检索服务简要指南&#8221;date: 2012-03-07 14:38comments: truecategories: [Ruby, 全文检索]&#8212;## 一、 安装服务器环境， CentOS, 需要的软件有：  jdk 1.6.0 、apache-solr-3.1.0 、apache-tomcat-7.0.26 、 mmseg4j#### Solr与Sphinx相比较的优势：   * Solr 可以精确控制对索引进行局部更新，而Sphinx只能全局更新.   * Solr 可以对几乎任何对象进行索引，该对象甚至可以不是ActiveRecord.而Sphinx和RDBMS耦合过于紧密.   * Solr 索引的对象ID可以非空或者是字符串，而Sphinx要求被索引对象必须拥有非0整数作为ID.   * Solr 支持Boolean作为查询条件搜索,更加方便   * Solr 支持Facets,而Sphinx为此需要做更多工作   * Solr 是对lucene的包装。所以他可以享受lucene每次升级带来的便利。#### 安装Java：    sudo yum install java-1.6.0-openjdk.x86_64#### 下载Solr和Tomcat    1. wget  http://labs.renren.com/apache-mirror/tomcat/tomcat-7/v7.0.26/bin/apache-tomcat-7.0.26.tar.gz    2. wget http://mirror.bjtu.edu.cn/apache/lucene/solr/3.1.0/apache-solr-3.1.0.tgz     下载完之后解压并放到/usr/local下:      tar zxvf apache-solr-3.1.0.tgz     tar zxvf apache-tomcat-7.0.26.tar.gz     mv  apache-solr-3.1.0 /usr/local/solr     mv  apache-tomcat-7.0.26 /usr/local/tomcat#### 下载mmseg4j， 中文分词用。     地址： http://code.google.com/p/mmseg4j/downloads/list ## 二、 配置#### 配置环境变量编辑profile文件：    sudo vi /etc/profile添加内容:    export JAVA_HOME=/usr/lib/jvm/jre-1.6.0    export CLASSPATH=.:$JAVA_HOME/lib/rt.jar    export PATH=$PATH:$JAVA_HOME/bin    export TOMCAT_HOME=/usr/local/tomcat    export JAVA_OPT=&#8221;$JAVA_OPTS -Dsolr.solr.home=/usr/local/tomcat/solr_home&#8221;#### 复制solr.war到tomcat/webapps下面    cp /usr/local/solr/dist/apache-solr-3.1.0.war /usr/local/tomcat/webapps/solr.war#### 配置solr.xml文件，先创建Catalina/localhost目录：编辑文件：      vi /usr/local/tomcat/conf/Catalina/localhost/solr.xml添加内容：    <Context docBase="/usr/local/tomcat/webapps/solr.war" debug="0" crossContext="true">        <Environment name="solr/home" type="java.lang.String" value="/usr/local/tomcat/solr_home" override="true" />    </Context>#### 配置tomcat user编辑文件：    vi /usr/local/tomcat/conf/tomcat-users.xml    去掉注释块,加入以下内容:    <role rolename="admin-gui"/>    <role rolename="admin-script"/>    <role rolename="manager-gui"/>    <role rolename="manager-script"/>    <role rolename="manager-jmx"/>    <role rolename="manager-status"/>    <user username="tomcat" password="123456" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-script,admin-gui"/><strong>注意： 这里tomcat/123456 是tomcat的用户名，密码， 在你访问tomcat管理页面的时候需要。</strong>#### 进入tomcat根目录:创建solr_home文件夹. 然后将/usr/local/solr/example/solr下的conf、data、bin三个文件夹复制到solr_home下;#### 进入webapps/solr/WEB-INF，打开web.xml，第37行，注释打开，修改如下：    &lt;env-entry]]]]&gt;         &lt;env-entry-name]]]]&gt;solr/home&lt;/env-entry-name]]]]&gt;         &lt;env-entry-value]]]]&gt;/usr/local/tomcat/solr_home&lt;/env-entry-value]]]]&gt;         &lt;env-entry-type]]]]&gt;java.lang.String&lt;/env-entry-type]]]]&gt;       &lt;/env-entry]]]]&gt;#### 解压下载好的mmseg4j-1.8.4.zip:复制mmseg4j-all-1.8.4.jar到/usr/local/tomcat/webapps/solr/WEB-INF/lib下#### 进入/usr/local/tomcat/solr_home/conf，打开schema.xml, 在<types></types>之间加入：    <fieldType name="textComplex" class="solr.TextField" ]]&gt;      &lt;analyzer]]&gt;          <tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="complex" dicPath="data/"/>      &lt;/analyzer]]&gt;      &lt;/fieldType]]&gt;      <fieldType name="textMaxWord" class="solr.TextField" ]]&gt;              &lt;analyzer]]&gt;                 <tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="max-word"dicPath="data/"/>              &lt;/analyzer]]&gt;      &lt;/fieldType]]&gt;      <fieldType name="textSimple" class="solr.TextField" ]]&gt;              &lt;analyzer]]&gt;                 <tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="simple" dicPath="data/"/>             &lt;/analyzer]]&gt;      &lt;/fieldType]]&gt;#### 然后在解压好的mmseg4j文件夹中找到data文件夹将其内的chars.dic、units.dic、words.dic三个字典文件复制到/usr/local/tomcat/solr_home/data中#### 启动tomcat    /usr/local/tomcat/bin/startup.sh<strong>当然你也可以自己写启动脚本</strong>#### 检测访问 http://localhost:8080/manager/status  输入之前的用户名和密码，就可以看到正常的tomcat首页，然后访问http://localhost:8080/solr/admin/analysis.jsp，选择Field下拉选项中的type，后面输入textComplex，然后在Field value中随便复制一段中文文字，点击Analyz，就可以看到mmseg4j的分词结果了。#### 配置 solrconfig.xml ,   打开 /usr/local/tomcat/solr_admin/conf/solrconfig.xml :     <dataDir>${solr.data.dir:/usr/local/tomcat/solr_home/data}</dataDir>添加auto_commit配置， 找到<updateHandler class="solr.DirectUpdateHandler2">位置， 打开注释：    <autoCommit>         <maxDocs>10000</maxDocs>        <maxTime>1000</maxTime>     </autoCommit><strong>说明：</strong>  * maxDocs：当内存索引数量达到指定值的时候，将内存的索引DUMP到硬盘中，并通知searcher类加载新的索引。  * maxTime:每隔指定的时间段，自动的COMMIT内存中的索引数据，并通知Searcher类加载新的索引。  * 以上两种方式，以最先达到条件执行为准。  ## 三、 Rails#### <a href="http://sunspot.github.com/">Sunspot</a> #### <a href="https://github.com/outoftime/sunspot/tree/master/sunspot_rails">sunspot_rails</a>#### 与Model集成示例：</p>
+    <title type="html"><![CDATA[Solr简要指南]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/03/07/solrjian-yao-zhi-nan/"/>
+    <updated>2012-03-07T14:38:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/03/07/solrjian-yao-zhi-nan</id>
+    <content type="html"><![CDATA[<h2>一、 安装</h2>
+
+<p>服务器环境， CentOS, 需要的软件有：  jdk 1.6.0 、apache-solr-3.1.0 、apache-tomcat-7.0.26 、 mmseg4j</p>
+
+<h4>Solr与Sphinx相比较的优势：</h4>
+
+<ul>
+<li><p> Solr 可以精确控制对索引进行局部更新，而Sphinx只能全局更新.</p></li>
+<li><p> Solr 可以对几乎任何对象进行索引，该对象甚至可以不是ActiveRecord.而Sphinx和RDBMS耦合过于紧密.</p></li>
+<li><p> Solr 索引的对象ID可以非空或者是字符串，而Sphinx要求被索引对象必须拥有非0整数作为ID.</p></li>
+<li><p> Solr 支持Boolean作为查询条件搜索,更加方便</p></li>
+<li><p> Solr 支持Facets,而Sphinx为此需要做更多工作</p></li>
+<li><p> Solr 是对lucene的包装。所以他可以享受lucene每次升级带来的便利。</p></li>
+</ul>
+
+
+<!--more-->
+
+
+<h4>安装Java：</h4>
+
+<pre><code>sudo yum install java-1.6.0-openjdk.x86_64
+</code></pre>
+
+<h4>下载Solr和Tomcat</h4>
+
+<pre><code>1. wget  http://labs.renren.com/apache-mirror/tomcat/tomcat-7/v7.0.26/bin/apache-tomcat-7.0.26.tar.gz
+
+2. wget http://mirror.bjtu.edu.cn/apache/lucene/solr/3.1.0/apache-solr-3.1.0.tgz
+</code></pre>
+
+<p> 下载完之后解压并放到/usr/local下:</p>
+
+<pre><code> tar zxvf apache-solr-3.1.0.tgz
+ tar zxvf apache-tomcat-7.0.26.tar.gz
+ mv  apache-solr-3.1.0 /usr/local/solr
+ mv  apache-tomcat-7.0.26 /usr/local/tomcat
+</code></pre>
+
+<h4>下载mmseg4j， 中文分词用。</h4>
+
+<pre><code> 地址： http://code.google.com/p/mmseg4j/downloads/list
+</code></pre>
+
+<h2>二、 配置</h2>
+
+<h4>配置环境变量</h4>
+
+<p>编辑profile文件：</p>
+
+<pre><code>sudo vi /etc/profile
+</code></pre>
+
+<p>添加内容:</p>
+
+<pre><code>export JAVA_HOME=/usr/lib/jvm/jre-1.6.0
+export CLASSPATH=.:$JAVA_HOME/lib/rt.jar
+export PATH=$PATH:$JAVA_HOME/bin
+export TOMCAT_HOME=/usr/local/tomcat
+export JAVA_OPT="$JAVA_OPTS -Dsolr.solr.home=/usr/local/tomcat/solr_home"
+</code></pre>
+
+<h4>复制solr.war到tomcat/webapps下面</h4>
+
+<pre><code>cp /usr/local/solr/dist/apache-solr-3.1.0.war /usr/local/tomcat/webapps/solr.war
+</code></pre>
+
+<h4>配置solr.xml文件，先创建Catalina/localhost目录：</h4>
+
+<p>编辑文件：</p>
+
+<pre><code> vi /usr/local/tomcat/conf/Catalina/localhost/solr.xml
+</code></pre>
+
+<p>添加内容：</p>
+
+<pre><code>&lt;Context docBase="/usr/local/tomcat/webapps/solr.war" debug="0" crossContext="true"&gt;
+
+    &lt;Environment name="solr/home" type="java.lang.String" value="/usr/local/tomcat/solr_home" override="true" /&gt;
+
+&lt;/Context&gt;
+</code></pre>
+
+<h4>配置tomcat user</h4>
+
+<p>编辑文件：</p>
+
+<pre><code>vi /usr/local/tomcat/conf/tomcat-users.xml
+</code></pre>
+
+<p>去掉注释块,加入以下内容:</p>
+
+<pre><code>&lt;role rolename="admin-gui"/&gt;
+&lt;role rolename="admin-script"/&gt;
+&lt;role rolename="manager-gui"/&gt;
+&lt;role rolename="manager-script"/&gt;
+&lt;role rolename="manager-jmx"/&gt;
+&lt;role rolename="manager-status"/&gt;
+&lt;user username="tomcat" password="123456" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-script,admin-gui"/&gt;
+</code></pre>
+
+<p><strong>注意： 这里tomcat/123456 是tomcat的用户名，密码， 在你访问tomcat管理页面的时候需要。</strong></p>
+
+<h4>进入tomcat根目录:</h4>
+
+<p>创建solr_home文件夹. 然后将/usr/local/solr/example/solr下的conf、data、bin三个文件夹复制到solr_home下;</p>
+
+<h4>进入webapps/solr/WEB-INF，打开web.xml，第37行，注释打开，修改如下：</h4>
+
+<pre><code>&lt;env-entry]]]]&gt;  
+   &lt;env-entry-name]]]]&gt;solr/home&lt;/env-entry-name]]]]&gt;  
+   &lt;env-entry-value]]]]&gt;/usr/local/tomcat/solr_home&lt;/env-entry-value]]]]&gt;  
+   &lt;env-entry-type]]]]&gt;java.lang.String&lt;/env-entry-type]]]]&gt;  
+ &lt;/env-entry]]]]&gt;
+</code></pre>
+
+<h4>解压下载好的mmseg4j-1.8.4.zip:</h4>
+
+<p>复制mmseg4j-all-1.8.4.jar到/usr/local/tomcat/webapps/solr/WEB-INF/lib下</p>
+
+<h4>进入/usr/local/tomcat/solr_home/conf，打开schema.xml, 在<types></types>之间加入：</h4>
+
+<pre><code>&lt;fieldType name="textComplex" class="solr.TextField" ]]&gt;  
+&lt;analyzer]]&gt;  
+    &lt;tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="complex" dicPath="data/"/&gt;  
+&lt;/analyzer]]&gt;  
+&lt;/fieldType]]&gt;  
+&lt;fieldType name="textMaxWord" class="solr.TextField" ]]&gt;  
+        &lt;analyzer]]&gt;  
+           &lt;tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="max-word"dicPath="data/"/&gt;  
+        &lt;/analyzer]]&gt;  
+&lt;/fieldType]]&gt;  
+&lt;fieldType name="textSimple" class="solr.TextField" ]]&gt;  
+        &lt;analyzer]]&gt;  
+           &lt;tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="simple" dicPath="data/"/&gt;  
+       &lt;/analyzer]]&gt;  
+&lt;/fieldType]]&gt;
+</code></pre>
+
+<h4>然后在解压好的mmseg4j文件夹中找到data文件夹</h4>
+
+<p>将其内的chars.dic、units.dic、words.dic三个字典文件复制到/usr/local/tomcat/solr_home/data中</p>
+
+<h4>启动tomcat</h4>
+
+<pre><code>/usr/local/tomcat/bin/startup.sh
+</code></pre>
+
+<p><strong>当然你也可以自己写启动脚本</strong></p>
+
+<h4>检测</h4>
+
+<p>访问 http://localhost:8080/manager/status  输入之前的用户名和密码，就可以看到正常的tomcat首页，然后访问http://localhost:8080/solr/admin/analysis.jsp，选择Field下拉选项中的type，后面输入textComplex，然后在Field value中随便复制一段中文文字，点击Analyz，就可以看到mmseg4j的分词结果了。</p>
+
+<h4>配置 solrconfig.xml ,   打开 /usr/local/tomcat/solr_admin/conf/solrconfig.xml :</h4>
+
+<pre><code> &lt;dataDir&gt;${solr.data.dir:/usr/local/tomcat/solr_home/data}&lt;/dataDir&gt;
+</code></pre>
+
+<p>添加auto_commit配置， 找到<updateHandler class="solr.DirectUpdateHandler2">位置， 打开注释：</p>
+
+<pre><code>&lt;autoCommit&gt; 
+    &lt;maxDocs&gt;10000&lt;/maxDocs&gt;
+    &lt;maxTime&gt;1000&lt;/maxTime&gt; 
+&lt;/autoCommit&gt;
+</code></pre>
+
+<p><strong>说明：</strong></p>
+
+<ul>
+<li><p>maxDocs：当内存索引数量达到指定值的时候，将内存的索引DUMP到硬盘中，并通知searcher类加载新的索引。</p></li>
+<li><p>maxTime:每隔指定的时间段，自动的COMMIT内存中的索引数据，并通知Searcher类加载新的索引。</p></li>
+<li><p>以上两种方式，以最先达到条件执行为准。</p></li>
+</ul>
+
+
+<h2>三、 Rails</h2>
+
+<h4><a href="http://sunspot.github.com/">Sunspot</a></h4>
+
+<h4><a href="https://github.com/outoftime/sunspot/tree/master/sunspot_rails">sunspot_rails</a></h4>
+
+<h4>与Model集成示例：</h4>
 
 <figure class='code'><figcaption><span>initializers/devise.rb  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -52,7 +234,30 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><strong> 请留意auto_index,auto_remove,配置了这两个选项以后，程序就能够自动检测程序，数据是否变得脏了。数据脏又分为dirty?和delete_dirty?,自动方式会自动根据这两种脏脏状态决定是否自动更新索引,还是自动删除。如果这两个选项被设置成false,那么就需要你手动更新索引。 </strong>#### 增量更新：<strong> sunspot会将新增、更新的记录发送至solr，但不会发送commit(只有运行reindex才会发送commit命令,  只有commit之后， 索引才会发生变化)， 可以配置 solr/conf/solrconfig.xml ，启用 autoCommit 参数，设置更新的记录数或者时间(ms)， 更新时如果 solr 服务出问题，则会导致rails操作不成功，所以要把更新操作放到resque后台执行， 这里使用<a href="http://stdout.heyzap.com/2011/08/17/sunspot-resque-session-proxy/">Sunspot-Resque Session Proxy</a> </strong>#### 关于solr中commit和optimize的概念:    -    commit       当你像solr提交索引更新时，只有运行了commit，索引才会发生变化。当然也并不意味着你每次提交都要commit，如果不是那么紧急，你可以多次提交之后，再执行commit操作。    -   optimize       optimize有点像硬盘上整理磁盘碎片的操作。为了提高搜索速度，它会将索引重组在一起，然后移除需要被删除删除或是更新的文档，请注意，solr是没有update的这种操作的，只有增加与删除。solr在优化时，将需要删除或是被替换的索引标记为deleted，然后再创建新的文档替换掉需要被替换的。optimize就是执行此操作。所以在优化的时候，你的索引会增大，然后再减小。optimize操作会创建一个全新的的索引结构，所以，你需要预备出2倍于你commit时索引大小的空间。       ## 参考资料： <a href="http://wiki.apache.org/solr/SolrTomcat">SolrTomcat Wiki</a>  <a href="http://asciicasts.com/episodes/278-search-with-sunspot">Episodes 278</a>  <a href="http://stdout.heyzap.com/2011/08/17/sunspot-resque-session-proxy/">Sunspot-Resque Session Proxy</a></p>
+<p><strong> 请留意auto_index,auto_remove,配置了这两个选项以后，程序就能够自动检测程序，数据是否变得脏了。数据脏又分为dirty?和delete_dirty?,自动方式会自动根据这两种脏脏状态决定是否自动更新索引,还是自动删除。如果这两个选项被设置成false,那么就需要你手动更新索引。 </strong></p>
+
+<h4>增量更新：</h4>
+
+<p><strong> sunspot会将新增、更新的记录发送至solr，但不会发送commit(只有运行reindex才会发送commit命令,  只有commit之后， 索引才会发生变化)， 可以配置 solr/conf/solrconfig.xml ，启用 autoCommit 参数，设置更新的记录数或者时间(ms)， 更新时如果 solr 服务出问题，则会导致rails操作不成功，所以要把更新操作放到resque后台执行， 这里使用<a href="http://stdout.heyzap.com/2011/08/17/sunspot-resque-session-proxy/">Sunspot-Resque Session Proxy</a> </strong></p>
+
+<h4>关于solr中commit和optimize的概念:</h4>
+
+<pre><code>-    commit
+
+   当你像solr提交索引更新时，只有运行了commit，索引才会发生变化。当然也并不意味着你每次提交都要commit，如果不是那么紧急，你可以多次提交之后，再执行commit操作。
+
+-   optimize
+
+   optimize有点像硬盘上整理磁盘碎片的操作。为了提高搜索速度，它会将索引重组在一起，然后移除需要被删除删除或是更新的文档，请注意，solr是没有update的这种操作的，只有增加与删除。solr在优化时，将需要删除或是被替换的索引标记为deleted，然后再创建新的文档替换掉需要被替换的。optimize就是执行此操作。所以在优化的时候，你的索引会增大，然后再减小。optimize操作会创建一个全新的的索引结构，所以，你需要预备出2倍于你commit时索引大小的空间。
+</code></pre>
+
+<h2>参考资料：</h2>
+
+<p> <a href="http://wiki.apache.org/solr/SolrTomcat">SolrTomcat Wiki</a></p>
+
+<p> <a href="http://asciicasts.com/episodes/278-search-with-sunspot">Episodes 278</a></p>
+
+<p> <a href="http://stdout.heyzap.com/2011/08/17/sunspot-resque-session-proxy/">Sunspot-Resque Session Proxy</a></p>
 ]]></content>
   </entry>
   
