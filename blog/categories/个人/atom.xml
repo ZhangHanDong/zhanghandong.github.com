@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: 个人 | My Octopress Blog]]></title>
+  <title><![CDATA[Category: 个人 | Change Box]]></title>
   <link href="http://ZhangHanDong.github.com/blog/categories/个人/atom.xml" rel="self"/>
   <link href="http://ZhangHanDong.github.com/"/>
-  <updated>2012-03-07T18:10:32+08:00</updated>
+  <updated>2012-03-07T18:17:33+08:00</updated>
   <id>http://ZhangHanDong.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[blackanger]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
