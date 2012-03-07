@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Change Box]]></title>
   <link href="http://ZhangHanDong.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://ZhangHanDong.github.com/"/>
-  <updated>2012-03-07T18:22:29+08:00</updated>
+  <updated>2012-03-07T18:27:43+08:00</updated>
   <id>http://ZhangHanDong.github.com/</id>
   <author>
     <name><![CDATA[blackanger]]></name>
@@ -257,11 +257,15 @@ export JAVA_OPT="$JAVA_OPTS -Dsolr.solr.home=/usr/local/tomcat/solr_home"
 
 <pre><code>-    commit
 
-   当你像solr提交索引更新时，只有运行了commit，索引才会发生变化。当然也并不意味着你每次提交都要commit，如果不是那么紧急，你可以多次提交之后，再执行commit操作。
+   当你像solr提交索引更新时，只有运行了commit，索引才会发生变化。              
+   当然也并不意味着你每次提交都要commit，如果不是那么紧急，你可以多次提交之后，再执行commit操作。
 
 -   optimize
 
-   optimize有点像硬盘上整理磁盘碎片的操作。为了提高搜索速度，它会将索引重组在一起，然后移除需要被删除删除或是更新的文档，请注意，solr是没有update的这种操作的，只有增加与删除。solr在优化时，将需要删除或是被替换的索引标记为deleted，然后再创建新的文档替换掉需要被替换的。optimize就是执行此操作。所以在优化的时候，你的索引会增大，然后再减小。optimize操作会创建一个全新的的索引结构，所以，你需要预备出2倍于你commit时索引大小的空间。
+   optimize有点像硬盘上整理磁盘碎片的操作。       
+   为了提高搜索速度，它会将索引重组在一起，然后移除需要被删除删除或是更新的文档，请注意，solr是没有update的这种操作的，只有增加与删除。       
+   solr在优化时，将需要删除或是被替换的索引标记为deleted，然后再创建新的文档替换掉需要被替换的。optimize就是执行此操作。       
+   所以在优化的时候，你的索引会增大，然后再减小。optimize操作会创建一个全新的的索引结构，所以，你需要预备出2倍于你commit时索引大小的空间。
 </code></pre>
 
 <h2>参考资料：</h2>
