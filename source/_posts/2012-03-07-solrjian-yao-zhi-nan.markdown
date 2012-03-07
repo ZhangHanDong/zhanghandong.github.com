@@ -185,7 +185,7 @@ categories: [Ruby, 全文检索]
 
 #### 与Model集成示例：
 
-{% codeblock initializers/devise.rb lang:ruby %}
+{% codeblock post.rb lang:ruby %}
 
 class Post << ActiveRecord::Base
   has_many :links
