@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 全文检索 | Change Box]]></title>
   <link href="http://ZhangHanDong.github.com/blog/categories/全文检索/atom.xml" rel="self"/>
   <link href="http://ZhangHanDong.github.com/"/>
-  <updated>2012-03-07T18:17:33+08:00</updated>
+  <updated>2012-03-07T18:22:29+08:00</updated>
   <id>http://ZhangHanDong.github.com/</id>
   <author>
     <name><![CDATA[blackanger]]></name>
@@ -202,7 +202,7 @@ export JAVA_OPT="$JAVA_OPTS -Dsolr.solr.home=/usr/local/tomcat/solr_home"
 
 <h4>与Model集成示例：</h4>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>initializers/devise.rb  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>post.rb  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
