@@ -25,6 +25,7 @@ categories: [Ruby, 全文检索]
 
    * Solr 是对lucene的包装。所以他可以享受lucene每次升级带来的便利。
 
+<!--more-->
 
 #### 安装Java：
 
