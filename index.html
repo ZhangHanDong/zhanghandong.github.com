@@ -9,7 +9,10 @@
   <meta name="author" content="blackanger">
 
   
-  <meta name="description" content="一、 安装 服务器环境， CentOS, 需要的软件有： jdk 1.6.0 、apache-solr-3.1.0 、apache-tomcat-7.0.26 、 mmseg4j Solr与Sphinx相比较的优势： Solr 可以精确控制对索引进行局部更新，而Sphinx只能全局更新. Solr &hellip;">
+  <meta name="description" content="原文地址: 点这里 或者 这里Edge Guides 本文并非原文翻译 这个导读你会学到： 什么是仅提供API的Rails应用
+开始如何配置没有任何浏览器特性的Rails
+如何选择你想包含的middlewares
+如何选择你的controller里使用哪个modules 注意： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +67,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/">Rails Edge - 使用Rails来做API-Only App</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-12T16:03:00+08:00" pubdate data-updated="true">Mar 12<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4>原文地址:  <a href="https://github.com/rails/rails/blob/efd557a60cd976ac17be9e238111a551599caeb5/railties/guides/source/api_app.textile">点这里</a> 或者 <a href="http://edgeguides.rubyonrails.org/api_app.html">这里Edge Guides</a></h4>
+
+<p><strong> 本文并非原文翻译 </strong></p>
+
+<hr />
+
+<h2>这个导读你会学到：</h2>
+
+<ul>
+<li><p>什么是仅提供API的Rails应用</p></li>
+<li><p>开始如何配置没有任何浏览器特性的Rails</p></li>
+<li><p>如何选择你想包含的middlewares</p></li>
+<li><p>如何选择你的controller里使用哪个modules</p></li>
+</ul>
+
+
+<p><strong> 注意： 这个导读引入的特性并没有被全部实现。 先当文档来看 </strong></p>
+
+<h2>什么是一个API app？</h2>
+
+<p>传统意义上来说， 当人们说他用了Rails实现了一个“API”， 意味着他们的web应用提供一个程序可访问的API接口。就像Github提供的<a href="http://developer.github.com/">这个API</a>， 你可以在你自己定制的客户端来使用它。</p>
+
+<p>随着移动互联网时代的到来，以及各种客户端框架的出现， 越来越多的开发者使用Rails来构建后端， 供Web应用和本地应用(Native App)一起使用。例如， Twitter就在Web Application中和其他本地应用客户端（Native App）一样，都消耗着由自己的<a href="https://dev.twitter.com/">公共API</a>提供的JSON资源,  而不是通过Rails生成动态的HTML来渲染用于和Server端通信的表单和链接。大多少开发者都把Web应用当作由HTML， CSS， Javascript构成的另一种客户端来处理，只是通过JSON来通信。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>

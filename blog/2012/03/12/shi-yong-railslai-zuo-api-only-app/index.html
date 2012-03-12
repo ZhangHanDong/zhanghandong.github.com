@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Rails Edge - 使用Rails来做API-Only App - Change Box</title>
+  <meta name="author" content="blackanger">
+
+  
+  <meta name="description" content="原文地址: 点这里 或者 这里Edge Guides 本文并非原文翻译 这个导读你会学到： 什么是仅提供API的Rails应用
+开始如何配置没有任何浏览器特性的Rails
+如何选择你想包含的middlewares
+如何选择你的controller里使用哪个modules 注意： &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ZhangHanDong.github.com/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Change Box" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Change Box</a></h1>
+  
+    <h2>生命成为一朵烟花最好，升起在旷野的夜空，明亮而狂野，盲目而绚烂。然后沉寂，消失。 如此干脆。</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ZhangHanDong.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Rails Edge - 使用Rails来做API-Only App</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-12T16:03:00+08:00" pubdate data-updated="true">Mar 12<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>原文地址:  <a href="https://github.com/rails/rails/blob/efd557a60cd976ac17be9e238111a551599caeb5/railties/guides/source/api_app.textile">点这里</a> 或者 <a href="http://edgeguides.rubyonrails.org/api_app.html">这里Edge Guides</a></h4>
+
+<p><strong> 本文并非原文翻译 </strong></p>
+
+<hr />
+
+<h2>这个导读你会学到：</h2>
+
+<ul>
+<li><p>什么是仅提供API的Rails应用</p></li>
+<li><p>开始如何配置没有任何浏览器特性的Rails</p></li>
+<li><p>如何选择你想包含的middlewares</p></li>
+<li><p>如何选择你的controller里使用哪个modules</p></li>
+</ul>
+
+
+<p><strong> 注意： 这个导读引入的特性并没有被全部实现。 先当文档来看 </strong></p>
+
+<h2>什么是一个API app？</h2>
+
+<p>传统意义上来说， 当人们说他用了Rails实现了一个“API”， 意味着他们的web应用提供一个程序可访问的API接口。就像Github提供的<a href="http://developer.github.com/">这个API</a>， 你可以在你自己定制的客户端来使用它。</p>
+
+<p>随着移动互联网时代的到来，以及各种客户端框架的出现， 越来越多的开发者使用Rails来构建后端， 供Web应用和本地应用(Native App)一起使用。例如， Twitter就在Web Application中和其他本地应用客户端（Native App）一样，都消耗着由自己的<a href="https://dev.twitter.com/">公共API</a>提供的JSON资源,  而不是通过Rails生成动态的HTML来渲染用于和Server端通信的表单和链接。大多少开发者都把Web应用当作由HTML， CSS， Javascript构成的另一种客户端来处理，只是通过JSON来通信。</p>
+
+<!--more-->
+
+
+<h2>为什么使用Rails来提供JSON APIs？</h2>
+
+<p>很多人在使用Rails构建一个JSON API时候思考的第一个问题就是：使用Rails输出JSON是不是有种杀鸡用牛刀的感觉？ 是不是应该用Siantra这类轻量级的框架就好了？</p>
+
+<p>对于简单的API应用， 这些考虑可能适用， 但是复杂的， Rails更适合。</p>
+
+<p>大多数人使用Rails的原因是它提供了默认的套件帮助我们快速的起步不用在烦杂的琐碎的东西上浪费时间。让我们看看适合API应用使用的东西：</p>
+
+<h4>中间件层</h4>
+
+<ul>
+<li>Reloading:   R
+ails应用支持transparent reloading. 不管是你的应用因为新增了文件变大还是重启了server，它都会工作。</li>
+<li>Development Mode: 开发模式。</li>
+<li>Test Mode:    测试模式。</li>
+<li>Logging:   Rails会详细的记录每次请求的日志信息。开发环境下， Rails记录的信息包含请求的环境，数据库查询和基本的性能等信息。</li>
+<li>Security:  Rails有效的防范<a href="http://en.wikipedia.org/wiki/IP_address_spoofing">IP欺诈</a>和<a href="http://en.wikipedia.org/wiki/Timing_attack">时序攻击</a>.</li>
+<li>Parameter Parsing:  想要指定你的参数是JSON来代替URL编码字符串吗？没问题， Rails会帮你解码JSON成为你可用的参数。</li>
+<li>Conditional GETs:   Rails可以处理条件GET， 操作请求头并且返回正确的响应头和状态码。你可以使用<a href="http://api.rubyonrails.org/classes/ActionController/ConditionalGet.html#method-i-stale-3F">stale?</a>来处理全部HTTP详细信息。</li>
+<li>Caching:   Rails让你方便的配置缓存。</li>
+<li>HEAD requests:   Rails会透明的把HEAD request转化为GET request， 并只返回header信息。</li>
+</ul>
+
+
+<h4>ActionPack层</h4>
+
+<ul>
+<li>Resourceful Routing:  如果你正在构建一个RESTFul的JSON API， 你要用Rails router,   干净利落方便的帮你从HTTP方法映射到Controller。</li>
+<li>URL Generation:   Routing对应的是URL Generation。 一个好的API是对HTTP方法友好的URLs， 例如<a href="http://developer.github.com/v3/gists/">Github gist API</a>。</li>
+<li>Header and Redirection Responses:    head :no_content 和 redirect_to_user_url(current_user), 这两方法迟早有用。</li>
+<li>Content Negotiation: Rails的respond_to和respond_with方法，会自动的根据请求的Accept header和可用类型去提供相应的MIME Type。</li>
+<li>Caching:  Rails提供页面， action和片段缓存。 片段缓存有利用构建内嵌的JSON对象。</li>
+<li>Basic, Digest and Token Authentication:  Rails支持这三种类型的HTTP验证。</li>
+<li>Instrumentation: Rails3.0 提供了一个Instrumentation API用于触发一些注册事件，类似于action处理过程， 发送文件或者数据， 重定向和数据查询等事件,  可用于Notifications等功能。</li>
+<li>Generators:  生成器， 对高级别的Rails用户来说没啥用， 但是它可以一键生成相关的资源。</li>
+<li>Plugins:   有好多优秀的Rails第三方插件可以拿来用。</li>
+</ul>
+
+
+<h2>基本配置</h2>
+
+<p>如果你正在构建一个基本只提供API服务的Rails应用， 那么你可以从一个定制的Rails子集版本开始， 只添加自己需要的特性。</p>
+
+<h4>你可以直接生成一个bare rails应用：</h4>
+
+<pre><code>$ rails new my_api  -api
+</code></pre>
+
+<p>这条命令会帮你生成三条主要的部分：</p>
+
+<ol>
+<li>帮你配置包含更少中间件的应用， 尤其是不包含任何和浏览器相关的特性，比如cookie支持等。</li>
+<li>使 ApplicationController继承于ApplicationController::API， 而不是ApplicationController::Base.  ApplicationController::API已经剔除了任何包含浏览器相关特性的功能。</li>
+<li>配置生成器， 在你生成新的资源的时候，跳过生成views， helpers和assets。</li>
+</ol>
+
+
+<h4>如果你想让已经存在的Rails Application变成一个API App， 那么按下面步骤来做：</h4>
+
+<p><strong> 在config/application.rb中增加下面两行：</strong></p>
+
+<pre><code>config.middleware.api_only!
+config.generators.api_only!
+</code></pre>
+
+<p><strong> 改变app/controller/application_controller.rb 为下列语句： </strong></p>
+
+<figure class='code'><figcaption><span>application_controller.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
+</span><span class='line'>      <span class="c1"># ...</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>选择中间件</h2>
+
+<p>一个API A
+pp应该默认包含下面Middlewares：</p>
+
+<ul>
+<li>Rack::Cache:   利用Cache-Control机制来缓存响应。</li>
+<li>Rack::Sendfile:   提供文件传输支持。</li>
+<li>Rack::Lock:  如果你的应用没有标记使用线程安全 (config.threadsafe!), 这个middleware会在你的请求上增加一个互斥锁， 用于保证在任一时刻，只能有一个线程访问改对象。</li>
+<li>ActionDispatch::RequestId:</li>
+<li>Rails::Rack::Logger:</li>
+<li>ActionDispatch::ShowExceptions:</li>
+<li>ActionDispatch::DebugExceptions:</li>
+<li>ActionDispatch::RemoteIp: IP欺诈保护</li>
+<li>ActionDispatch::Reloader: 在开发环境下支持code reloading。</li>
+<li>ActionDispatch::ParamsParser: 根据请求类型Content-Type来解析XML, YAML, JSON。</li>
+<li>ActionDispatch::Head:  指派HEAD requests为GET requests,并只返回header信息和状态码。</li>
+<li>Rack::ConditionalGet:  在Rails controller里支持stale?特性</li>
+<li>Rack::ETag:  自动为所有的字符串响应设置ETag。 主要被用来优化客户端。</li>
+</ul>
+
+
+<h4>你可以通过下面命令来列出你应用里用到的所有Middlewares：</h4>
+
+<pre><code>$ rake middleware
+</code></pre>
+
+<p>还有一些其他的Middlewares及其说明， 可以查看<a href="https://github.com/rails/rails/blob/efd557a60cd976ac17be9e238111a551599caeb5/railties/guides/source/api_app.textile">原文链接</a>。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">blackanger</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-12T16:03:00+08:00" pubdate data-updated="true">Mar 12<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ZhangHanDong.github.com/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/" data-via="" data-counturl="http://ZhangHanDong.github.com/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+  
+    <div class='twitter-share-button'>
+      <script src="/javascripts/weibo_share_button.js"></script>
+    </div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/03/07/solrjian-yao-zhi-nan/" title="Previous Post: Solr简要指南">&laquo; Solr简要指南</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/">Rails Edge - 使用Rails来做API-Only App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/07/solrjian-yao-zhi-nan/">Solr简要指南</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/05/bcryptyu-mi-ma-an-quan/">bcrypt与密码安全</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/30/nei-xin/">内心</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/28/2012shu-dan/">2012书单</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - blackanger -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'changeboxblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ZhangHanDong.github.com/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/';
+        var disqus_url = 'http://ZhangHanDong.github.com/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
