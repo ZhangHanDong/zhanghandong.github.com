@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Change Box</title>
+  <title>Ruby Styleguide - Change Box</title>
   <meta name="author" content="blackanger">
 
   
@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ZhangHanDong.github.com">
+  <link rel="canonical" href="http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -65,15 +65,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/04/11/ruby-styleguide/">Ruby Styleguide</a></h1>
+      <h1 class="entry-title">Ruby Styleguide</h1>
     
     
       <p class="meta">
@@ -91,14 +88,14 @@
 
 <time datetime="2012-04-11T11:34:00+08:00" pubdate data-updated="true">Apr 11<span>th</span>, 2012</time>
         
-         | <a href="/blog/2012/04/11/ruby-styleguide/#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h4>注： 本文为<a href="https://github.com/styleguide/ruby">Github Ruby Styleguide</a>的中文翻译， 边翻译边过了一遍，发现这些风格约定很有其道理。推荐！</h4>
+<div class="entry-content"><h4>注： 本文为<a href="https://github.com/styleguide/ruby">Github Ruby Styleguide</a>的中文翻译， 边翻译边过了一遍，发现这些风格约定很有其道理。推荐！</h4>
 
 <h4>代码风格 (Coding Style)</h4>
 
@@ -1194,176 +1191,16 @@
 
 <p>Follow your <img src="https://a248.e.akamai.net/assets.github.com/images/icons/emoji/heart.png?v5" alt="" /></p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/14/sublimetext2-shi-yong-zhi-nan/">SublimeText2 使用指南</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">blackanger</span></span>
 
-<time datetime="2012-03-14T14:17:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/03/14/sublimetext2-shi-yong-zhi-nan/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>引子:</h4>
-
-<p>昨天<a href="blog.irubi.com">idecent</a>向我推荐了一款编辑器 - <a href="http://www.sublimetext.com/">Sublime Text 2</a>。
-经过试用，发现真的不错， 打开项目、文件的速度超快， 让Textmate汗颜， 于是毫不吝惜的把Textmate抛弃了。</p>
-
-<p><strong>注： SublimeText2是收费的，但不限制使用时间，只是不定时弹出让你付费的提醒。</strong></p>
-
-<hr />
-
-<h2>使用指南:</h2>
-
-<h4>为了方便在终端使用SublimeText2打开文件，需要加Link：</h4>
-
-<pre><code>sudo ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/bin/st
-</code></pre>
-
-<h2>使用技巧</h2>
-
-<p><strong> 一、启用vim模式 </strong></p>
-
-<ul>
-<li><p>打开配置文件： Preferences -> Settings User  或者使用快捷键：cmd + ,</p></li>
-<li><p>在配置文件中添加：</p>
-
-<pre><code>  "ignored_packages": []
-</code></pre></li>
-<li><p>重启Sublime Text2就可以了。</p></li>
-</ul>
-
-
-<p><strong> 二、 Package Control </strong></p>
-
-<p>Sublime Text 2拥有良好的扩展功能，这就是安装包(Package), 通过安装这个插件： <a href="http://wbond.net/sublime_packages/package_control">Sublime Package Control</a></p>
-
-<p>安装方法：</p>
-
-<ul>
-<li><p>Control + ` 命令调出console.</p></li>
-<li><p>把下面的代码输入，并回车执行。</p>
-
-<pre><code>  import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print 'Please restart Sublime Text to finish installation'
-</code></pre></li>
-<li><p>重启Sublime Text2， 如果在 Preferences -> Package Settings中见到Package Control这一项，就说明安装成功了。</p></li>
-</ul>
-
-
-<p><strong> 三、 通过Package Control 来安装其他插件</strong></p>
-
-<ul>
-<li><p>cmd + shift + p  调出命令框</p></li>
-<li><p>输入 install 调出 Package Control: Install Package 选项，按下回车。</p></li>
-<li><p>列表中查找你想安装的插件， 按下回车就会自动安装。 （某些插件是收费的）</p></li>
-<li><p>安装完记得重启Sublime Text 2.</p></li>
-</ul>
-
-
-<p><strong> 推荐插件： 右键菜单增强： SideBarEnhancements </strong></p>
-
-<p><strong> 四、 无干扰模式(Distraction Free Mode) </strong></p>
-
-<p>在 Sublime Text 2 中，只要按下 Control + Shift + Command + F 或是在菜单 View 中选择 Enter Distraction Free Mode 就可以进入这个 UI 最小化模式了。如果是在用 Mac OS X Lion 的话，Sublime Text 2 还同时支持 Lion 的原生全屏模式。</p>
-
-<p>通过修改 “Preferences” -> “File Settings - More” -> “Distraction Free - User” 可以对防干扰模式进行一些设置：</p>
-
-<pre><code>{
-"line_numbers": false,      //是否显示行号
-"gutter": false,            //是否显示边列
-"draw_centered": true,      //是否居中显示
-"wrap_width": 80,           //换行宽度(单位：字符)
-"word_wrap": true,          //是否自动换行
-"scroll_past_end": true     //滚动能否超过结尾
-}
-</code></pre>
-
-<p><strong> 五、 Textmate Bundle </strong></p>
-
-<p>Sublime Text 2 很给力的一点就是它同时支持一些 TextMate 的 Bundle。</p>
-
-<p>Sublime Text 2 对于 TextMate Bundle 中的 Snippet 有着良好的原生支持，把 Bundle 放到 Packages 目录里就能用。但对 Bundle 中的 command 并不支持.</p>
-
-<p>我自己没有在Sublime Text2中使用textmate的bundle。</p>
-
-<p><strong> 六、 安装主题 </strong></p>
-
-<p>可以使用Package Control来查找Theme，选择主题安装， 但是安装完之后，需要看你下载的theme插件的Readme来进行配置。</p>
-
-<p><strong> 七、 快捷键 </strong></p>
-
-<p>Navigation</p>
-
-<pre><code>* Command palette: Command + Shift + P   
-*  Fuzzy finder: Command + P
-*  Function crawling: Command + R
-*  Go to line number: Control + G
-*  Find in files: Command + Shift + F
-</code></pre>
-
-<p>Text manipulation</p>
-
-<pre><code>* Replace in file: Command + Alt + F (Control + H on Windows)
-* Select current line: Command + L
-* Duplicate line: Command + Shift + D
-* Multi-select words: Command + D, multiple times
-* Swipe lines: Command + Shift + L, or Control + Shift + Up/Down
-* Join lines: Command + J
-* Delete to beginning of word: Control + Backspace
-* Delete to end of word: Control + Delete
-</code></pre>
-
-<p>Coding</p>
-
-<pre><code>* Edit occurrences : Command + Control + G (Alt + F3 on Windows)
-* Auto-align assignments: Command + Shift + A
-* Select scope: Command + Shift + Space, multiple times
-* Jump to matching bracket: Control + M
-* Toggle comment: Command + /
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/">Rails Edge - 使用Rails来做API-Only App</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -1375,608 +1212,89 @@
   
 
 
-<time datetime="2012-03-12T16:03:00+08:00" pubdate data-updated="true">Mar 12<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>原文地址:  <a href="https://github.com/rails/rails/blob/efd557a60cd976ac17be9e238111a551599caeb5/railties/guides/source/api_app.textile">点这里</a> 或者 <a href="http://edgeguides.rubyonrails.org/api_app.html">这里Edge Guides</a></h4>
-
-<p><strong> 本文并非原文翻译 </strong></p>
-
-<hr />
-
-<h2>这个导读你会学到：</h2>
-
-<ul>
-<li><p>什么是仅提供API的Rails应用</p></li>
-<li><p>开始如何配置没有任何浏览器特性的Rails</p></li>
-<li><p>如何选择你想包含的middlewares</p></li>
-<li><p>如何选择你的controller里使用哪个modules</p></li>
-</ul>
-
-
-<p><strong> 注意： 这个导读引入的特性并没有被全部实现。 先当文档来看 </strong></p>
-
-<h2>什么是一个API app？</h2>
-
-<p>传统意义上来说， 当人们说他用了Rails实现了一个“API”， 意味着他们的web应用提供一个程序可访问的API接口。就像Github提供的<a href="http://developer.github.com/">这个API</a>， 你可以在你自己定制的客户端来使用它。</p>
-
-<p>随着移动互联网时代的到来，以及各种客户端框架的出现， 越来越多的开发者使用Rails来构建后端， 供Web应用和本地应用(Native App)一起使用。例如， Twitter就在Web Application中和其他本地应用客户端（Native App）一样，都消耗着由自己的<a href="https://dev.twitter.com/">公共API</a>提供的JSON资源,  而不是通过Rails生成动态的HTML来渲染用于和Server端通信的表单和链接。大多少开发者都把Web应用当作由HTML， CSS， Javascript构成的另一种客户端来处理，只是通过JSON来通信。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2012-04-11T11:34:00+08:00" pubdate data-updated="true">Apr 11<span>th</span>, 2012</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/07/solrjian-yao-zhi-nan/">Solr简要指南</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
 
 
-<time datetime="2012-03-07T14:38:00+08:00" pubdate data-updated="true">Mar 7<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/03/07/solrjian-yao-zhi-nan/#disqus_thread">Comments</a>
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><h2>一、 安装</h2>
-
-<p>服务器环境， CentOS, 需要的软件有：  jdk 1.6.0 、apache-solr-3.1.0 、apache-tomcat-7.0.26 、 mmseg4j</p>
-
-<h4>Solr与Sphinx相比较的优势：</h4>
-
-<ul>
-<li><p> Solr 可以精确控制对索引进行局部更新，而Sphinx只能全局更新.</p></li>
-<li><p> Solr 可以对几乎任何对象进行索引，该对象甚至可以不是ActiveRecord.而Sphinx和RDBMS耦合过于紧密.</p></li>
-<li><p> Solr 索引的对象ID可以非空或者是字符串，而Sphinx要求被索引对象必须拥有非0整数作为ID.</p></li>
-<li><p> Solr 支持Boolean作为查询条件搜索,更加方便</p></li>
-<li><p> Solr 支持Facets,而Sphinx为此需要做更多工作</p></li>
-<li><p> Solr 是对lucene的包装。所以他可以享受lucene每次升级带来的便利。</p></li>
-</ul>
-
-
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide/" data-via="" data-counturl="http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+  
+    <div class='twitter-share-button'>
+      <script src="/javascripts/weibo_share_button.js"></script>
+    </div>
+  
+  
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/07/solrjian-yao-zhi-nan/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/05/bcryptyu-mi-ma-an-quan/">Bcrypt与密码安全</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-05T17:30:00+08:00" pubdate data-updated="true">Jan 5<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/01/05/bcryptyu-mi-ma-an-quan/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近闹的沸沸扬扬的各大网站用户密码泄露事件， 让网民们震惊了，尽然都是明文保存密码。因为存在某些漏洞，比如sql注入， 可能让Hacker拿到全字段的数据列表，如果是明文密码， 那就帮Hacker省事了， Hacker都不需要暴力破解了。</p>
-
-<p>其实对于密码有很多加密手段，但是最安全的莫过于Bcrypt这种算法了， 详细的参看<a href="http://codahale.com/how-to-safely-store-a-password/">Coda Hala的这篇文章</a>, 也有<a href="http://coolshell.cn/articles/2078.html/comment-page-2#comment-121752">中文版</a>。 其实安全也是相对的， 对于Bcrypt这种算法的优势再于它的慢， 延缓了Hacker暴力破解的时间， 对于用户来说，就相对安全了。</p>
-
-<p>用Rails的同学就有福了。 <a href="https://github.com/plataformatec/devise">devise</a>默认就是支持Bcrypt的。</p>
-
-<figure class='code'><figcaption><span>initializers/devise.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">stretches</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">10</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这里的stretches被用来做work factor, 数值越大越慢， 如果你发现一个crypt生成值在20毫秒之内，那这个stretches就正好。</p>
-
-<p>另一个措施就是可以在用户输入12345之类的弱密码的时候，禁止其注册，并提示其使用强度比较高的密码。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+        <a class="basic-alignment left" href="/blog/2012/03/14/sublimetext2-shi-yong-zhi-nan/" title="Previous Post: SublimeText2 使用指南">&laquo; SublimeText2 使用指南</a>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/30/nei-xin/">内心</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-30T15:48:00+08:00" pubdate data-updated="true">Dec 30<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/12/30/nei-xin/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在微博上看到<a href="http://weibo.com/joboto">@周伯通招聘</a>发的这个帖子<a href="http://www.joboto.com/thread/15408">设立职业生涯目标的14步练习法</a>,  就看了看， 并且按照这个步骤完成了自己的练习。结果发现自己内心的那个想法竟然如此墙裂 。。。</p>
-
-<h2>步骤1． （省略,参考上面帖子地址）</h2>
-
-<p>我想拥有的：</p>
-
-<p>一个公司， 不算很大， 最好不要超过20个人。 公司以技术为重， 公司的产品导向是通过科技手段改善人类的生活，做最实用又最有创意的产品。 基于互联网，又高于互联网， 贴近生活与大众, 或者某个垂直行业， 充满了想象力， 去发现生活中美与不同的一面， 带给用户简单，美与便利。</p>
-
-<p>公司里没有HR， 或者说没有那些只会记录员工工作时间的HR， 我觉得真正的HR更像一个保姆，公司的保姆， 除了那些日常的事务， 还应该做的是，维持公司内部员工的工作环境，工作心情， 解决公司员工碰到的各种困难。 公司的企业文化是大家一起来创造的，工作时间随意， 前提是保质保量完成工作任务。 我觉得，只有公司把员工当成家人， 员工才有可能把公司当做家。 公司每周都组织家庭聚会， 一起去郊外旅游， 聚餐， 交流思想。 公司不以上市做为目标， 所以公司不会拿所谓的期权来忽悠人， 每个月的财务会公开， 年底人人都会有分红。分红不是按等级分配，也不是按劳分配， 是按功劳分配， 对公司产品有贡献的人， 才能拿到高比例的分红。 如何去衡量对产品有贡献，可以通过多种手段， 比如，一个漂亮的对策解决了用户反馈的产品问题， 一个漂亮的营销策划方案， 一个漂亮的产品功能改进， 一个漂亮的家庭聚会活动组织，一个漂亮的技术分享或者是贡献等等， 当然漂亮不漂亮，公司的每位同事都会参与打分， 这也是公司人少的好处。</p>
-
-<p>同事间的协作方式，可以是远程协作。 比如，今天不舒服， 可以在家办公，或者是去咖啡馆， 只要是任何有网络的地方。像北京这类地方， 交通拥堵， 在北京郊区或者周边买房租房的优秀人才也不少。 没必要每天都往一个办公室挤。  每周保持2 的天正常会面就ok了。 这样的话， 同事们就不必要每天为了想在北京买房而发愁了， 你在北京周边买也一样， 公司支持你（精神上，公司文化，金钱上估计前三五年还没那个实力）。</p>
-
-<p>我觉得公司也应该有理想， 公司的理想应该反映在其产品上，就向苹果的产品一样， 果粉所热爱的苹果，绝对不是其可以用来装逼的价格， 真正的果粉懂得，因为其提升了人们的审美， 告诉大众什么是美，带给人们好心情； 带给了人们方便， 手势， 快捷键等提升了工作效率。所以，公司的理想通过产品反映给大众， 能提升大众生活精神质量的公司理想， 大众肯定可以接受， 产品自然就会有市场。</p>
-
-<ol>
-<li><p>在你生活中，你认为哪五件事情最有价值？</p>
-
-<ul>
-<li>做有意义的工作</li>
-<li>和家人共处的时光， 能多抽时间陪父母， 抽空去看望老朋友， 多交流。</li>
-<li>信仰（基督教）</li>
-<li>健康。 每周适度的锻炼。（不包括挤公车地铁）</li>
-<li>学习。 必不可少。</li>
-</ul>
-</li>
-<li><p>在你的生活中，有哪三个最重要的目标？</p>
-
-<ul>
-<li>创业。 去建立一个我上面所描写的公司。</li>
-<li>经营一个和谐幸福的家庭。</li>
-<li>保持一个健康的身体。</li>
-</ul>
-</li>
-<li><p>假如你只有六个月的生命，你会如何地运用这六个月？</p>
-
-<ul>
-<li>去旅行。 带着我的爱人， 父母， 岳父岳母和我弟弟。给我的亲戚和其他朋友们邮寄明信片。</li>
-</ul>
-</li>
-<li><p>假如你立刻成为百万富翁，在哪些事情上，你的做法会和今天不一样？</p>
-
-<ul>
-<li>可能对创业的想法更坚定了， 也许会马上踏出那一步.</li>
-</ul>
-</li>
-<li><p>有哪些事是你一直想做，但却不敢尝试去做的？</p>
-
-<ul>
-<li>去创上面描述的公司（虽然以前也创过业）</li>
-</ul>
-</li>
-<li><p>在生活中，有哪些活动，你觉得最重要的？</p>
-
-<ul>
-<li>交流（或者头脑风暴）， 聚餐， 一起去郊游，健身， 做礼拜。</li>
-</ul>
-</li>
-<li><p>假如你确定自己不会失败（拥有充实的时间、资源、能力等），你会敢于梦想哪一件事情？</p>
-
-<ul>
-<li>第一 ， 当然是去创建上面描述的那个公司。</li>
-<li>第二，  去旅行。 带着我的爱人， 父母， 岳父岳母和我弟弟。给我的亲戚和其他朋友们邮寄明信片。</li>
-</ul>
-</li>
-</ol>
-
-
-<h2>步骤2．</h2>
-
-<ul>
-<li>以上所写，我希望可以在10年之内达成。2012 - 2022。</li>
-</ul>
-
-
-<h2>步骤3．</h2>
-
-<p>2012年主要目标:</p>
-
-<ol>
-<li>在AR方向上，能做一些东西出来。  （时限一年， 年底正式发布， 之前会出测试）</li>
-<li>抽出来时间，去看老朋友。</li>
-<li>和老婆的蜜月旅行。（国庆长假+年假）</li>
-<li>坚持锻炼，减肥。</li>
-<li>每个月坚持看一本书。</li>
-</ol>
-
-
-<h2>步骤4．</h2>
-
-<ol>
-<li>用肯定的语气来预期你的结果，说出你希望的而非不希望的； √</li>
-<li>结果要尽可能具体，还要明确订出完成的期限与项目； √</li>
-<li>事情完成时你要能知道完成了； √</li>
-<li>要能抓住主动权，而非任人左右；√</li>
-<li>是否对社会有利。   √</li>
-</ol>
-
-
-<h2>步骤5．</h2>
-
-<ul>
-<li>比较执着， 不撞南墙不回头。脾气急躁， 但是在改。 碰到问题的时候， 缺乏冷静。  合作伙伴已有，财力支持也比较确定。 时限有一些吃紧， 能力，应该达标了。</li>
-</ul>
-
-
-<h2>步骤6．</h2>
-
-<ol>
-<li>专业能力</li>
-<li>同一个志向,或者愿望</li>
-<li>经常性的交流</li>
-<li>利益驱动</li>
-<li>对用户来说， 我做出了正宗并实惠的东西， 不存在欺骗用户的行为。</li>
-<li>业界大佬来帮忙。 是我用真诚换来的。虽然之后的发展让人失望。</li>
-</ol>
-
-
-<h2>步骤7．</h2>
-
-<ul>
-<li>团队， 起步的财力， 共同的目标， 坚持。</li>
-</ul>
-
-
-<h2>步骤8．</h2>
-
-<ul>
-<li>没有足够的财力支持。 补救办法， 参考 《Rework》。</li>
-</ul>
-
-
-<h2>步骤9．</h2>
-
-<ol>
-<li><p>在AR方向上，能做一些东西出来。  （时限一年， 年底正式发布， 之前会出测试)</p>
-
-<ul>
-<li>正式发布</li>
-<li>测试数据采集， 修正bug</li>
-<li>发布beta版</li>
-<li>构建产品， 先出测试版</li>
-<li>产品功能确定</li>
-<li>UE设计</li>
-<li>技术考察</li>
-<li>人员集结, 投资到位</li>
-</ul>
-</li>
-<li><p>抽出来时间，去看老朋友。</p>
-
-<ul>
-<li>每一个月找个周末。</li>
-</ul>
-</li>
-<li><p>和老婆的蜜月旅行。</p>
-
-<ul>
-<li>国庆长假+年假, 2012来年就需要办理签证事宜。</li>
-</ul>
-</li>
-<li><p>坚持锻炼，减肥。</p>
-
-<ul>
-<li>春夏秋，小区会所游泳</li>
-<li>冬，  小区周围跑步</li>
-</ul>
-</li>
-<li><p>每个月坚持看一本书</p>
-
-<ul>
-<li><a href="http://blog.changebox.me/blog/2011/12/28/2012shu-dan/">2012上半年书单</a>已经列出。</li>
-</ul>
-</li>
-</ol>
-
-
-<h2>步骤10．</h2>
-
-<ul>
-<li>向<a href="http://37signals.com">37Signals</a> 看齐。 开始《rework》</li>
-</ul>
-
-
-<h2>步骤11．使目标多样化且有整体意义。 </h2>
-
-<ul>
-<li>已经很多样化了。</li>
-</ul>
-
-
-<h2>步骤12．为自己创造一个适当的环境。 </h2>
-
-<h2>步骤13．经常反省所做的结果。</h2>
-
-<h2>步骤14. </h2>
-
-<ul>
-<li>仔细想了想以后， 要感谢的人有好多。 要学会感恩。在感恩中前进。</li>
-</ul>
-
-
-<h2>总结：</h2>
-
-<p>  <strong>经过这样的练习， 发现自己内心的那个想法竟然那么墙裂。</strong></p>
-
-<p>  <strong>关键的2012， 把握内心所想， 脚踏实地向着目标踏步走！！！</strong></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/28/2012shu-dan/">2012书单</a></h1>
-    
-    
-      <p class="meta">
-        
+    </p>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-28T17:51:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/12/28/2012shu-dan/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>2012上半年阅读计划：</p>
-
-<h4>Ruby/Rails类：</h4>
-
-<blockquote><p>《Exceptional Ruby》</p>
-
-<p>《Eloquent Ruby》</p>
-
-<p>《Rails Master源码》(非书)</p></blockquote>
-
-<h4>Node.js 相关</h4>
-
-<blockquote><p>《Pragmatic.CoffeeScript》</p>
-
-<p>《Packtpub.Node.Web.Development》</p></blockquote>
-
-<h4>Ios相关:</h4>
-
-<blockquote><p>《ObjectiveC3rd》</p>
-
-<p>《Big.Nerd.Ranch.iOS.Programming.2nd》</p></blockquote>
-
-<h4>HTML5相关：</h4>
-
-<blockquote><p>《Wrox.HTML5.24-Hour.Trainer》</p>
-
-<p>《Oreilly.HTML5.Cookbook》</p></blockquote>
-
-<h4>SEM:</h4>
-
-<blockquote><p>《Google广告优化与工具》</p></blockquote>
-
-<p>一共九本书， 六个月读完。 平均一个月1.5本。 源码阅读计划分散在每天的时间里。 对于时间，需要进一步统筹计划。</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  
-  
+  </section>
 
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/23/2011nian-du-zong-jie/">2011年度总结</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-23T15:18:00+08:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2011</time>
-        
-         | <a href="/blog/2011/12/23/2011nian-du-zong-jie/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>2011年， 对我的人生来说， 应该算是重要的一年。</p>
-
-<p><strong>有一些好的事情</strong></p>
-
-<blockquote><ol>
-<li>今年我离开了曾经想沉下心和前同事创一番事业的eoe， 跳槽了又跳槽了， 也就是跳了两次，来到了iClick, 开始踏入SEM行业，在iClick，我明白了一个我之前一直不太明白的问题，那就是技术的尽头在哪里。</li>
-<li>今年我拥有了自己人生第一套房子， 要感谢父母， 实话说，凭我自己目前的存款，是买不起房子的，父母给了我这一切， 却不计任何回报。当然，我要好好的回报父母。</li>
-<li>今年我也要结婚成家了， 感谢老婆，感谢老婆陪我走过的这两年多的时光， 感谢老婆为我所做的一切。虽然免不了吵架拌嘴，但是我们的感情越来越深， 我们会越来越幸福。</li>
-<li>今年我也开始信奉基督教， 是受老婆的影响。虽然我一直搞不清楚我该如何去相信上帝的存在，但是我还是祷告，参加了多次教友聚会， 去教堂做礼拜，听牧师证道， 也让我的脾气温和了不少。</li>
-</ol>
-</blockquote>
-
-<p><strong>也有一些比较遗憾的事情</strong></p>
-
-<blockquote><ol>
-<li>因为房子装修的琐碎烦事以及结婚要做的准备， 没有百分百的完成和PCR约定的事情, 比较遗憾。所以，以后不能随便许诺了， 要懂得拒绝，有些事情也不是非我不可。</li>
-<li>时间规划比较混乱， 学习计划没有坚持下来， 来年需要好好改进。人只有不断的学习才能进步， 更何况是程序员。</li>
-<li>没有抽出来时间和多年的朋友交流互通， 很遗憾， 来年一定的抽出时间去看看老朋友们。</li>
-</ol>
-</blockquote>
-
-<p><strong>2012年的目标：</strong></p>
-
-<blockquote><ol>
-<li>需要深入学习了解SEM相关行业知识， 在业务上一定要达到精通。</li>
-<li>每个月坚持看一本书。</li>
-<li>在AR方向上，能做一些东西出来。</li>
-<li>抽出来时间，去看老朋友。</li>
-<li>和老婆的蜜月旅行。</li>
-<li>坚持锻炼，减肥。</li>
-<li>坚持写博。</li>
-</ol>
-</blockquote>
-
-<p>好了， 就以上这七个目标， 2012年坚持不去做计划外的事情。 努力！让2012没有遗憾。</p>
-
-<p>嗨， 未来的自己， 下个圣诞见！</p>
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/21/octopress-shi-yong-xiao-ji/">Octopress 使用小记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-21T23:05:00+08:00" pubdate data-updated="true">Dec 21<span>st</span>, 2011</time>
-        
-         | <a href="/blog/2011/12/21/octopress-shi-yong-xiao-ji/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>我是从<a href="ruby5.envylabs.com%20Ruby5">Ruby5</a>知道<a href="http://octopress.org/%20Octopress">Octopress</a>的， 之前用rack-Jekyll自己搞过一个blog， 使用起来比较麻烦。看了一下Octopress的文档， 觉得非常棒。 看到<a href="http://blog.xdite.net">Xdite</a>也在推荐使用这个blog系统，也对它感兴趣了。</p>
-
-<p>没费多少时间把它搭建起来了，绑定了blog.changebox.me这个域名。 changebox.me这个域名我买了有一段时间了， 本来想做个养成习惯的web应用， 因为某些原因耽搁了。 现在暂时用来写博吧。</p>
-
-<p>对Octopress感兴趣的同学可以去其<a href="http://octopress.org/%20Octopress">官网</a>看看。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
-  <h1>About Me</h1>
-  <p>Ruby Geeker. Think in Web/App. This is my tech blog </p>
-  <p>Gmail: blackanger.z[at]gmail.com</p>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/ruby-styleguide/">Ruby Styleguide</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/14/sublimetext2-shi-yong-zhi-nan/">SublimeText2 使用指南</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/">Rails Edge - 使用Rails来做API-Only App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/07/solrjian-yao-zhi-nan/">Solr简要指南</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/05/bcryptyu-mi-ma-an-quan/">bcrypt与密码安全</a>
+      </li>
+    
+  </ul>
 </section>
-<section>
 
-    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=zh_cn&width=0&height=550&fansRow=1&ptype=0&speed=0&skin=5&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1902661100&verifier=6760e5c2&dpc=1"></iframe>
 
-</section>
+
+
+
 
   
 </aside>
+
 
     </div>
   </div>
@@ -1992,7 +1310,10 @@
       var disqus_shortname = 'changeboxblog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide/';
+        var disqus_url = 'http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
