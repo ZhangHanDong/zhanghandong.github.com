@@ -55,6 +55,8 @@ categories: [Ruby]
            end
   {% endcodeblock %}
 
+<!--more-->
+
 * 使用空行来隔离区分一个方法内部的逻辑。
 
   {% codeblock lang:ruby %}
