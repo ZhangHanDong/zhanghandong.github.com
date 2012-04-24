@@ -136,7 +136,7 @@
 
 <p>&nbsp; &nbsp; &nbsp; &nbsp;去理解reactor模式那真的是相当简单。阻塞IO的繁重工作委托给一个外部服务（reactor）, 这个服务可以接受并发请求。 这个服务是一个回调处理器，根据响应的类型异步的触发事件。 让我做一个有限的比喻来说明这个更好的设计。 它有点像这样： 如果你问某人一个很难的问题， 他需要一段时间才能答复你，但是他的答复会让你决定举不举你的旗。你有两个选择，或者你选择等待，然后依据等到的结果举起旗，或者你的举旗逻辑已经被定义了，你只需要告诉他，什么样的答案是举旗，什么答案是不举旗，然后让他自己去做，然后你继续做你的事情， 而不必在那傻等了。第二种方式实际上就是reactor模式。它明显有点复杂， 但是关键的一点是， 它允许你的代码去定义基于响应去调用的methods/blocks。 这一点对于单线程webserver十分重要。 当一个请求来了，并且你的代码执行了数据库查询，你正在阻塞其他任何请求。为了避免这样， 我们可以包装我们的请求成为一个fiber， 触发一个异步的DB调用，暂停纤程，以便在我们等待db返回结果的过程中，另一个请求可以得到处理，一旦，db查询返回， 它就唤醒纤程， 然后给客户端返回响应。技术上讲，这个服务仍然是一次发送一个响应，但是现在是运行在了平行的纤程上，也不会被处理大量的阻塞操作阻塞主线程。</p>
 
-<p>&nbsp; &nbsp; &nbsp; &nbsp;这种方式被Twisted, EventMachine和Node.js所采用。Ruby开发者用EventMachine 或者是一个基于EventMachine的webserver，像Thin，和EM clients/drivers一样好的去处理异步非阻塞调用。得到Fiber的爱，你就能进入Ruby的并发世界。不过要小心的使用thin，非阻塞驱动和Rails的线程安全模式并不是意味着你可以处理并发请求。Thin/EM仅仅使用了一个线程，你需要让它知道，它可以正确处理下个请求。这是通过延迟响应（http://eventmachine.rubyforge.org/EventMachine/Deferrable.html）来实现的，而且需要让reactor知道它。 这种方法最明确的问题是， 它会迫使你改变写代码的方式。你需要设置一堆callbacks，理解Fiber的语法， 并且要用延迟响应。 我不得不说，这是一种的痛！如果你看一些Node.js的代码，你会看到，它并不总是那么优雅。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;这种方式被Twisted, EventMachine和Node.js所采用。Ruby开发者用EventMachine 或者是一个基于EventMachine的webserver，像Thin，和EM clients/drivers一样好的去处理异步非阻塞调用。得到Fiber的爱，你就能进入Ruby的并发世界。不过要小心的使用thin，非阻塞驱动和Rails的线程安全模式并不是意味着你可以处理并发请求。Thin/EM仅仅使用了一个线程，你需要让它知道，它可以正确处理下个请求。这是通过<a href="http://eventmachine.rubyforge.org/EventMachine/Deferrable.html">延迟响应</a>来实现的，而且需要让reactor知道它。 这种方法最明确的问题是， 它会迫使你改变写代码的方式。你需要设置一堆callbacks，理解Fiber的语法， 并且要用延迟响应。 我不得不说，这是一种的痛！如果你看一些Node.js的代码，你会看到，它并不总是那么优雅。</p>
 
 <h2>Conclusion 总结</h2>
 
