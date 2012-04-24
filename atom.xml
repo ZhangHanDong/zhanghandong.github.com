@@ -4,7 +4,7 @@
   <title><![CDATA[Change Box]]></title>
   <link href="http://ZhangHanDong.github.com/atom.xml" rel="self"/>
   <link href="http://ZhangHanDong.github.com/"/>
-  <updated>2012-04-11T15:42:45+08:00</updated>
+  <updated>2012-04-24T17:22:38+08:00</updated>
   <id>http://ZhangHanDong.github.com/</id>
   <author>
     <name><![CDATA[blackanger]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby的并发世界]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/04/24/rubyde-bing-fa-shi-jie/"/>
+    <updated>2012-04-24T17:10:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/04/24/rubyde-bing-fa-shi-jie</id>
+    <content type="html"><![CDATA[<p>这是我去年翻译的一篇旧文，放到thinkinweb.heroku.com上面， 现在搬过来。</p>
+
+<hr />
+
+<p><strong>注： 并发给我们的应用带来并行能力，而线程是实现并发的一种方式。Ruby的GIL限制了Ruby的多线程并发能力。</strong></p>
+
+<p><strong>原文</strong>在<a href="http://merbist.com/2011/02/22/concurrency-in-ruby-explained/">这里</a>： 翻译过程中省略了一些废话。</p>
+
+<hr />
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;并发无疑不是一个新问题。但是随着多核时代的到来，web流量的剧增，一些新的技术出现，貌似更好，因为他们能更好的处理并性。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;并发就是多任务，可以这么理解。当人们谈论他们想要并发，意思就是他们想要代码在同一时间做多个不同的事情。当你用电脑的时候，你并不希望必须得在浏览网站和听音乐间二选一，你当然愿意二者可以并发进行了！一个道理，如果你有一个web服务，你当然不想一个进程每次只能处理一个请求吧。本文的目标是用尽可能简单的解释ruby的并发理论。 这是一个复杂的主题以及包含不同的并发实现方案。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;我们期望我们的代码有更好的性能，更快。让我们以2个简单具体的例子来说明并发。首先，我们假设你在写一个twitter客户端， 你可能想让用户当有新消息获取到的时候自动更新他/她的消息列表（tweets）。 要实现这个功能，一个通用的解决方案就是使用多个线程(Threads). 我们用一个线程去循环消息列表，另一个线程向远程Twitter API发起请求。2个线程共享同一片内容，所以一旦Twitter API线程获取了数据，就可以马上显示到页面上。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;第二个例子是webserver. 假设你的rails应用可能多于1QPS(每秒查询/请求数)，你衡量你应用的平均应答时间大概是100ms。那么你的rails用一个独立的进程可以处理10QPS( 1秒1000ms , 100ms一个来回，那就是10QPS) 但是当你的应用每秒得到了大于10个请求数会如何呢？ 其实也没啥，请求将会等待知道超时。 这就是为什么我们想提高我们的并发处理能力了。这里有很多不同的方法去实现它。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;很多人对这些不同的解决方案有不同的争议，但是他们从来没有说明过，为什么他们不喜欢其中一种方案，或者是觉得这种方案比那种好。 你可能经常听到人们讨论，类似于这样的话题： Rails can’t scale, 你只能使用 JRuby, threads suck 来得到并发， 唯一的并发处理是通过线程，我们应该选择 Erlang/Node.js/Scala, 使用 fibers可能更好，增加多台机器， 以及 forking > threading.  以上这些言论经常在twitter，blog上说的多了，所以你可能开始相信这些人的话了。但是你真的理解人们为什么那么说吗？你确信他们说的就是对的？</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;真相就是，这是个很复杂的问题， 还好，它还不是太复杂。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;有件事你必须要记住，你所使用的语言已经定义好了并性模型。 在java里， threading is the usual solution， 如果你想在你的java应用里去实现并发处理，只需要在它自己的线程里运行独立的请求。在php里， 每个请求都会启动一个新的进程。 两者都有优缺点， 优点是，java线程方法共享内存，所以你可以节省内存。php的优点是，你不用去担心锁，死锁，线程安全编码和隐藏于线程背后的所有混乱。描述的如此简单，但是你可能会想，为什么php没有线程，而java就不能用多个进程？ 这其实和语言的设计有关。php是为web而创的语言， php代码应该很快的被加载，不用太多的内存。java代码启动慢，还占用很大内存。java是一种通用的编程语言，而不是专门为web设计的。另一些编程语言比如Erlang和Scala都使用第三种方法： the actor model （角色模型）。 角色模型有点混合以上2种方案的模型，所不同的是，角色模型是一个不共享相同内存上下文的线程。actors直接的通信是通过交换信息，确保每个actor处理它自己的状态，从而避免损坏数据（2个线程同时修改同一数据，但是一个actor在同时接受2个信息）。 我们会在之后讨论这个设计模式，所以如果感到困惑，请不必担心。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;那么Ruby怎么样呢？Ruby开发者是不是使用线程，多进程，actors，其他？ 答案是：Yes!</p>
+
+<h2>Threads 线程</h2>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;从1.9版开始，Ruby有了本地线程（之前是green threads）。 所以，如果我们愿意，我们完全可以像大多数的java开发者一样，随时随地的使用线程。但问题是，Ruby像Python那样使用了一个Global Interpreter Lock(aka GIL).这个GIL是一个保护数据完整性的锁机制。GIL每次只允许数据被一个线程修改，因此不让线程损坏数据，也不允许其真正的并发运行。这就是为什么有些人说，Ruby和Python并不具备真正的并发性。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;然而这些人们通常并没有提及， GIL使单线程程序更快， 多线程程序更易于开发，因为数据结构是安全的，还有许多c扩展是非线程安全，没有GIL这些c扩展就不那么循规蹈矩了。这些论据并没有说服大家，这就是为什么你会听到有些人说，你应该去看看另一些没有GIL的ruby实现，像什么JRuby, Rubinius(hydra分支)或者是MacRuby(Rubinius &amp;&amp; MacRuby也提供另一种并发方式)。如果你用一个没有GIL的实现， 那么用ruby的线程实际和java的优缺点差不多了。但是，这也意味着，现在你又掉入了处理线程的噩梦中：需要确定你数据安全性， 不能死锁，检查代码，库文件，插件和gems是不是都是线程安全的。此外，运行过多的线程可能会影响性能，因为你的操作系统并没有足够的资源分配，它最终会将时间耗费在上下文的切换上。剩下的就由你自己来看是否值得在你的项目使用多线程了。</p>
+
+<h2>Multiple processes &amp; forking 多进程&amp;forking</h2>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;这是使用Ruby和Python使用并发最常用的解决方案。因为默认的语言并没有能力实现真正的并发，或者因为你想避免线程编程的挑战，你可能想去开启更多的进程。如果你并不想在进程间共享状态，这是很容易的。 如果你想这样做的话，就需要去用DRb, 一个像RabbitMQ那样的消息站，或者是一个像Memcached那样的共享数据存储系统，又或者是数据库。需要说明的是，你现在需要使用大量的内存。如果你想运行5个Rails进程，并且你的应用使用100Mb, 那么你需要500Mb， 这可是很大的内存。这实际是发生在当你使用类似于Mongrel这样的web服务器时候的事实。现在另一些服务器，像Passenger和Unicorn发现另一种方式， 他们依赖unix forking。 这种unix环境写时拷贝实现的forking的优势在于，创建一个新的主进程的copy，并且时共享相同的物理内存。 然而，每个进程也能修改它自己的内存，并不会影响其他进程。所以，Passenger一个进程能加载100Mb的Rails应用，然后fork这个进程5次， 总共只占用内存100多点Mb，并且你可以并行的去处理5倍的请求。这里注意，如果你在请求进程代码里分配内存，你的总内存将会增长，但是你仍然可以在内存用尽之前运行更多的进程。这种方式因其简单和安全而受人关注。 如果一个forked进程瞎捣蛋或者引起内存泄露，我们只需要删除它，然后创建个新的fork进程就ok了。 注意，这种方式也被应用于Resque, 一个异步job进程解决方案。</p>
+
+<h2>Actors/Fibers 角色/纤程</h2>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;之前我们谈到过Actor Model. 从Ruby1.9开始， 开发者又多了一个轻量级的线程，叫Fibers(纤程)。 Fibers不是一个角色(Actors)， Ruby也没有实现本地角色模型（Actors Model）,但是有些人基于fibers写了一些actor库。一个fiber像一个简单线程，只是它是基于语言级别的，并非虚拟机实现。Fibers就像一个block， 但是他们又可以暂停，可以回收。 Fibers比线程更快，且更省内存，看这个blog的示例（http://oldmoe.blogspot.com/2008/08/ruby-fibers-vs-ruby-threads.html）。然而， 因为GIL， 你仍然不能在线程里真正的运行并发纤程。如果你想用多个cup核心，你可能需要运行多线程的运行纤程。所以， 纤程对并发有何帮助呢？ 答案就是，他们是一个更大的解决方案的一部分。 Fiber允许开发者手工的控制调度“并发”代码，而且纤程本身也有代码在自动的调度其自身。这很棒，因为你现在可以用它自己的纤程包装一个web请求，告诉它返回一个response。同时， 你还可以继续处理下一个请求。每当一个fiber内部的请求被完成，它会自动的回收并且退出。听起来不错吧？那么，唯一的问题是， 如果你在一个纤程中，做任何类型的阻塞io操作，那么整个线程就会被阻塞，导致其他纤程也无法允许。诸如数据库/memcached查询， http请求，等等基本上你可能从控制器触发的任何东西，都会引起阻塞操作。好消息是，这个仅有的问题已经被解决， 就是要避免阻塞的IO。让我们看看这是如何做到的。</p>
+
+<h2>Non blocking IOs/Reactor pattern. 非阻塞IOs/Reactor 模式</h2>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;去理解reactor模式那真的是相当简单。阻塞IO的繁重工作委托给一个外部服务（reactor）, 这个服务可以接受并发请求。 这个服务是一个回调处理器，根据响应的类型异步的触发事件。 让我做一个有限的比喻来说明这个更好的设计。 它有点像这样： 如果你问某人一个很难的问题， 他需要一段时间才能答复你，但是他的答复会让你决定举不举你的旗。你有两个选择，或者你选择等待，然后依据等到的结果举起旗，或者你的举旗逻辑已经被定义了，你只需要告诉他，什么样的答案是举旗，什么答案是不举旗，然后让他自己去做，然后你继续做你的事情， 而不必在那傻等了。第二种方式实际上就是reactor模式。它明显有点复杂， 但是关键的一点是， 它允许你的代码去定义基于响应去调用的methods/blocks。 这一点对于单线程webserver十分重要。 当一个请求来了，并且你的代码执行了数据库查询，你正在阻塞其他任何请求。为了避免这样， 我们可以包装我们的请求成为一个fiber， 触发一个异步的DB调用，暂停纤程，以便在我们等待db返回结果的过程中，另一个请求可以得到处理，一旦，db查询返回， 它就唤醒纤程， 然后给客户端返回响应。技术上讲，这个服务仍然是一次发送一个响应，但是现在是运行在了平行的纤程上，也不会被处理大量的阻塞操作阻塞主线程。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;这种方式被Twisted, EventMachine和Node.js所采用。Ruby开发者用EventMachine 或者是一个基于EventMachine的webserver，像Thin，和EM clients/drivers一样好的去处理异步非阻塞调用。得到Fiber的爱，你就能进入Ruby的并发世界。不过要小心的使用thin，非阻塞驱动和Rails的线程安全模式并不是意味着你可以处理并发请求。Thin/EM仅仅使用了一个线程，你需要让它知道，它可以正确处理下个请求。这是通过延迟响应（http://eventmachine.rubyforge.org/EventMachine/Deferrable.html）来实现的，而且需要让reactor知道它。 这种方法最明确的问题是， 它会迫使你改变写代码的方式。你需要设置一堆callbacks，理解Fiber的语法， 并且要用延迟响应。 我不得不说，这是一种的痛！如果你看一些Node.js的代码，你会看到，它并不总是那么优雅。</p>
+
+<h2>Conclusion 总结</h2>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;综上所述， Ruby的高并发是可以实现的。但是真正的问题是什么？Ruby的GIL未来是什么？ 我们应该移除它吗？其他的Ruby实现似乎相信如此，但是Rails仍然有一个mutex锁机制来限制一次只能处理一个请求。原因是因为有许多人都不写线程安全的代码，并且许多插件也不是线程安全的。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby Styleguide]]></title>
