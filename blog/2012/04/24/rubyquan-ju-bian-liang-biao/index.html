@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ruby全局变量表 - Change Box</title>
+  <meta name="author" content="blackanger">
+
+  
+  <meta name="description" content="Ruby全局变量表， 记录。 名字 English库名 中文释义 返回值 -
+-
+-
+- $0 $PROGRAM_NAME 程序名字 字符串 $* $ARGV 参数值 数组 $: 无 库加载路径 数组 $?
+$CHILD_STATUS
+系统退出时，最后一个子进程的状态
+整数 $&#8221;
+$ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ZhangHanDong.github.com/blog/2012/04/24/rubyquan-ju-bian-liang-biao">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Change Box" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Change Box</a></h1>
+  
+    <h2>生命成为一朵烟花最好，升起在旷野的夜空，明亮而狂野，盲目而绚烂。然后沉寂，消失。 如此干脆。</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ZhangHanDong.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ruby全局变量表</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-24T19:26:00+08:00" pubdate data-updated="true">Apr 24<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Ruby全局变量表， 记录。</p>
+
+<hr />
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>名字</strong> </th>
+<th align="center"> <strong>English库名</strong> </th>
+<th align="right"> <strong>中文释义</strong>                 </th>
+<th align="right"> <strong>返回值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">-</td>
+<td align="center">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr>
+<td align="left">$0  </td>
+<td align="center"> $PROGRAM_NAME </td>
+<td align="right"> 程序名字  </td>
+<td align="right"> 字符串</td>
+</tr>
+<tr>
+<td align="left">$*  </td>
+<td align="center">  $ARGV        </td>
+<td align="right">  参数值   </td>
+<td align="right"> 数组</td>
+</tr>
+<tr>
+<td align="left">$: </td>
+<td align="center"> 无 </td>
+<td align="right">库加载路径 </td>
+<td align="right">数组</td>
+</tr>
+<tr>
+<td align="left">$?</td>
+<td align="center">$CHILD_STATUS</td>
+<td align="right">系统退出时，最后一个子进程的状态</td>
+<td align="right">整数</td>
+</tr>
+<tr>
+<td align="left">$&#8221;</td>
+<td align="center">$LOADED_FEATURES</td>
+<td align="right">已加载的特性</td>
+<td align="right">数组</td>
+</tr>
+<tr>
+<td align="left">$$</td>
+<td align="center">$PID或$PROCESS_ID</td>
+<td align="right">进程号</td>
+<td align="right">整数 </td>
+</tr>
+<tr>
+<td align="left">$!</td>
+<td align="center">$ERROR_INFO</td>
+<td align="right">错误信息</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$@</td>
+<td align="center">$ERROR_POSITION</td>
+<td align="right">错误发生的位置</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$&lt;</td>
+<td align="center">$DEFUALT_INPUT</td>
+<td align="right">默认输入值设备</td>
+<td align="right">对象实例</td>
+</tr>
+<tr>
+<td align="left">$></td>
+<td align="center">$DEFAULT_OUTPUT</td>
+<td align="right">默认输出设备</td>
+<td align="right">对象实例</td>
+</tr>
+<tr>
+<td align="left">$;</td>
+<td align="center">$FS或$FILED_SEPARATOR</td>
+<td align="right">默认字段分隔符，String.split方法会用到</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$,</td>
+<td align="center">$OFS或$OUTPUT_FIELD_SEPARATOR或</td>
+<td align="right">输入字符串分隔符，连接多个字</td>
+<td align="right">符串时用到|字符串</td>
+</tr>
+<tr>
+<td align="left">$_</td>
+<td align="center">$LAST_READ_LINE</td>
+<td align="right">Kernel.puts或Kernel.readline从输入设备中读取的最后一行</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$.</td>
+<td align="center">$NR或$INPUT_LINE_NUMBER</td>
+<td align="right">当前所读取文件的最后行号</td>
+<td align="right">整数</td>
+</tr>
+<tr>
+<td align="left">$/</td>
+<td align="center">$RS或INPUT_RECORD_SEPARATOR</td>
+<td align="right">输入分隔符，即输入结束符</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$\</td>
+<td align="center">$OFS或$OUTPUT_RECORD_SEPARATOR </td>
+<td align="right">多个Kernel.print或IO.write调用时，各个输出记录的分隔符</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$=</td>
+<td align="center">$IGNORECASE</td>
+<td align="right">匹配时是否忽略大小写，已经作废</td>
+<td align="right">布尔</td>
+</tr>
+<tr>
+<td align="left">$&amp;</td>
+<td align="center">$MATCH</td>
+<td align="right">匹配结果</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$1~$9</td>
+<td align="center">无</td>
+<td align="right">各组匹配结果</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$~</td>
+<td align="center">$LAST_MATCH_INFO</td>
+<td align="right">最后一次匹配数据</td>
+<td align="right">MatchData实例 </td>
+</tr>
+<tr>
+<td align="left">$+</td>
+<td align="center">$LAST_PAREN_MATCH</td>
+<td align="right">最后一个括号匹配内容</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$`</td>
+<td align="center">$PREMATCH</td>
+<td align="right">最后一次匹配前的内容</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$&#8217;</td>
+<td align="center">$POSTMATCH</td>
+<td align="right">最后一次匹配后的内容</td>
+<td align="right">字符串 </td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">blackanger</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-24T19:26:00+08:00" pubdate data-updated="true">Apr 24<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ZhangHanDong.github.com/blog/2012/04/24/rubyquan-ju-bian-liang-biao/" data-via="" data-counturl="http://ZhangHanDong.github.com/blog/2012/04/24/rubyquan-ju-bian-liang-biao/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+  
+    <div class='twitter-share-button'>
+      <script src="/javascripts/weibo_share_button.js"></script>
+    </div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/04/24/rubyde-bing-fa-shi-jie/" title="Previous Post: Ruby的并发世界">&laquo; Ruby的并发世界</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/04/24/rubyquan-ju-bian-liang-biao/">ruby全局变量表</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/24/rubyde-bing-fa-shi-jie/">Ruby的并发世界</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/ruby-styleguide/">Ruby Styleguide</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/14/sublimetext2-shi-yong-zhi-nan/">SublimeText2 使用指南</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/">Rails Edge - 使用Rails来做API-Only App</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - blackanger -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'changeboxblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ZhangHanDong.github.com/blog/2012/04/24/rubyquan-ju-bian-liang-biao/';
+        var disqus_url = 'http://ZhangHanDong.github.com/blog/2012/04/24/rubyquan-ju-bian-liang-biao/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

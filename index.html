@@ -9,7 +9,14 @@
   <meta name="author" content="blackanger">
 
   
-  <meta name="description" content="这是我去年翻译的一篇旧文，放到thinkinweb.heroku.com上面， 现在搬过来。 注： 并发给我们的应用带来并行能力，而线程是实现并发的一种方式。Ruby的GIL限制了Ruby的多线程并发能力。 原文在这里： 翻译过程中省略了一些废话。 &nbsp; &nbsp; &nbsp; & &hellip;">
+  <meta name="description" content="Ruby全局变量表， 记录。 名字 English库名 中文释义 返回值 -
+-
+-
+- $0 $PROGRAM_NAME 程序名字 字符串 $* $ARGV 参数值 数组 $: 无 库加载路径 数组 $?
+$CHILD_STATUS
+系统退出时，最后一个子进程的状态
+整数 $&#8221;
+$ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +71,204 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/24/rubyquan-ju-bian-liang-biao/">Ruby全局变量表</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-24T19:26:00+08:00" pubdate data-updated="true">Apr 24<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/04/24/rubyquan-ju-bian-liang-biao/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ruby全局变量表， 记录。</p>
+
+<hr />
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>名字</strong> </th>
+<th align="center"> <strong>English库名</strong> </th>
+<th align="right"> <strong>中文释义</strong>                 </th>
+<th align="right"> <strong>返回值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">-</td>
+<td align="center">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr>
+<td align="left">$0  </td>
+<td align="center"> $PROGRAM_NAME </td>
+<td align="right"> 程序名字  </td>
+<td align="right"> 字符串</td>
+</tr>
+<tr>
+<td align="left">$*  </td>
+<td align="center">  $ARGV        </td>
+<td align="right">  参数值   </td>
+<td align="right"> 数组</td>
+</tr>
+<tr>
+<td align="left">$: </td>
+<td align="center"> 无 </td>
+<td align="right">库加载路径 </td>
+<td align="right">数组</td>
+</tr>
+<tr>
+<td align="left">$?</td>
+<td align="center">$CHILD_STATUS</td>
+<td align="right">系统退出时，最后一个子进程的状态</td>
+<td align="right">整数</td>
+</tr>
+<tr>
+<td align="left">$&#8221;</td>
+<td align="center">$LOADED_FEATURES</td>
+<td align="right">已加载的特性</td>
+<td align="right">数组</td>
+</tr>
+<tr>
+<td align="left">$$</td>
+<td align="center">$PID或$PROCESS_ID</td>
+<td align="right">进程号</td>
+<td align="right">整数 </td>
+</tr>
+<tr>
+<td align="left">$!</td>
+<td align="center">$ERROR_INFO</td>
+<td align="right">错误信息</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$@</td>
+<td align="center">$ERROR_POSITION</td>
+<td align="right">错误发生的位置</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$&lt;</td>
+<td align="center">$DEFUALT_INPUT</td>
+<td align="right">默认输入值设备</td>
+<td align="right">对象实例</td>
+</tr>
+<tr>
+<td align="left">$></td>
+<td align="center">$DEFAULT_OUTPUT</td>
+<td align="right">默认输出设备</td>
+<td align="right">对象实例</td>
+</tr>
+<tr>
+<td align="left">$;</td>
+<td align="center">$FS或$FILED_SEPARATOR</td>
+<td align="right">默认字段分隔符，String.split方法会用到</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$,</td>
+<td align="center">$OFS或$OUTPUT_FIELD_SEPARATOR或</td>
+<td align="right">输入字符串分隔符，连接多个字</td>
+<td align="right">符串时用到|字符串</td>
+</tr>
+<tr>
+<td align="left">$_</td>
+<td align="center">$LAST_READ_LINE</td>
+<td align="right">Kernel.puts或Kernel.readline从输入设备中读取的最后一行</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$.</td>
+<td align="center">$NR或$INPUT_LINE_NUMBER</td>
+<td align="right">当前所读取文件的最后行号</td>
+<td align="right">整数</td>
+</tr>
+<tr>
+<td align="left">$/</td>
+<td align="center">$RS或INPUT_RECORD_SEPARATOR</td>
+<td align="right">输入分隔符，即输入结束符</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$\</td>
+<td align="center">$OFS或$OUTPUT_RECORD_SEPARATOR </td>
+<td align="right">多个Kernel.print或IO.write调用时，各个输出记录的分隔符</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$=</td>
+<td align="center">$IGNORECASE</td>
+<td align="right">匹配时是否忽略大小写，已经作废</td>
+<td align="right">布尔</td>
+</tr>
+<tr>
+<td align="left">$&amp;</td>
+<td align="center">$MATCH</td>
+<td align="right">匹配结果</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$1~$9</td>
+<td align="center">无</td>
+<td align="right">各组匹配结果</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$~</td>
+<td align="center">$LAST_MATCH_INFO</td>
+<td align="right">最后一次匹配数据</td>
+<td align="right">MatchData实例 </td>
+</tr>
+<tr>
+<td align="left">$+</td>
+<td align="center">$LAST_PAREN_MATCH</td>
+<td align="right">最后一个括号匹配内容</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$`</td>
+<td align="center">$PREMATCH</td>
+<td align="right">最后一次匹配前的内容</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$&#8217;</td>
+<td align="center">$POSTMATCH</td>
+<td align="right">最后一次匹配后的内容</td>
+<td align="right">字符串 </td>
+</tr>
+</tbody>
+</table>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -997,49 +1202,9 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/21/octopress-shi-yong-xiao-ji/">Octopress 使用小记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-21T23:05:00+08:00" pubdate data-updated="true">Dec 21<span>st</span>, 2011</time>
-        
-         | <a href="/blog/2011/12/21/octopress-shi-yong-xiao-ji/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>我是从<a href="ruby5.envylabs.com%20Ruby5">Ruby5</a>知道<a href="http://octopress.org/%20Octopress">Octopress</a>的， 之前用rack-Jekyll自己搞过一个blog， 使用起来比较麻烦。看了一下Octopress的文档， 觉得非常棒。 看到<a href="http://blog.xdite.net">Xdite</a>也在推荐使用这个blog系统，也对它感兴趣了。</p>
-
-<p>没费多少时间把它搭建起来了，绑定了blog.changebox.me这个域名。 changebox.me这个域名我买了有一段时间了， 本来想做个养成习惯的web应用， 因为某些原因耽搁了。 现在暂时用来写博吧。</p>
-
-<p>对Octopress感兴趣的同学可以去其<a href="http://octopress.org/%20Octopress">官网</a>看看。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     

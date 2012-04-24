@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Change Box]]></title>
   <link href="http://ZhangHanDong.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://ZhangHanDong.github.com/"/>
-  <updated>2012-04-24T17:44:14+08:00</updated>
+  <updated>2012-04-24T19:43:57+08:00</updated>
   <id>http://ZhangHanDong.github.com/</id>
   <author>
     <name><![CDATA[blackanger]]></name>
@@ -12,6 +12,175 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ruby全局变量表]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/04/24/rubyquan-ju-bian-liang-biao/"/>
+    <updated>2012-04-24T19:26:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/04/24/rubyquan-ju-bian-liang-biao</id>
+    <content type="html"><![CDATA[<p>Ruby全局变量表， 记录。</p>
+
+<hr />
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>名字</strong> </th>
+<th align="center"> <strong>English库名</strong> </th>
+<th align="right"> <strong>中文释义</strong>                 </th>
+<th align="right"> <strong>返回值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">-</td>
+<td align="center">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr>
+<td align="left">$0  </td>
+<td align="center"> $PROGRAM_NAME </td>
+<td align="right"> 程序名字  </td>
+<td align="right"> 字符串</td>
+</tr>
+<tr>
+<td align="left">$*  </td>
+<td align="center">  $ARGV        </td>
+<td align="right">  参数值   </td>
+<td align="right"> 数组</td>
+</tr>
+<tr>
+<td align="left">$: </td>
+<td align="center"> 无 </td>
+<td align="right">库加载路径 </td>
+<td align="right">数组</td>
+</tr>
+<tr>
+<td align="left">$?</td>
+<td align="center">$CHILD_STATUS</td>
+<td align="right">系统退出时，最后一个子进程的状态</td>
+<td align="right">整数</td>
+</tr>
+<tr>
+<td align="left">$"</td>
+<td align="center">$LOADED_FEATURES</td>
+<td align="right">已加载的特性</td>
+<td align="right">数组</td>
+</tr>
+<tr>
+<td align="left">$$</td>
+<td align="center">$PID或$PROCESS_ID</td>
+<td align="right">进程号</td>
+<td align="right">整数 </td>
+</tr>
+<tr>
+<td align="left">$!</td>
+<td align="center">$ERROR_INFO</td>
+<td align="right">错误信息</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$@</td>
+<td align="center">$ERROR_POSITION</td>
+<td align="right">错误发生的位置</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$&lt;</td>
+<td align="center">$DEFUALT_INPUT</td>
+<td align="right">默认输入值设备</td>
+<td align="right">对象实例</td>
+</tr>
+<tr>
+<td align="left">$></td>
+<td align="center">$DEFAULT_OUTPUT</td>
+<td align="right">默认输出设备</td>
+<td align="right">对象实例</td>
+</tr>
+<tr>
+<td align="left">$;</td>
+<td align="center">$FS或$FILED_SEPARATOR</td>
+<td align="right">默认字段分隔符，String.split方法会用到</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$,</td>
+<td align="center">$OFS或$OUTPUT_FIELD_SEPARATOR或</td>
+<td align="right">输入字符串分隔符，连接多个字</td>
+<td align="right">符串时用到|字符串</td>
+</tr>
+<tr>
+<td align="left">$_</td>
+<td align="center">$LAST_READ_LINE</td>
+<td align="right">Kernel.puts或Kernel.readline从输入设备中读取的最后一行</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$.</td>
+<td align="center">$NR或$INPUT_LINE_NUMBER</td>
+<td align="right">当前所读取文件的最后行号</td>
+<td align="right">整数</td>
+</tr>
+<tr>
+<td align="left">$/</td>
+<td align="center">$RS或INPUT_RECORD_SEPARATOR</td>
+<td align="right">输入分隔符，即输入结束符</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$\</td>
+<td align="center">$OFS或$OUTPUT_RECORD_SEPARATOR </td>
+<td align="right">多个Kernel.print或IO.write调用时，各个输出记录的分隔符</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$=</td>
+<td align="center">$IGNORECASE</td>
+<td align="right">匹配时是否忽略大小写，已经作废</td>
+<td align="right">布尔</td>
+</tr>
+<tr>
+<td align="left">$&amp;</td>
+<td align="center">$MATCH</td>
+<td align="right">匹配结果</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$1~$9</td>
+<td align="center">无</td>
+<td align="right">各组匹配结果</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$~</td>
+<td align="center">$LAST_MATCH_INFO</td>
+<td align="right">最后一次匹配数据</td>
+<td align="right">MatchData实例 </td>
+</tr>
+<tr>
+<td align="left">$+</td>
+<td align="center">$LAST_PAREN_MATCH</td>
+<td align="right">最后一个括号匹配内容</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$`</td>
+<td align="center">$PREMATCH</td>
+<td align="right">最后一次匹配前的内容</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$'</td>
+<td align="center">$POSTMATCH</td>
+<td align="right">最后一次匹配后的内容</td>
+<td align="right">字符串 </td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby的并发世界]]></title>
@@ -1791,28 +1960,6 @@ export JAVA_OPT="$JAVA_OPTS -Dsolr.solr.home=/usr/local/tomcat/solr_home"
 <p> <a href="http://asciicasts.com/episodes/278-search-with-sunspot">Episodes 278</a></p>
 
 <p> <a href="http://stdout.heyzap.com/2011/08/17/sunspot-resque-session-proxy/">Sunspot-Resque Session Proxy</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[bcrypt与密码安全]]></title>
-    <link href="http://ZhangHanDong.github.com/blog/2012/01/05/bcryptyu-mi-ma-an-quan/"/>
-    <updated>2012-01-05T17:30:00+08:00</updated>
-    <id>http://ZhangHanDong.github.com/blog/2012/01/05/bcryptyu-mi-ma-an-quan</id>
-    <content type="html"><![CDATA[<p>最近闹的沸沸扬扬的各大网站用户密码泄露事件， 让网民们震惊了，尽然都是明文保存密码。因为存在某些漏洞，比如sql注入， 可能让Hacker拿到全字段的数据列表，如果是明文密码， 那就帮Hacker省事了， Hacker都不需要暴力破解了。</p>
-
-<p>其实对于密码有很多加密手段，但是最安全的莫过于Bcrypt这种算法了， 详细的参看<a href="http://codahale.com/how-to-safely-store-a-password/">Coda Hala的这篇文章</a>, 也有<a href="http://coolshell.cn/articles/2078.html/comment-page-2#comment-121752">中文版</a>。 其实安全也是相对的， 对于Bcrypt这种算法的优势再于它的慢， 延缓了Hacker暴力破解的时间， 对于用户来说，就相对安全了。</p>
-
-<p>用Rails的同学就有福了。 <a href="https://github.com/plataformatec/devise">devise</a>默认就是支持Bcrypt的。</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>initializers/devise.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">stretches</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">10</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>这里的stretches被用来做work factor, 数值越大越慢， 如果你发现一个crypt生成值在20毫秒之内，那这个stretches就正好。</p>
-
-<p>另一个措施就是可以在用户输入12345之类的弱密码的时候，禁止其注册，并提示其使用强度比较高的密码。</p>
 ]]></content>
   </entry>
   
