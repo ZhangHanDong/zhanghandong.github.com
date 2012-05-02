@@ -1,0 +1,814 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>42个Rails Tips - Change Box</title>
+  <meta name="author" content="blackanger">
+
+  
+  <meta name="description" content="原文: From RailsConf 2012 - 10 Things You Didn&#8217;t Know Rails Could do 本文适用Rails 版本 3.2.3 Tip 1 : Run From A Single File 可以单文件运行 source http:// &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ZhangHanDong.github.com/blog/2012/05/02/42ge-rails-tips">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Change Box" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Change Box</a></h1>
+  
+    <h2>生命成为一朵烟花最好，升起在旷野的夜空，明亮而狂野，盲目而绚烂。然后沉寂，消失。 如此干脆。</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ZhangHanDong.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">42个Rails Tips</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-02T11:37:00+08:00" pubdate data-updated="true">May 2<span>nd</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>原文: <a href="http://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-rails-could-do">From RailsConf 2012 - 10 Things You Didn&#8217;t Know Rails Could do</a></h4>
+
+<h4>本文适用Rails 版本 3.2.3</h4>
+
+<hr />
+
+<h2>Tip 1 : Run From A Single File  可以单文件运行</h2>
+
+<p><a href="https://github.com/artemave/thesmallestrailsapp.com">source</a></p>
+
+<figure class='code'><figcaption><span>http://thesmallestrailsapp.com/  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sx">%w(action_controller/railtie coderay)</span><span class="o">.</span><span class="n">map</span> <span class="o">&amp;</span><span class="nb">method</span><span class="p">(</span><span class="ss">:require</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">run</span> <span class="no">TheSmallestRailsApp</span> <span class="o">||=</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Rails</span><span class="o">::</span><span class="no">Application</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">secret_token</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">append</span> <span class="p">{</span> <span class="n">root</span> <span class="n">to</span><span class="p">:</span> <span class="s1">&#39;hello#world&#39;</span> <span class="p">}</span><span class="o">.</span><span class="n">inspect</span>
+</span><span class='line'>  <span class="kp">initialize</span><span class="o">!</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">HelloController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">world</span>
+</span><span class='line'>    <span class="n">render</span> <span class="n">inline</span><span class="p">:</span> <span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">      &lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="s2">      &lt;title&gt;The Smallest Rails App&lt;/title&gt;</span>
+</span><span class='line'><span class="s2">      &lt;h3&gt;I am the smallest rails app!&lt;/h3&gt;</span>
+</span><span class='line'><span class="s2">      &lt;p&gt;Here is my source code:&lt;/p&gt;</span>
+</span><span class='line'><span class="s2">      </span><span class="si">#{</span><span class="no">CodeRay</span><span class="o">.</span><span class="n">scan_file</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">,</span> <span class="ss">:ruby</span><span class="p">)</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">line_numbers</span><span class="p">:</span> <span class="ss">:table</span><span class="p">)</span><span class="si">}</span><span class="s2"></span>
+</span><span class='line'><span class="s2">      &lt;a href=&#39;https://github.com/artemave/thesmallestrailsapp.com&#39;&gt;Make me smaller&lt;/a&gt;</span>
+</span><span class='line'><span class="s2">    &quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 2: Remind you of things  提醒功能，TODO list</h2>
+
+<figure class='code'><figcaption><span>users_controller.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>     <span class="c1"># TODO:  Make it possible to create new users.</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>user.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>    <span class="c1"># FIXME: Should token really  be accessible?</span>
+</span><span class='line'>    <span class="n">attr_accessible</span> <span class="ss">:bil</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:token</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>index.html.erb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="o">&lt;%</span><span class="c1"># OPTIMIZE: Paginate this listing. %&gt;</span>
+</span><span class='line'>  <span class="o">&lt;%=</span> <span class="n">render</span> <span class="no">Article</span><span class="o">.</span><span class="n">all</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>a. 执行命令:</strong></p>
+
+<pre><code>$ rake notes
+</code></pre>
+
+<p>会输出如下结果：</p>
+
+<pre><code>app/controllers/users_controller.rb:
+  * [ 2] [TODO] Make it possible to create new users.
+
+app/models/user.rb:
+  * [ 2] [FIXME] Should token really be accessible?
+
+app/views/articles/index.html.erb:
+  * [ 1] [OPTIMIZE] Paginate this listing.
+</code></pre>
+
+<p><strong>b. 执行命令:</strong></p>
+
+<pre><code>$ rake notes:todo
+</code></pre>
+
+<p>会只输出和TODO相关的：</p>
+
+<pre><code>app/controllers/users_controller.rb:
+  * [ 2] Make it possible to create new users.
+</code></pre>
+
+<p><strong>c. 执行命令:</strong></p>
+
+<pre><code>$ rake notes:fixme
+</code></pre>
+
+<p>会只输出和FIXME相关的：</p>
+
+<pre><code>app/models/user.rb:
+  * [ 2] Should token really be accessible?
+</code></pre>
+
+<p><strong>d. 还可以自定义:</strong></p>
+
+<figure class='code'><figcaption><span>article.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>    <span class="n">belongs_to</span> <span class="ss">:user</span>
+</span><span class='line'>    <span class="n">attr_accessible</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">:subject</span>
+</span><span class='line'>    <span class="c1"># JEG2: Add that code from your blog here.</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>执行命令：</p>
+
+<pre><code>$ rake notes:custom ANNOTATION=JEG2
+</code></pre>
+
+<p>会输出结果：</p>
+
+<pre><code>app/models/article.rb:
+  * [ 4]Add that code from your blog here.
+</code></pre>
+
+<p><strong>e. 在TextMate里面你还可以使用TODO 插件</strong></p>
+
+<h2>Tip 3: Sandbox your Console 使用沙箱控制台</h2>
+
+<p><strong>执行命令:</strong></p>
+
+<pre><code>rails c --sandbox
+</code></pre>
+
+<p>使用这个控制台，里面任何的改变都会在你退出之后自动回滚到你未修改前的数据。</p>
+
+<p><strong>执行命令:</strong></p>
+
+<pre><code>rails r 'p [Article, Comment, User].map(&amp;:count)'
+</code></pre>
+
+<p>rails r 会执行引号里的代码。</p>
+
+<h2>Tip 4: Run Helper Methods in the Console 在控制台运行Helper方法</h2>
+
+<figure class='code'><figcaption><span>in the Console  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="err">$</span> <span class="n">rails</span> <span class="n">c</span>
+</span><span class='line'>   <span class="no">Loading</span> <span class="n">development</span> <span class="n">environment</span> <span class="p">(</span><span class="no">Rails</span> <span class="mi">3</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="mi">3</span><span class="p">)</span>
+</span><span class='line'>   <span class="o">&gt;&gt;</span> <span class="n">helper</span><span class="o">.</span><span class="n">number_to_currency</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class='line'>   <span class="o">=&gt;</span> <span class="s2">&quot;$100.00&quot;</span>
+</span><span class='line'>   <span class="o">&gt;&gt;</span> <span class="n">helper</span><span class="o">.</span><span class="n">time_ago_in_words</span><span class="p">(</span><span class="mi">3</span><span class="o">.</span><span class="n">days</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
+</span><span class='line'>   <span class="o">=&gt;</span> <span class="s2">&quot;3 days&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 5: Use Non-WEBrick Servers in Development 在开发中使用非Webrick服务器</h2>
+
+<figure class='code'><figcaption><span>Gemfile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="n">source</span> <span class="s2">&quot;https://rubygems.org&quot;</span>
+</span><span class='line'>   <span class="c1"># ...</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>     <span class="n">gem</span> <span class="s1">&#39;thin&#39;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>执行命令：</p>
+
+<pre><code>% rails s thin
+</code></pre>
+
+<h2>Tip 6: Allow you to tab into its configuration 自定义配置</h2>
+
+<figure class='code'><figcaption><span>lib/custom/railtie.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">module</span> <span class="nn">Custom</span>
+</span><span class='line'>     <span class="k">class</span> <span class="nc">Railtie</span> <span class="o">&lt;</span> <span class="no">Rails</span><span class="o">::</span><span class="no">Railtie</span>
+</span><span class='line'>       <span class="n">config</span><span class="o">.</span><span class="n">custom</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">OrderedOptions</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>config/application.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="n">require_relative</span> <span class="s2">&quot;../lib/custom/railtie&quot;</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">module</span> <span class="nn">Blog</span>
+</span><span class='line'>     <span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="no">Rails</span><span class="o">::</span><span class="no">Application</span>
+</span><span class='line'>       <span class="c1"># ...</span>
+</span><span class='line'>       <span class="n">config</span><span class="o">.</span><span class="n">custom</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="mi">42</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 7: Keep you Entertained</h2>
+
+<p><a href="www.rubydramas.com">RubyDramas</a></p>
+
+<h2>Tip 8: UnderStand Shorthand Migrations 理解便携的迁移文件</h2>
+
+<pre><code>$ rails g resources user name:string email:string token:string bio:text
+</code></pre>
+
+<p>可以简写为：</p>
+
+<pre><code>$ rails g resources user name email token:string{6} bio:text
+</code></pre>
+
+<p>生成migrations:</p>
+
+<figure class='code'><figcaption><span>Migrations  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>       <span class="n">create_table</span> <span class="ss">:users</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:email</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:token</span><span class="p">,</span> <span class="ss">:limit</span> <span class="o">=&gt;</span> <span class="mi">6</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">text</span> <span class="ss">:bio</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+</span><span class='line'>       <span class="k">end</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 9: Add Indexes to Migrations 增加索引</h2>
+
+<pre><code>$rails g resource user name:index email:uniq token:string{6} bio:text
+</code></pre>
+
+<p>生成：</p>
+
+<figure class='code'><figcaption><span>Migrations  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>       <span class="n">create_table</span> <span class="ss">:users</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:email</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:token</span><span class="p">,</span> <span class="ss">:limit</span> <span class="o">=&gt;</span> <span class="mi">6</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">text</span> <span class="ss">:bio</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+</span><span class='line'>       <span class="k">end</span>
+</span><span class='line'>       <span class="n">add_index</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:name</span>
+</span><span class='line'>       <span class="n">add_index</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:unique</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 10: Add Associations to a Migration 增加关联关系到迁移文件</h2>
+
+<pre><code>$rails g resource article user:references subject body:text
+</code></pre>
+
+<p>生成Migrations文件和model文件：</p>
+
+<figure class='code'><figcaption><span>Migrations  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">CreateArticles</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>       <span class="n">create_table</span> <span class="ss">:articles</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">references</span> <span class="ss">:user</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:subject</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">text</span> <span class="ss">:body</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+</span><span class='line'>       <span class="k">end</span>
+</span><span class='line'>       <span class="n">add_index</span> <span class="ss">:articles</span><span class="p">,</span> <span class="ss">:user_id</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>models/article.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>     <span class="n">belongs_to</span> <span class="ss">:user</span>
+</span><span class='line'>     <span class="n">attr_accessible</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">:subject</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还可以使用命令：</p>
+
+<pre><code>rails g resource comment user:blongs_to article:belongs_to body:text
+</code></pre>
+
+<p>会生成和user、article相关联的model和migration文件。</p>
+
+<h2>Tip 10: Show you the status of the database 显示数据库状态</h2>
+
+<p>使用命令：</p>
+
+<pre><code> $ rake db:migrate:status
+</code></pre>
+
+<p>输出:</p>
+
+<pre><code> database: db/development.sqlite3
+
+ status   Migration ID    Migration Name
+ ---------------------------------------
+   up     20120414155612  Create users
+   up     20120414160528  Create articles
+  down    20120414161355  Create comments
+</code></pre>
+
+<h2>Tip 11: Import your CSV Data</h2>
+
+<p>csv data:</p>
+
+<pre><code>Name,Email
+James,james@example.com
+Dana,dana@example.com
+Summer,summer@example.com
+</code></pre>
+
+<p>导入代码：</p>
+
+<figure class='code'><figcaption><span>import csv  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">namespace</span> <span class="ss">:users</span> <span class="k">do</span>
+</span><span class='line'>     <span class="n">desc</span> <span class="s2">&quot;Import users from a CSV file&quot;</span>
+</span><span class='line'>     <span class="n">task</span> <span class="ss">:import</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span>
+</span><span class='line'>       <span class="n">path</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&quot;CSV_FILE&quot;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>         <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">),</span> <span class="o">*</span><span class="sx">%w[.. .. db data users.csv]</span><span class="p">)</span>
+</span><span class='line'>       <span class="p">}</span>
+</span><span class='line'>       <span class="no">CSV</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="n">header_converters</span><span class="p">:</span> <span class="ss">:symbol</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+</span><span class='line'>         <span class="no">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">to_hash</span><span class="p">)</span>
+</span><span class='line'>       <span class="k">end</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong> 注意：   </strong>
+* headers: true, header_converters: :symbol 这个配置项
+* row.to_hash</p>
+
+<h2>Tip 12 : Store CSV in Your Database 在数据库里存储CSV</h2>
+
+<figure class='code'><figcaption><span>store csv  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span>  <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+</span><span class='line'>    <span class="k">module</span> <span class="nn">CSVSerializer</span>
+</span><span class='line'>      <span class="kp">module_function</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">field</span><span class="p">);</span> <span class="n">field</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">parse_csv</span><span class="p">;</span> <span class="k">end</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="n">object</span><span class="p">);</span> <span class="nb">Array</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">;</span> <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">serialize</span> <span class="ss">:categories</span><span class="p">,</span> <span class="no">CSVSerializer</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># ...</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">attr_accessible</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">:subject</span><span class="p">,</span> <span class="ss">:categories</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 13: &#8220;Pluck&#8221; Fields out of your database 从数据库‘Pluck’字段。</h2>
+
+<pre><code>$ rails c
+loading development environment(Rails 3.2.3)
+
+&gt;&gt; User.select(:email).map(&amp;:email)
+  User Load(0.1ms) SELECT email FROM "users"
+=&gt; ["james@example.com", "dana@example.com", "summer@example.com"]
+&gt;&gt; User.pluck(:email)
+   (0.2ms) SELECT email FROM "users"
+=&gt; ["james@example.com", "dana@example.com", "summer@example.com"]
+&gt;&gt; User.uniq.pluck(:email)
+   (0.2ms) SELECT DISTINCT email FROM "users"
+=&gt; ["james@example.com", "dana@example.com", "summer@example.com"]
+</code></pre>
+
+<h2>Tip 14: Count Records in Groups</h2>
+
+<pre><code>$ rails g resource event article:belongs_to trigger
+</code></pre>
+
+<p>进控制台</p>
+
+<pre><code>$ rails c
+
+&gt;&gt; article = Article.last
+=&gt; #&lt;Article id:1, ...&gt;
+&gt;&gt; {edit:3, view:10}.each do |trigger, count|
+?&gt;   count.times do
+?&gt;     Event.new(trigger: trigger).tap{ |e| e.article= article; e.save! }
+?&gt;   end
+=&gt; {:edit =&gt; 3, :view =&gt; 10}
+&gt;&gt; Event.count
+=&gt; 13
+&gt;&gt; Event.group(:trigger).count
+=&gt; {"edit" =&gt; 3, "view" =&gt; 10}
+</code></pre>
+
+<h2>Tip 15: Allow you to Override Associations</h2>
+
+<figure class='code'><figcaption><span>car.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Car</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>    <span class="n">belongs_to</span> <span class="ss">:owner</span>
+</span><span class='line'>    <span class="n">belongs_to</span> <span class="ss">:previous_owner</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="s2">&quot;Owner&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">owner</span><span class="o">=</span><span class="p">(</span><span class="n">new_owner</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">previous_owner</span> <span class="o">=</span> <span class="n">owner</span>
+</span><span class='line'>      <span class="k">super</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 16: Instantiate Records without a database</h2>
+
+<pre><code>$ rails c
+
+&gt;&gt; User.find(1)
+=&gt; #&lt;User id: 1, name: "James", ...&gt;
+&gt;&gt; jeg2 = User.instantiate("id" =&gt; 1, "email" =&gt; "james@example.com")
+=&gt; #&lt;User id:1, email:"james@example.com"&gt;
+&gt;&gt; jeg2.name = "James Edward Gray II"
+&gt;&gt;jeg2.save!
+=&gt; true
+</code></pre>
+
+<p>伪造一条记录。</p>
+
+<h1>TODO &#8230;.</h1>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">blackanger</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-02T11:37:00+08:00" pubdate data-updated="true">May 2<span>nd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ZhangHanDong.github.com/blog/2012/05/02/42ge-rails-tips/" data-via="" data-counturl="http://ZhangHanDong.github.com/blog/2012/05/02/42ge-rails-tips/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+  
+    <div class='twitter-share-button'>
+      <script src="/javascripts/weibo_share_button.js"></script>
+    </div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/04/24/rubyquan-ju-bian-liang-biao/" title="Previous Post: ruby全局变量表">&laquo; ruby全局变量表</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/05/02/42ge-rails-tips/">42个Rails Tips</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/24/rubyquan-ju-bian-liang-biao/">ruby全局变量表</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/24/rubyde-bing-fa-shi-jie/">Ruby的并发世界</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/ruby-styleguide/">Ruby Styleguide</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/14/sublimetext2-shi-yong-zhi-nan/">SublimeText2 使用指南</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - blackanger -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'changeboxblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ZhangHanDong.github.com/blog/2012/05/02/42ge-rails-tips/';
+        var disqus_url = 'http://ZhangHanDong.github.com/blog/2012/05/02/42ge-rails-tips/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
