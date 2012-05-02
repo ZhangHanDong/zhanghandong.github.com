@@ -476,7 +476,7 @@ app/views/articles/index.html.erb:
 
 <p>会生成和user、article相关联的model和migration文件。</p>
 
-<h2>Tip 10: Show you the status of the database 显示数据库状态</h2>
+<h2>Tip 11: Show you the status of the database 显示数据库状态</h2>
 
 <p>使用命令：</p>
 
@@ -494,7 +494,7 @@ app/views/articles/index.html.erb:
   down    20120414161355  Create comments
 </code></pre>
 
-<h2>Tip 11: Import your CSV Data</h2>
+<h2>Tip 12: Import your CSV Data</h2>
 
 <p>csv data:</p>
 
@@ -536,11 +536,15 @@ Summer,summer@example.com
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><strong> 注意：   </strong>
-* headers: true, header_converters: :symbol 这个配置项
-* row.to_hash</p>
+<p><strong>注意:</strong></p>
 
-<h2>Tip 12 : Store CSV in Your Database 在数据库里存储CSV</h2>
+<ul>
+<li>headers: true, header_converters: :symbol 这个配置项</li>
+<li>row.to_hash</li>
+</ul>
+
+
+<h2>Tip 13 : Store CSV in Your Database 在数据库里存储CSV</h2>
 
 <figure class='code'><figcaption><span>store csv  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -572,7 +576,7 @@ Summer,summer@example.com
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Tip 13: &#8220;Pluck&#8221; Fields out of your database 从数据库‘Pluck’字段。</h2>
+<h2>Tip 14: &#8220;Pluck&#8221; Fields out of your database 从数据库‘Pluck’字段。</h2>
 
 <pre><code>$ rails c
 loading development environment(Rails 3.2.3)
@@ -588,7 +592,7 @@ loading development environment(Rails 3.2.3)
 =&gt; ["james@example.com", "dana@example.com", "summer@example.com"]
 </code></pre>
 
-<h2>Tip 14: Count Records in Groups</h2>
+<h2>Tip 15: Count Records in Groups</h2>
 
 <pre><code>$ rails g resource event article:belongs_to trigger
 </code></pre>
@@ -610,7 +614,7 @@ loading development environment(Rails 3.2.3)
 =&gt; {"edit" =&gt; 3, "view" =&gt; 10}
 </code></pre>
 
-<h2>Tip 15: Allow you to Override Associations</h2>
+<h2>Tip 16: Allow you to Override Associations</h2>
 
 <figure class='code'><figcaption><span>car.rb  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -634,7 +638,7 @@ loading development environment(Rails 3.2.3)
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Tip 16: Instantiate Records without a database</h2>
+<h2>Tip 17: Instantiate Records without a database</h2>
 
 <pre><code>$ rails c
 
