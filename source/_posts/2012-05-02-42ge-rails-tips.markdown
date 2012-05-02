@@ -257,7 +257,7 @@ rails r 会执行引号里的代码。
     
 会生成和user、article相关联的model和migration文件。
 
-## Tip 10: Show you the status of the database 显示数据库状态
+## Tip 11: Show you the status of the database 显示数据库状态
 
 使用命令：
 
@@ -273,7 +273,7 @@ rails r 会执行引号里的代码。
        up     20120414160528  Create articles
       down    20120414161355  Create comments
 
-## Tip 11: Import your CSV Data
+## Tip 12: Import your CSV Data
 
 csv data:
 
@@ -300,11 +300,12 @@ csv data:
    end 
 {% endcodeblock %}
 
-** 注意：   **
+**注意:**
+
 * headers: true, header_converters: :symbol 这个配置项
 * row.to_hash
 
-## Tip 12 : Store CSV in Your Database 在数据库里存储CSV
+## Tip 13 : Store CSV in Your Database 在数据库里存储CSV
 
 {% codeblock store csv lang:ruby %}
   class Article <  ActiveRecord::Base
@@ -322,7 +323,7 @@ csv data:
   end
 {% endcodeblock %}
 
-## Tip 13: "Pluck" Fields out of your database 从数据库‘Pluck’字段。
+## Tip 14: "Pluck" Fields out of your database 从数据库‘Pluck’字段。
 
     $ rails c
     loading development environment(Rails 3.2.3)
@@ -337,7 +338,7 @@ csv data:
        (0.2ms) SELECT DISTINCT email FROM "users"
     => ["james@example.com", "dana@example.com", "summer@example.com"]
 
-## Tip 14: Count Records in Groups
+## Tip 15: Count Records in Groups
 
     $ rails g resource event article:belongs_to trigger
     
@@ -357,7 +358,7 @@ csv data:
     >> Event.group(:trigger).count
     => {"edit" => 3, "view" => 10}
 
-## Tip 15: Allow you to Override Associations
+## Tip 16: Allow you to Override Associations
 
 {% codeblock car.rb lang:ruby %}
   class Car < ActiveRecord::Base
@@ -371,7 +372,7 @@ csv data:
   end
 {% endcodeblock %}
 
-## Tip 16: Instantiate Records without a database 
+## Tip 17: Instantiate Records without a database 
 
     $ rails c
     
