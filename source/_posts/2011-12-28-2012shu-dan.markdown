@@ -1,0 +1,47 @@
+---
+layout: post
+title: "2012书单"
+date: 2011-12-28 17:51
+comments: true
+categories:  [2012阅读与自我提升]
+---
+
+2012上半年阅读计划：
+
+####Ruby/Rails类：
+
+>《Exceptional Ruby》
+
+>《Eloquent Ruby》
+
+>《Rails Master源码》(非书)
+
+####Node.js 相关
+
+> 《Pragmatic.CoffeeScript》
+
+> 《Packtpub.Node.Web.Development》
+
+
+####Ios相关:
+
+> 《ObjectiveC3rd》
+
+> 《Big.Nerd.Ranch.iOS.Programming.2nd》
+
+####HTML5相关：
+
+>《Wrox.HTML5.24-Hour.Trainer》
+
+>《Oreilly.HTML5.Cookbook》
+
+####SEM:
+
+>《Google广告优化与工具》
+
+
+一共九本书， 六个月读完。 平均一个月1.5本。 源码阅读计划分散在每天的时间里。 对于时间，需要进一步统筹计划。 
+
+
+
+
