@@ -1,0 +1,18 @@
+<div class="highlight"><pre>   <span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt; def change</span>
+<span class="sr">   create_table :users do |t|</span>
+<span class="sr">     t.string :name</span>
+<span class="sr">     t.string :email</span>
+<span class="sr">     t.string :token, :limit =&amp;gt; 6</span>
+<span class="sr">     t.text :bio</span>
+<span class="sr">     t.timestamps</span>
+<span class="sr">   end</span>
+<span class="sr">   add_index :users, :name</span>
+<span class="sr">   add_index :users, :email, :unique =&amp;gt; true</span>
+<span class="sr"> end</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">&lt;p&gt;   end</span>
+</pre>
+</div>

@@ -1,0 +1,11 @@
+<div class="highlight"><pre>  <span class="c1"># bad</span>
+  <span class="sr">%r(\s+)</span>
+
+  <span class="c1"># still bad</span>
+  <span class="sr">%r(^/(.*)$)</span>
+  <span class="c1"># should be /^\/(.*)$/</span>
+
+  <span class="c1"># good</span>
+  <span class="sr">%r(^/blog/2011/(.*)$)</span>
+</pre>
+</div>

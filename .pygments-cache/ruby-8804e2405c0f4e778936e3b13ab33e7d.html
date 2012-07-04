@@ -1,0 +1,21 @@
+<div class="highlight"><pre>  <span class="k">class</span> <span class="nc">Parent</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;@@class_var = &#39;parent&#39;</span>
+
+<span class="sr">def self.print_class_var</span>
+<span class="sr">  puts @@class_var</span>
+<span class="sr">end</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">class</span> <span class="nc">Child</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">Parent</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;@@class_var = &#39;child&#39;</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="no">Parent</span><span class="o">.</span><span class="n">print_class_var</span> <span class="c1"># =&gt; will print &quot;child&quot;</span>
+</pre>
+</div>

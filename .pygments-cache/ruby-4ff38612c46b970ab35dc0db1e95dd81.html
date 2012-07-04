@@ -1,0 +1,11 @@
+<div class="highlight"><pre>  <span class="c1"># bad</span>
+  <span class="sr">%r(\s+)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;  # still bad</span>
+<span class="sr">  %r(&lt;sup&gt;/</span><span class="p">(</span><span class="o">.</span><span class="n">*</span><span class="p">)</span><span class="err">$</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
+<span class="sr">  # should be /</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">\</span><span class="o">/</span><span class="p">(</span><span class="o">.</span><span class="n">*</span><span class="p">)</span><span class="vg">$/</span><span class="o">&lt;</span><span class="sr">/sup&gt;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># good</span>
+  <span class="sr">%r(&lt;sup&gt;/blog/2011/(.*)$)</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
+</pre>
+</div>

@@ -1,0 +1,15 @@
+<div class="highlight"><pre>   <span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+   
+   <span class="n">namespace</span> <span class="ss">:users</span> <span class="k">do</span>
+     <span class="n">desc</span> <span class="s2">&quot;Import users from a CSV file&quot;</span>
+     <span class="n">task</span> <span class="ss">:import</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span>
+       <span class="n">path</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&quot;CSV_FILE&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">),</span> <span class="o">*</span><span class="sx">%w[.. .. db data users.csv]</span><span class="p">)</span>
+       <span class="p">}</span>
+       <span class="no">CSV</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="n">header_converters</span><span class="p">:</span> <span class="ss">:symbol</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+         <span class="no">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">to_hash</span><span class="p">)</span>
+       <span class="k">end</span>
+     <span class="k">end</span>
+   <span class="k">end</span> 
+</pre>
+</div>

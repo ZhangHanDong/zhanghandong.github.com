@@ -1,0 +1,16 @@
+<div class="highlight"><pre>   <span class="k">class</span> <span class="nc">CreateArticles</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt; def change</span>
+<span class="sr">   create_table :articles do |t|</span>
+<span class="sr">     t.references :user</span>
+<span class="sr">     t.string :subject</span>
+<span class="sr">     t.text :body</span>
+<span class="sr">     t.timestamps</span>
+<span class="sr">   end</span>
+<span class="sr">   add_index :articles, :user_id</span>
+<span class="sr"> end</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">&lt;p&gt;   end</span>
+</pre>
+</div>

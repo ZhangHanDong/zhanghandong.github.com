@@ -1,0 +1,7 @@
+<div class="highlight"><pre>  <span class="c1"># bad</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="nb">hash</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="n">v</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;  # good</span>
+<span class="sr">  result = hash.map { |_, v| v + 1 }</span>
+</pre>
+</div>

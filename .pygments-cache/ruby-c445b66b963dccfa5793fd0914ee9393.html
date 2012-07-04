@@ -1,0 +1,15 @@
+<div class="highlight"><pre>  <span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span>  <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+    <span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+    <span class="k">module</span> <span class="nn">CSVSerializer</span>
+      <span class="kp">module_function</span>
+      <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">field</span><span class="p">);</span> <span class="n">field</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">parse_csv</span><span class="p">;</span> <span class="k">end</span>
+      <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="n">object</span><span class="p">);</span> <span class="nb">Array</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">;</span> <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">serialize</span> <span class="ss">:categories</span><span class="p">,</span> <span class="no">CSVSerializer</span>
+    
+    <span class="c1"># ...</span>
+    
+    <span class="n">attr_accessible</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">:subject</span><span class="p">,</span> <span class="ss">:categories</span>
+  <span class="k">end</span>
+</pre>
+</div>

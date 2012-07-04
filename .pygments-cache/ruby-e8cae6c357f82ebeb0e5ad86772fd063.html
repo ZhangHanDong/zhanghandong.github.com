@@ -1,0 +1,24 @@
+<div class="highlight"><pre><span class="sx">%w(action_controller/railtie coderay)</span><span class="o">.</span><span class="n">map</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="nb">method</span><span class="p">(</span><span class="ss">:require</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;run TheSmallestRailsApp ||= Class.new(Rails::Application) {</span>
+<span class="sr">  config.secret_token = routes.append { root to: &#39;hello#world&#39; }.inspect</span>
+<span class="sr">  initialize!</span>
+<span class="sr">}&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">HelloController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+  <span class="k">def</span> <span class="nf">world</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;render inline: &quot;</span>
+<span class="sr">  &amp;lt;!DOCTYPE html&amp;gt;</span>
+<span class="sr">  &amp;lt;title&amp;gt;The Smallest Rails App&amp;lt;/</span><span class="n">title</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
+  <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">h3</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">I</span> <span class="n">am</span> <span class="n">the</span> <span class="n">smallest</span> <span class="n">rails</span> <span class="n">app!</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">/</span><span class="n">h3</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
+  <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="nb">p</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="no">Here</span> <span class="n">is</span> <span class="n">my</span> <span class="n">source</span> <span class="n">code</span><span class="ss">:&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">/</span><span class="nb">p</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
+  <span class="c1">#{CodeRay.scan_file(__FILE__, :ruby).div(line_numbers: :table)}</span>
+  <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://github.com/artemave/thesmallestrailsapp.com&#39;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="no">Make</span> <span class="n">me</span> <span class="n">smaller</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">/</span><span class="n">a</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
+<span class="s2">&quot;</span>
+<span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
+
+<span class="s2">&lt;p&gt;  end</span>
+<span class="s2">end</span>
+</pre>
+</div>

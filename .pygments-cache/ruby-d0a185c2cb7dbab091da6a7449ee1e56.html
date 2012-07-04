@@ -1,0 +1,16 @@
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">has_many</span> <span class="ss">:links</span>
+
+  <span class="n">searchable</span> <span class="ss">:auto_index</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:auto_remove</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="k">do</span>
+    <span class="n">text</span> <span class="ss">:ab</span>  <span class="c1">#可以被fulltext或者keywords搜索出来。btw,ywords是fulltext的别名。其实是同一个方法。</span>
+    <span class="n">string</span> <span class="ss">:location</span>
+    <span class="n">integer</span> <span class="ss">:blog_id</span>
+    <span class="n">boolean</span> <span class="ss">:generated</span>   <span class="c1">#支持boolean查询</span>
+    <span class="n">time</span> <span class="ss">:published_at</span><span class="p">,</span> <span class="ss">:stored</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+    <span class="n">text</span> <span class="ss">:links</span> <span class="k">do</span>   <span class="c1"># 支持这种虚拟属性。</span>
+      <span class="n">links</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">link</span><span class="o">|</span> <span class="n">link</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">link</span><span class="o">.</span><span class="n">title</span> <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>

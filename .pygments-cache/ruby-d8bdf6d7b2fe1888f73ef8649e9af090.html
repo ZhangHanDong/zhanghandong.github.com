@@ -1,0 +1,7 @@
+<div class="highlight"><pre>  <span class="c1"># bad - would set enabled to true even if it was false</span>
+  <span class="n">enabled</span> <span class="o">||=</span> <span class="kp">true</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;  # good</span>
+<span class="sr">  enabled = true if enabled.nil?</span>
+</pre>
+</div>

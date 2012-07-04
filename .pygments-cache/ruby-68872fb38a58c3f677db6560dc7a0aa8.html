@@ -1,0 +1,17 @@
+<div class="highlight"><pre>  <span class="c1"># bad</span>
+  <span class="n">some_condition</span> <span class="p">?</span> <span class="p">(</span><span class="n">nested_condition</span> <span class="p">?</span> <span class="n">nested_something</span> <span class="p">:</span> <span class="n">nested_something_else</span><span class="p">)</span> <span class="p">:</span> <span class="n">something_else</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;  # good</span>
+<span class="sr">  if some_condition&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">nested_condition</span> <span class="p">?</span> <span class="n">nested_something</span> <span class="p">:</span> <span class="n">nested_something_else</span>
+<span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">else</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;something_else</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">&lt;p&gt;  end</span>
+</pre>
+</div>

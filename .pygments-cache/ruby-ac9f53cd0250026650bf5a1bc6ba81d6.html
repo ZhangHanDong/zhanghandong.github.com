@@ -1,0 +1,18 @@
+<div class="highlight"><pre>  <span class="k">class</span> <span class="nc">Article</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span>  <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;require &#39;csv&#39;</span>
+<span class="sr">module CSVSerializer</span>
+<span class="sr">  module_function</span>
+<span class="sr">  def load(field); field.to_s.parse_csv; end</span>
+<span class="sr">  def dump(object); Array(object).to_csv; end</span>
+<span class="sr">end</span>
+<span class="sr">serialize :categories, CSVSerializer</span>
+
+<span class="sr"># ...</span>
+
+<span class="sr">attr_accessible :body, :subject, :categories</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">&lt;p&gt;  end</span>
+</pre>
+</div>

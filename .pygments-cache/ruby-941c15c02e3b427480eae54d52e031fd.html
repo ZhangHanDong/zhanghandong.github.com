@@ -1,0 +1,23 @@
+<div class="highlight"><pre><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;class Post &amp;lt;&amp;lt; ActiveRecord::Base</span>
+<span class="sr">  has_many :links&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">searchable</span> <span class="ss">:auto_index</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:auto_remove</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;text :ab  #可以被fulltext或者keywords搜索出来。btw,ywords是fulltext的别名。其实是同一个方法。</span>
+<span class="sr">string :location</span>
+<span class="sr">integer :blog_id</span>
+<span class="sr">boolean :generated   #支持boolean查询</span>
+<span class="sr">time :published_at, :stored =&amp;gt; true</span>
+<span class="sr">text :links do   # 支持这种虚拟属性。</span>
+<span class="sr">  links.map { |link| link.url + &quot; &quot; + link.title }</span>
+<span class="sr">end</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">&lt;p&gt;  end</span>
+<span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</pre>
+</div>

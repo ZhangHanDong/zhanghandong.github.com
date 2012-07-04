@@ -1,0 +1,15 @@
+<div class="highlight"><pre>  <span class="c1"># bad</span>
+  <span class="k">unless</span> <span class="n">success?</span>
+    <span class="nb">puts</span> <span class="s1">&#39;failure&#39;</span>
+  <span class="k">else</span>
+    <span class="nb">puts</span> <span class="s1">&#39;success&#39;</span>
+  <span class="k">end</span>
+
+  <span class="c1"># good</span>
+  <span class="k">if</span> <span class="n">success?</span>
+    <span class="nb">puts</span> <span class="s1">&#39;success&#39;</span>
+  <span class="k">else</span>
+    <span class="nb">puts</span> <span class="s1">&#39;failure&#39;</span>
+  <span class="k">end</span>
+</pre>
+</div>

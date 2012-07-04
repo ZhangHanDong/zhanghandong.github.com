@@ -1,0 +1,16 @@
+<div class="highlight"><pre>  <span class="c1"># bad (no interpolation needed)</span>
+  <span class="sx">%(&lt;div class=&quot;text&quot;&gt;Some text&lt;/div&gt;)</span>
+  <span class="c1"># should be &#39;&lt;div class=&quot;text&quot;&gt;Some text&lt;/div&gt;&#39;</span>
+
+  <span class="c1"># bad (no double-quotes)</span>
+  <span class="sx">%(This is </span><span class="si">#{</span><span class="n">quality</span><span class="si">}</span><span class="sx"> style)</span>
+  <span class="c1"># should be &quot;This is #{quality} style&quot;</span>
+
+  <span class="c1"># bad (multiple lines)</span>
+  <span class="sx">%(&lt;div&gt;</span><span class="se">\n</span><span class="sx">&lt;span class=&quot;big&quot;&gt;</span><span class="si">#{</span><span class="n">exclamation</span><span class="si">}</span><span class="sx">&lt;/span&gt;</span><span class="se">\n</span><span class="sx">&lt;/div&gt;)</span>
+  <span class="c1"># should be a heredoc.</span>
+
+  <span class="c1"># good (requires interpolation, has quotes, single line)</span>
+  <span class="sx">%(&lt;tr&gt;&lt;td class=&quot;name&quot;&gt;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="sx">&lt;/td&gt;)</span>
+</pre>
+</div>

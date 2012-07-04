@@ -1,0 +1,11 @@
+<div class="highlight"><pre>  <span class="c1"># bad</span><span class="sr"></span>
+<span class="sr">  /(regexp)/</span> <span class="o">=~</span> <span class="n">string</span>
+  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+  <span class="n">process</span> <span class="vg">$1</span>
+
+  <span class="c1"># good</span><span class="sr"></span>
+<span class="sr">  /(?&lt;meaningful_var&gt;regexp)/</span> <span class="o">=~</span> <span class="n">string</span>
+  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+  <span class="n">process</span> <span class="n">meaningful_var</span>
+</pre>
+</div>

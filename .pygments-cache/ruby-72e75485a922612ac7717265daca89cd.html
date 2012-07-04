@@ -1,0 +1,37 @@
+<div class="highlight"><pre>  <span class="k">case</span>
+  <span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;Misty&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;puts &#39;Not again!&#39;</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">  when song.duration &gt; 120</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;puts &#39;Too long!&#39;</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">  when Time.now.hour &gt; 21</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;puts &quot;It&#39;s too late&quot;</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">  else</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;song.play</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">  end</span>
+<span class="sr">  # another style</span>
+<span class="sr">  kind = case year</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;     when 1850..1889 then &#39;Blues&#39;</span>
+<span class="sr">     when 1890..1909 then &#39;Ragtime&#39;</span>
+<span class="sr">     when 1910..1929 then &#39;New Orleans Jazz&#39;</span>
+<span class="sr">     when 1930..1939 then &#39;Swing&#39;</span>
+<span class="sr">     when 1940..1950 then &#39;Bebop&#39;</span>
+<span class="sr">     else &#39;Jazz&#39;</span>
+<span class="sr">     end</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">&lt;p&gt;</span>
+</pre>
+</div>

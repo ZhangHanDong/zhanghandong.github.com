@@ -1,0 +1,15 @@
+<div class="highlight"><pre>  <span class="k">class</span> <span class="nc">Parent</span>
+    <span class="vc">@@class_var</span> <span class="o">=</span> <span class="s1">&#39;parent&#39;</span>
+
+    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">print_class_var</span>
+      <span class="nb">puts</span> <span class="vc">@@class_var</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">class</span> <span class="nc">Child</span> <span class="o">&lt;</span> <span class="no">Parent</span>
+    <span class="vc">@@class_var</span> <span class="o">=</span> <span class="s1">&#39;child&#39;</span>
+  <span class="k">end</span>
+
+  <span class="no">Parent</span><span class="o">.</span><span class="n">print_class_var</span> <span class="c1"># =&gt; will print &quot;child&quot;</span>
+</pre>
+</div>

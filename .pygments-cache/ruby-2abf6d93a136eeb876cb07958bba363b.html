@@ -1,0 +1,7 @@
+<div class="highlight"><pre>  <span class="c1"># bad</span>
+  <span class="n">email_with_name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39; &lt;&#39;</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span>
+
+  <span class="c1"># good</span>
+  <span class="n">email_with_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> &lt;</span><span class="si">#{</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
+</pre>
+</div>

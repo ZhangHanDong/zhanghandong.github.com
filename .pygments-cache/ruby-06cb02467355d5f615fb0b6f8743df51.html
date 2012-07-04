@@ -1,0 +1,10 @@
+<div class="highlight"><pre>  <span class="c1"># good - shows intented use of assignment</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">))</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;  # bad</span>
+<span class="sr">  if v = array.grep(/</span><span class="n">foo</span><span class="o">/</span><span class="p">)</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;  # also good - shows intended use of assignment and has correct precedence.</span>
+<span class="sr">  if (v = self.next_value) == &quot;hello&quot; ...</span>
+</pre>
+</div>

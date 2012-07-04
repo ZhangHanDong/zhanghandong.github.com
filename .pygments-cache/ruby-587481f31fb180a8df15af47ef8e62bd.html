@@ -1,0 +1,31 @@
+<div class="highlight"><pre>  <span class="k">class</span> <span class="nc">TestClass</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;# bad</span>
+<span class="sr">class &amp;lt;&amp;lt; self</span>
+<span class="sr">  def first_method</span>
+<span class="sr">    # body omitted</span>
+<span class="sr">  end</span>
+
+<span class="sr">  def second_method_etc</span>
+<span class="sr">    # body omitted</span>
+<span class="sr">  end</span>
+<span class="sr">end</span>
+
+<span class="sr"># good</span>
+<span class="sr">class &amp;lt;&amp;lt; self</span>
+<span class="sr">  attr_accessor :per_page</span>
+<span class="sr">  alias_method :nwo, :find_by_name_with_owner</span>
+<span class="sr">end</span>
+
+<span class="sr">def self.first_method</span>
+<span class="sr">  # body omitted</span>
+<span class="sr">end</span>
+
+<span class="sr">def self.second_method_etc</span>
+<span class="sr">  # body omitted</span>
+<span class="sr">end</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">&lt;p&gt;  end</span>
+</pre>
+</div>
