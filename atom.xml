@@ -1,0 +1,2781 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Change Box]]></title>
+  <link href="http://ZhangHanDong.github.com/atom.xml" rel="self"/>
+  <link href="http://ZhangHanDong.github.com/"/>
+  <updated>2012-07-04T14:51:39+08:00</updated>
+  <id>http://ZhangHanDong.github.com/</id>
+  <author>
+    <name><![CDATA[blackanger]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[创业]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/07/04/chuang-ye/"/>
+    <updated>2012-07-04T14:28:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/07/04/chuang-ye</id>
+    <content type="html"><![CDATA[<p>Just Test</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[42个Rails Tips]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/05/02/42ge-rails-tips/"/>
+    <updated>2012-05-02T11:37:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/05/02/42ge-rails-tips</id>
+    <content type="html"><![CDATA[<h4>原文: <a href="http://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-rails-could-do">From RailsConf 2012 - 10 Things You Didn&#8217;t Know Rails Could do</a></h4>
+
+<h4>本文适用Rails 版本 3.2.3</h4>
+
+<hr />
+
+<h2>Tip 1 : Run From A Single File  可以单文件运行</h2>
+
+<p><a href="https://github.com/artemave/thesmallestrailsapp.com">source</a></p>
+
+<figure class='code'><figcaption><span>http://thesmallestrailsapp.com/  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sx">%w(action_controller/railtie coderay)</span><span class="o">.</span><span class="n">map</span> <span class="o">&amp;</span><span class="nb">method</span><span class="p">(</span><span class="ss">:require</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">run</span> <span class="no">TheSmallestRailsApp</span> <span class="o">||=</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Rails</span><span class="o">::</span><span class="no">Application</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">secret_token</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">append</span> <span class="p">{</span> <span class="n">root</span> <span class="n">to</span><span class="p">:</span> <span class="s1">&#39;hello#world&#39;</span> <span class="p">}</span><span class="o">.</span><span class="n">inspect</span>
+</span><span class='line'>  <span class="kp">initialize</span><span class="o">!</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">HelloController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">world</span>
+</span><span class='line'>    <span class="n">render</span> <span class="n">inline</span><span class="p">:</span> <span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">      &lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="s2">      &lt;title&gt;The Smallest Rails App&lt;/title&gt;</span>
+</span><span class='line'><span class="s2">      &lt;h3&gt;I am the smallest rails app!&lt;/h3&gt;</span>
+</span><span class='line'><span class="s2">      &lt;p&gt;Here is my source code:&lt;/p&gt;</span>
+</span><span class='line'><span class="s2">      </span><span class="si">#{</span><span class="no">CodeRay</span><span class="o">.</span><span class="n">scan_file</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">,</span> <span class="ss">:ruby</span><span class="p">)</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">line_numbers</span><span class="p">:</span> <span class="ss">:table</span><span class="p">)</span><span class="si">}</span><span class="s2"></span>
+</span><span class='line'><span class="s2">      &lt;a href=&#39;https://github.com/artemave/thesmallestrailsapp.com&#39;&gt;Make me smaller&lt;/a&gt;</span>
+</span><span class='line'><span class="s2">    &quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 2: Remind you of things  提醒功能，TODO list</h2>
+
+<figure class='code'><figcaption><span>users_controller.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>     <span class="c1"># TODO:  Make it possible to create new users.</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>user.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>    <span class="c1"># FIXME: Should token really  be accessible?</span>
+</span><span class='line'>    <span class="n">attr_accessible</span> <span class="ss">:bil</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:token</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>index.html.erb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="o">&lt;%</span><span class="c1"># OPTIMIZE: Paginate this listing. %&gt;</span>
+</span><span class='line'>  <span class="o">&lt;%=</span> <span class="n">render</span> <span class="no">Article</span><span class="o">.</span><span class="n">all</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>a. 执行命令:</strong></p>
+
+<pre><code>$ rake notes
+</code></pre>
+
+<p>会输出如下结果：</p>
+
+<pre><code>app/controllers/users_controller.rb:
+  * [ 2] [TODO] Make it possible to create new users.
+
+app/models/user.rb:
+  * [ 2] [FIXME] Should token really be accessible?
+
+app/views/articles/index.html.erb:
+  * [ 1] [OPTIMIZE] Paginate this listing.
+</code></pre>
+
+<p><strong>b. 执行命令:</strong></p>
+
+<pre><code>$ rake notes:todo
+</code></pre>
+
+<p>会只输出和TODO相关的：</p>
+
+<pre><code>app/controllers/users_controller.rb:
+  * [ 2] Make it possible to create new users.
+</code></pre>
+
+<p><strong>c. 执行命令:</strong></p>
+
+<pre><code>$ rake notes:fixme
+</code></pre>
+
+<p>会只输出和FIXME相关的：</p>
+
+<pre><code>app/models/user.rb:
+  * [ 2] Should token really be accessible?
+</code></pre>
+
+<p><strong>d. 还可以自定义:</strong></p>
+
+<figure class='code'><figcaption><span>article.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>    <span class="n">belongs_to</span> <span class="ss">:user</span>
+</span><span class='line'>    <span class="n">attr_accessible</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">:subject</span>
+</span><span class='line'>    <span class="c1"># JEG2: Add that code from your blog here.</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>执行命令：</p>
+
+<pre><code>$ rake notes:custom ANNOTATION=JEG2
+</code></pre>
+
+<p>会输出结果：</p>
+
+<pre><code>app/models/article.rb:
+  * [ 4]Add that code from your blog here.
+</code></pre>
+
+<p><strong>e. 在TextMate里面你还可以使用TODO 插件</strong></p>
+
+<h2>Tip 3: Sandbox your Console 使用沙箱控制台</h2>
+
+<p><strong>执行命令:</strong></p>
+
+<pre><code>rails c --sandbox
+</code></pre>
+
+<p>使用这个控制台，里面任何的改变都会在你退出之后自动回滚到你未修改前的数据。</p>
+
+<p><strong>执行命令:</strong></p>
+
+<pre><code>rails r 'p [Article, Comment, User].map(&amp;:count)'
+</code></pre>
+
+<p>rails r 会执行引号里的代码。</p>
+
+<h2>Tip 4: Run Helper Methods in the Console 在控制台运行Helper方法</h2>
+
+<figure class='code'><figcaption><span>in the Console  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="err">$</span> <span class="n">rails</span> <span class="n">c</span>
+</span><span class='line'>   <span class="no">Loading</span> <span class="n">development</span> <span class="n">environment</span> <span class="p">(</span><span class="no">Rails</span> <span class="mi">3</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="mi">3</span><span class="p">)</span>
+</span><span class='line'>   <span class="o">&gt;&gt;</span> <span class="n">helper</span><span class="o">.</span><span class="n">number_to_currency</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class='line'>   <span class="o">=&gt;</span> <span class="s2">&quot;$100.00&quot;</span>
+</span><span class='line'>   <span class="o">&gt;&gt;</span> <span class="n">helper</span><span class="o">.</span><span class="n">time_ago_in_words</span><span class="p">(</span><span class="mi">3</span><span class="o">.</span><span class="n">days</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
+</span><span class='line'>   <span class="o">=&gt;</span> <span class="s2">&quot;3 days&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 5: Use Non-WEBrick Servers in Development 在开发中使用非Webrick服务器</h2>
+
+<figure class='code'><figcaption><span>Gemfile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="n">source</span> <span class="s2">&quot;https://rubygems.org&quot;</span>
+</span><span class='line'>   <span class="c1"># ...</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>     <span class="n">gem</span> <span class="s1">&#39;thin&#39;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>执行命令：</p>
+
+<pre><code>% rails s thin
+</code></pre>
+
+<h2>Tip 6: Allow you to tab into its configuration 自定义配置</h2>
+
+<figure class='code'><figcaption><span>lib/custom/railtie.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">module</span> <span class="nn">Custom</span>
+</span><span class='line'>     <span class="k">class</span> <span class="nc">Railtie</span> <span class="o">&lt;</span> <span class="no">Rails</span><span class="o">::</span><span class="no">Railtie</span>
+</span><span class='line'>       <span class="n">config</span><span class="o">.</span><span class="n">custom</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">OrderedOptions</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>config/application.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="n">require_relative</span> <span class="s2">&quot;../lib/custom/railtie&quot;</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">module</span> <span class="nn">Blog</span>
+</span><span class='line'>     <span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="no">Rails</span><span class="o">::</span><span class="no">Application</span>
+</span><span class='line'>       <span class="c1"># ...</span>
+</span><span class='line'>       <span class="n">config</span><span class="o">.</span><span class="n">custom</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="mi">42</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 7: Keep you Entertained</h2>
+
+<p><a href="www.rubydramas.com">RubyDramas</a></p>
+
+<h2>Tip 8: UnderStand Shorthand Migrations 理解便携的迁移文件</h2>
+
+<pre><code>$ rails g resources user name:string email:string token:string bio:text
+</code></pre>
+
+<p>可以简写为：</p>
+
+<pre><code>$ rails g resources user name email token:string{6} bio:text
+</code></pre>
+
+<p>生成migrations:</p>
+
+<figure class='code'><figcaption><span>Migrations  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>       <span class="n">create_table</span> <span class="ss">:users</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:email</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:token</span><span class="p">,</span> <span class="ss">:limit</span> <span class="o">=&gt;</span> <span class="mi">6</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">text</span> <span class="ss">:bio</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+</span><span class='line'>       <span class="k">end</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 9: Add Indexes to Migrations 增加索引</h2>
+
+<pre><code>$rails g resource user name:index email:uniq token:string{6} bio:text
+</code></pre>
+
+<p>生成：</p>
+
+<figure class='code'><figcaption><span>Migrations  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>       <span class="n">create_table</span> <span class="ss">:users</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:email</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:token</span><span class="p">,</span> <span class="ss">:limit</span> <span class="o">=&gt;</span> <span class="mi">6</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">text</span> <span class="ss">:bio</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+</span><span class='line'>       <span class="k">end</span>
+</span><span class='line'>       <span class="n">add_index</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:name</span>
+</span><span class='line'>       <span class="n">add_index</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:unique</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 10: Add Associations to a Migration 增加关联关系到迁移文件</h2>
+
+<pre><code>$rails g resource article user:references subject body:text
+</code></pre>
+
+<p>生成Migrations文件和model文件：</p>
+
+<figure class='code'><figcaption><span>Migrations  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">CreateArticles</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>       <span class="n">create_table</span> <span class="ss">:articles</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">references</span> <span class="ss">:user</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:subject</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">text</span> <span class="ss">:body</span>
+</span><span class='line'>         <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+</span><span class='line'>       <span class="k">end</span>
+</span><span class='line'>       <span class="n">add_index</span> <span class="ss">:articles</span><span class="p">,</span> <span class="ss">:user_id</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>models/article.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>     <span class="n">belongs_to</span> <span class="ss">:user</span>
+</span><span class='line'>     <span class="n">attr_accessible</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">:subject</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还可以使用命令：</p>
+
+<pre><code>rails g resource comment user:blongs_to article:belongs_to body:text
+</code></pre>
+
+<p>会生成和user、article相关联的model和migration文件。</p>
+
+<h2>Tip 11: Show you the status of the database 显示数据库状态</h2>
+
+<p>使用命令：</p>
+
+<pre><code> $ rake db:migrate:status
+</code></pre>
+
+<p>输出:</p>
+
+<pre><code> database: db/development.sqlite3
+
+ status   Migration ID    Migration Name
+ ---------------------------------------
+   up     20120414155612  Create users
+   up     20120414160528  Create articles
+  down    20120414161355  Create comments
+</code></pre>
+
+<h2>Tip 12: Import your CSV Data</h2>
+
+<p>csv data:</p>
+
+<pre><code>Name,Email
+James,james@example.com
+Dana,dana@example.com
+Summer,summer@example.com
+</code></pre>
+
+<p>导入代码：</p>
+
+<figure class='code'><figcaption><span>import csv  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">namespace</span> <span class="ss">:users</span> <span class="k">do</span>
+</span><span class='line'>     <span class="n">desc</span> <span class="s2">&quot;Import users from a CSV file&quot;</span>
+</span><span class='line'>     <span class="n">task</span> <span class="ss">:import</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span>
+</span><span class='line'>       <span class="n">path</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&quot;CSV_FILE&quot;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>         <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">),</span> <span class="o">*</span><span class="sx">%w[.. .. db data users.csv]</span><span class="p">)</span>
+</span><span class='line'>       <span class="p">}</span>
+</span><span class='line'>       <span class="no">CSV</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="n">header_converters</span><span class="p">:</span> <span class="ss">:symbol</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+</span><span class='line'>         <span class="no">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">to_hash</span><span class="p">)</span>
+</span><span class='line'>       <span class="k">end</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>注意:</strong></p>
+
+<ul>
+<li>headers: true, header_converters: :symbol 这个配置项</li>
+<li>row.to_hash</li>
+</ul>
+
+
+<h2>Tip 13 : Store CSV in Your Database 在数据库里存储CSV</h2>
+
+<figure class='code'><figcaption><span>store csv  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span>  <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+</span><span class='line'>    <span class="k">module</span> <span class="nn">CSVSerializer</span>
+</span><span class='line'>      <span class="kp">module_function</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">field</span><span class="p">);</span> <span class="n">field</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">parse_csv</span><span class="p">;</span> <span class="k">end</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="n">object</span><span class="p">);</span> <span class="nb">Array</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">;</span> <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">serialize</span> <span class="ss">:categories</span><span class="p">,</span> <span class="no">CSVSerializer</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># ...</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">attr_accessible</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">:subject</span><span class="p">,</span> <span class="ss">:categories</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 14: &#8220;Pluck&#8221; Fields out of your database 从数据库‘Pluck’字段。</h2>
+
+<pre><code>$ rails c
+loading development environment(Rails 3.2.3)
+
+&gt;&gt; User.select(:email).map(&amp;:email)
+  User Load(0.1ms) SELECT email FROM "users"
+=&gt; ["james@example.com", "dana@example.com", "summer@example.com"]
+&gt;&gt; User.pluck(:email)
+   (0.2ms) SELECT email FROM "users"
+=&gt; ["james@example.com", "dana@example.com", "summer@example.com"]
+&gt;&gt; User.uniq.pluck(:email)
+   (0.2ms) SELECT DISTINCT email FROM "users"
+=&gt; ["james@example.com", "dana@example.com", "summer@example.com"]
+</code></pre>
+
+<h2>Tip 15: Count Records in Groups</h2>
+
+<pre><code>$ rails g resource event article:belongs_to trigger
+</code></pre>
+
+<p>进控制台</p>
+
+<pre><code>$ rails c
+
+&gt;&gt; article = Article.last
+=&gt; #&lt;Article id:1, ...&gt;
+&gt;&gt; {edit:3, view:10}.each do |trigger, count|
+?&gt;   count.times do
+?&gt;     Event.new(trigger: trigger).tap{ |e| e.article= article; e.save! }
+?&gt;   end
+=&gt; {:edit =&gt; 3, :view =&gt; 10}
+&gt;&gt; Event.count
+=&gt; 13
+&gt;&gt; Event.group(:trigger).count
+=&gt; {"edit" =&gt; 3, "view" =&gt; 10}
+</code></pre>
+
+<h2>Tip 16: Allow you to Override Associations</h2>
+
+<figure class='code'><figcaption><span>car.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Car</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>    <span class="n">belongs_to</span> <span class="ss">:owner</span>
+</span><span class='line'>    <span class="n">belongs_to</span> <span class="ss">:previous_owner</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="s2">&quot;Owner&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">owner</span><span class="o">=</span><span class="p">(</span><span class="n">new_owner</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">previous_owner</span> <span class="o">=</span> <span class="n">owner</span>
+</span><span class='line'>      <span class="k">super</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tip 17: Instantiate Records without a database</h2>
+
+<pre><code>$ rails c
+
+&gt;&gt; User.find(1)
+=&gt; #&lt;User id: 1, name: "James", ...&gt;
+&gt;&gt; jeg2 = User.instantiate("id" =&gt; 1, "email" =&gt; "james@example.com")
+=&gt; #&lt;User id:1, email:"james@example.com"&gt;
+&gt;&gt; jeg2.name = "James Edward Gray II"
+&gt;&gt;jeg2.save!
+=&gt; true
+</code></pre>
+
+<p>伪造一条记录。</p>
+
+<h1>TODO &#8230;.</h1>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ruby全局变量表]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/04/24/rubyquan-ju-bian-liang-biao/"/>
+    <updated>2012-04-24T19:26:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/04/24/rubyquan-ju-bian-liang-biao</id>
+    <content type="html"><![CDATA[<p>Ruby全局变量表， 记录。</p>
+
+<hr />
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>名字</strong> </th>
+<th align="center"> <strong>English库名</strong> </th>
+<th align="right"> <strong>中文释义</strong>                 </th>
+<th align="right"> <strong>返回值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">-</td>
+<td align="center">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr>
+<td align="left">$0  </td>
+<td align="center"> $PROGRAM_NAME </td>
+<td align="right"> 程序名字  </td>
+<td align="right"> 字符串</td>
+</tr>
+<tr>
+<td align="left">$*  </td>
+<td align="center">  $ARGV        </td>
+<td align="right">  参数值   </td>
+<td align="right"> 数组</td>
+</tr>
+<tr>
+<td align="left">$: </td>
+<td align="center"> 无 </td>
+<td align="right">库加载路径 </td>
+<td align="right">数组</td>
+</tr>
+<tr>
+<td align="left">$?</td>
+<td align="center">$CHILD_STATUS</td>
+<td align="right">系统退出时，最后一个子进程的状态</td>
+<td align="right">整数</td>
+</tr>
+<tr>
+<td align="left">$&#8221;</td>
+<td align="center">$LOADED_FEATURES</td>
+<td align="right">已加载的特性</td>
+<td align="right">数组</td>
+</tr>
+<tr>
+<td align="left">$$</td>
+<td align="center">$PID或$PROCESS_ID</td>
+<td align="right">进程号</td>
+<td align="right">整数 </td>
+</tr>
+<tr>
+<td align="left">$!</td>
+<td align="center">$ERROR_INFO</td>
+<td align="right">错误信息</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$@</td>
+<td align="center">$ERROR_POSITION</td>
+<td align="right">错误发生的位置</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$&lt;</td>
+<td align="center">$DEFUALT_INPUT</td>
+<td align="right">默认输入值设备</td>
+<td align="right">对象实例</td>
+</tr>
+<tr>
+<td align="left">$></td>
+<td align="center">$DEFAULT_OUTPUT</td>
+<td align="right">默认输出设备</td>
+<td align="right">对象实例</td>
+</tr>
+<tr>
+<td align="left">$;</td>
+<td align="center">$FS或$FILED_SEPARATOR</td>
+<td align="right">默认字段分隔符，String.split方法会用到</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$,</td>
+<td align="center">$OFS或$OUTPUT_FIELD_SEPARATOR或</td>
+<td align="right">输入字符串分隔符，连接多个字</td>
+<td align="right">符串时用到|字符串</td>
+</tr>
+<tr>
+<td align="left">$_</td>
+<td align="center">$LAST_READ_LINE</td>
+<td align="right">Kernel.puts或Kernel.readline从输入设备中读取的最后一行</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$.</td>
+<td align="center">$NR或$INPUT_LINE_NUMBER</td>
+<td align="right">当前所读取文件的最后行号</td>
+<td align="right">整数</td>
+</tr>
+<tr>
+<td align="left">$/</td>
+<td align="center">$RS或INPUT_RECORD_SEPARATOR</td>
+<td align="right">输入分隔符，即输入结束符</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$\</td>
+<td align="center">$OFS或$OUTPUT_RECORD_SEPARATOR </td>
+<td align="right">多个Kernel.print或IO.write调用时，各个输出记录的分隔符</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$=</td>
+<td align="center">$IGNORECASE</td>
+<td align="right">匹配时是否忽略大小写，已经作废</td>
+<td align="right">布尔</td>
+</tr>
+<tr>
+<td align="left">$&amp;</td>
+<td align="center">$MATCH</td>
+<td align="right">匹配结果</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$1~$9</td>
+<td align="center">无</td>
+<td align="right">各组匹配结果</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$~</td>
+<td align="center">$LAST_MATCH_INFO</td>
+<td align="right">最后一次匹配数据</td>
+<td align="right">MatchData实例 </td>
+</tr>
+<tr>
+<td align="left">$+</td>
+<td align="center">$LAST_PAREN_MATCH</td>
+<td align="right">最后一个括号匹配内容</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$`</td>
+<td align="center">$PREMATCH</td>
+<td align="right">最后一次匹配前的内容</td>
+<td align="right">字符串</td>
+</tr>
+<tr>
+<td align="left">$&#8217;</td>
+<td align="center">$POSTMATCH</td>
+<td align="right">最后一次匹配后的内容</td>
+<td align="right">字符串 </td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby的并发世界]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/04/24/rubyde-bing-fa-shi-jie/"/>
+    <updated>2012-04-24T17:10:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/04/24/rubyde-bing-fa-shi-jie</id>
+    <content type="html"><![CDATA[<p>这是我去年翻译的一篇旧文，放到thinkinweb.heroku.com上面， 现在搬过来。</p>
+
+<hr />
+
+<p><strong>注： 并发给我们的应用带来并行能力，而线程是实现并发的一种方式。Ruby的GIL限制了Ruby的多线程并发能力。</strong></p>
+
+<p><strong>原文</strong>在<a href="http://merbist.com/2011/02/22/concurrency-in-ruby-explained/">这里</a>： 翻译过程中省略了一些废话。</p>
+
+<hr />
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;并发无疑不是一个新问题。但是随着多核时代的到来，web流量的剧增，一些新的技术出现，貌似更好，因为他们能更好的处理并性。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;并发就是多任务，可以这么理解。当人们谈论他们想要并发，意思就是他们想要代码在同一时间做多个不同的事情。当你用电脑的时候，你并不希望必须得在浏览网站和听音乐间二选一，你当然愿意二者可以并发进行了！一个道理，如果你有一个web服务，你当然不想一个进程每次只能处理一个请求吧。本文的目标是用尽可能简单的解释ruby的并发理论。 这是一个复杂的主题以及包含不同的并发实现方案。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;我们期望我们的代码有更好的性能，更快。让我们以2个简单具体的例子来说明并发。首先，我们假设你在写一个twitter客户端， 你可能想让用户当有新消息获取到的时候自动更新他/她的消息列表（tweets）。 要实现这个功能，一个通用的解决方案就是使用多个线程(Threads). 我们用一个线程去循环消息列表，另一个线程向远程Twitter API发起请求。2个线程共享同一片内容，所以一旦Twitter API线程获取了数据，就可以马上显示到页面上。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;第二个例子是webserver. 假设你的rails应用可能多于1QPS(每秒查询/请求数)，你衡量你应用的平均应答时间大概是100ms。那么你的rails用一个独立的进程可以处理10QPS( 1秒1000ms , 100ms一个来回，那就是10QPS) 但是当你的应用每秒得到了大于10个请求数会如何呢？ 其实也没啥，请求将会等待知道超时。 这就是为什么我们想提高我们的并发处理能力了。这里有很多不同的方法去实现它。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;很多人对这些不同的解决方案有不同的争议，但是他们从来没有说明过，为什么他们不喜欢其中一种方案，或者是觉得这种方案比那种好。 你可能经常听到人们讨论，类似于这样的话题： Rails can’t scale, 你只能使用 JRuby, threads suck 来得到并发， 唯一的并发处理是通过线程，我们应该选择 Erlang/Node.js/Scala, 使用 fibers可能更好，增加多台机器， 以及 forking > threading.  以上这些言论经常在twitter，blog上说的多了，所以你可能开始相信这些人的话了。但是你真的理解人们为什么那么说吗？你确信他们说的就是对的？</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;真相就是，这是个很复杂的问题， 还好，它还不是太复杂。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;有件事你必须要记住，你所使用的语言已经定义好了并性模型。 在java里， threading is the usual solution， 如果你想在你的java应用里去实现并发处理，只需要在它自己的线程里运行独立的请求。在php里， 每个请求都会启动一个新的进程。 两者都有优缺点， 优点是，java线程方法共享内存，所以你可以节省内存。php的优点是，你不用去担心锁，死锁，线程安全编码和隐藏于线程背后的所有混乱。描述的如此简单，但是你可能会想，为什么php没有线程，而java就不能用多个进程？ 这其实和语言的设计有关。php是为web而创的语言， php代码应该很快的被加载，不用太多的内存。java代码启动慢，还占用很大内存。java是一种通用的编程语言，而不是专门为web设计的。另一些编程语言比如Erlang和Scala都使用第三种方法： the actor model （角色模型）。 角色模型有点混合以上2种方案的模型，所不同的是，角色模型是一个不共享相同内存上下文的线程。actors直接的通信是通过交换信息，确保每个actor处理它自己的状态，从而避免损坏数据（2个线程同时修改同一数据，但是一个actor在同时接受2个信息）。 我们会在之后讨论这个设计模式，所以如果感到困惑，请不必担心。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;那么Ruby怎么样呢？Ruby开发者是不是使用线程，多进程，actors，其他？ 答案是：Yes!</p>
+
+<h2>Threads 线程</h2>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;从1.9版开始，Ruby有了本地线程（之前是green threads）。 所以，如果我们愿意，我们完全可以像大多数的java开发者一样，随时随地的使用线程。但问题是，Ruby像Python那样使用了一个Global Interpreter Lock(aka GIL).这个GIL是一个保护数据完整性的锁机制。GIL每次只允许数据被一个线程修改，因此不让线程损坏数据，也不允许其真正的并发运行。这就是为什么有些人说，Ruby和Python并不具备真正的并发性。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;然而这些人们通常并没有提及， GIL使单线程程序更快， 多线程程序更易于开发，因为数据结构是安全的，还有许多c扩展是非线程安全，没有GIL这些c扩展就不那么循规蹈矩了。这些论据并没有说服大家，这就是为什么你会听到有些人说，你应该去看看另一些没有GIL的ruby实现，像什么JRuby, Rubinius(hydra分支)或者是MacRuby(Rubinius &amp;&amp; MacRuby也提供另一种并发方式)。如果你用一个没有GIL的实现， 那么用ruby的线程实际和java的优缺点差不多了。但是，这也意味着，现在你又掉入了处理线程的噩梦中：需要确定你数据安全性， 不能死锁，检查代码，库文件，插件和gems是不是都是线程安全的。此外，运行过多的线程可能会影响性能，因为你的操作系统并没有足够的资源分配，它最终会将时间耗费在上下文的切换上。剩下的就由你自己来看是否值得在你的项目使用多线程了。</p>
+
+<h2>Multiple processes &amp; forking 多进程&amp;forking</h2>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;这是使用Ruby和Python使用并发最常用的解决方案。因为默认的语言并没有能力实现真正的并发，或者因为你想避免线程编程的挑战，你可能想去开启更多的进程。如果你并不想在进程间共享状态，这是很容易的。 如果你想这样做的话，就需要去用DRb, 一个像RabbitMQ那样的消息站，或者是一个像Memcached那样的共享数据存储系统，又或者是数据库。需要说明的是，你现在需要使用大量的内存。如果你想运行5个Rails进程，并且你的应用使用100Mb, 那么你需要500Mb， 这可是很大的内存。这实际是发生在当你使用类似于Mongrel这样的web服务器时候的事实。现在另一些服务器，像Passenger和Unicorn发现另一种方式， 他们依赖unix forking。 这种unix环境写时拷贝实现的forking的优势在于，创建一个新的主进程的copy，并且时共享相同的物理内存。 然而，每个进程也能修改它自己的内存，并不会影响其他进程。所以，Passenger一个进程能加载100Mb的Rails应用，然后fork这个进程5次， 总共只占用内存100多点Mb，并且你可以并行的去处理5倍的请求。这里注意，如果你在请求进程代码里分配内存，你的总内存将会增长，但是你仍然可以在内存用尽之前运行更多的进程。这种方式因其简单和安全而受人关注。 如果一个forked进程瞎捣蛋或者引起内存泄露，我们只需要删除它，然后创建个新的fork进程就ok了。 注意，这种方式也被应用于Resque, 一个异步job进程解决方案。</p>
+
+<h2>Actors/Fibers 角色/纤程</h2>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;之前我们谈到过Actor Model. 从Ruby1.9开始， 开发者又多了一个轻量级的线程，叫Fibers(纤程)。 Fibers不是一个角色(Actors)， Ruby也没有实现本地角色模型（Actors Model）,但是有些人基于fibers写了一些actor库。一个fiber像一个简单线程，只是它是基于语言级别的，并非虚拟机实现。Fibers就像一个block， 但是他们又可以暂停，可以回收。 Fibers比线程更快，且更省内存，看这个blog的<a href="http://oldmoe.blogspot.com/2008/08/ruby-fibers-vs-ruby-threads.html">示例</a>。然而， 因为GIL， 你仍然不能在线程里真正的运行并发纤程。如果你想用多个cup核心，你可能需要运行多线程的运行纤程。所以， 纤程对并发有何帮助呢？ 答案就是，他们是一个更大的解决方案的一部分。 Fiber允许开发者手工的控制调度“并发”代码，而且纤程本身也有代码在自动的调度其自身。这很棒，因为你现在可以用它自己的纤程包装一个web请求，告诉它返回一个response。同时， 你还可以继续处理下一个请求。每当一个fiber内部的请求被完成，它会自动的回收并且退出。听起来不错吧？那么，唯一的问题是， 如果你在一个纤程中，做任何类型的阻塞io操作，那么整个线程就会被阻塞，导致其他纤程也无法允许。诸如数据库/memcached查询， http请求，等等基本上你可能从控制器触发的任何东西，都会引起阻塞操作。好消息是，这个仅有的问题已经被解决， 就是要避免阻塞的IO。让我们看看这是如何做到的。</p>
+
+<h2>Non blocking IOs/Reactor pattern. 非阻塞IOs/Reactor 模式</h2>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;去理解reactor模式那真的是相当简单。阻塞IO的繁重工作委托给一个外部服务（reactor）, 这个服务可以接受并发请求。 这个服务是一个回调处理器，根据响应的类型异步的触发事件。 让我做一个有限的比喻来说明这个更好的设计。 它有点像这样： 如果你问某人一个很难的问题， 他需要一段时间才能答复你，但是他的答复会让你决定举不举你的旗。你有两个选择，或者你选择等待，然后依据等到的结果举起旗，或者你的举旗逻辑已经被定义了，你只需要告诉他，什么样的答案是举旗，什么答案是不举旗，然后让他自己去做，然后你继续做你的事情， 而不必在那傻等了。第二种方式实际上就是reactor模式。它明显有点复杂， 但是关键的一点是， 它允许你的代码去定义基于响应去调用的methods/blocks。 这一点对于单线程webserver十分重要。 当一个请求来了，并且你的代码执行了数据库查询，你正在阻塞其他任何请求。为了避免这样， 我们可以包装我们的请求成为一个fiber， 触发一个异步的DB调用，暂停纤程，以便在我们等待db返回结果的过程中，另一个请求可以得到处理，一旦，db查询返回， 它就唤醒纤程， 然后给客户端返回响应。技术上讲，这个服务仍然是一次发送一个响应，但是现在是运行在了平行的纤程上，也不会被处理大量的阻塞操作阻塞主线程。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;这种方式被Twisted, EventMachine和Node.js所采用。Ruby开发者用EventMachine 或者是一个基于EventMachine的webserver，像Thin，和EM clients/drivers一样好的去处理异步非阻塞调用。得到Fiber的爱，你就能进入Ruby的并发世界。不过要小心的使用thin，非阻塞驱动和Rails的线程安全模式并不是意味着你可以处理并发请求。Thin/EM仅仅使用了一个线程，你需要让它知道，它可以正确处理下个请求。这是通过<a href="http://eventmachine.rubyforge.org/EventMachine/Deferrable.html">延迟响应</a>来实现的，而且需要让reactor知道它。 这种方法最明确的问题是， 它会迫使你改变写代码的方式。你需要设置一堆callbacks，理解Fiber的语法， 并且要用延迟响应。 我不得不说，这是一种的痛！如果你看一些Node.js的代码，你会看到，它并不总是那么优雅。</p>
+
+<h2>Conclusion 总结</h2>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;综上所述， Ruby的高并发是可以实现的。但是真正的问题是什么？Ruby的GIL未来是什么？ 我们应该移除它吗？其他的Ruby实现似乎相信如此，但是Rails仍然有一个mutex锁机制来限制一次只能处理一个请求。原因是因为有许多人都不写线程安全的代码，并且许多插件也不是线程安全的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby Styleguide]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide/"/>
+    <updated>2012-04-11T11:34:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide</id>
+    <content type="html"><![CDATA[<h4>注： 本文为<a href="https://github.com/styleguide/ruby">Github Ruby Styleguide</a>的中文翻译， 边翻译边过了一遍，发现这些风格约定很有其道理。推荐！</h4>
+
+<h4>代码风格 (Coding Style)</h4>
+
+<hr />
+
+<ul>
+<li>使用两个空格来保持缩进</li>
+<li>每行应该小于80个字符（<em>Texmate和sublime text2 都可以设置</em>）</li>
+<li>末尾不要留空格</li>
+<li>在操作符前后， 逗号后面， 冒号和分号前后留空格。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">sum</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
+</span><span class='line'>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+</span><span class='line'>    <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">?</span> <span class="kp">true</span> <span class="p">:</span> <span class="kp">false</span><span class="p">;</span> <span class="nb">puts</span> <span class="s1">&#39;Hi&#39;</span>
+</span><span class='line'>    <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">e</span> <span class="p">}</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在(和[后面, 或者]和)前面不能有空格。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">some</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">.</span><span class="n">other</span>
+</span><span class='line'>    <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">length</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>case和when应该保持同样的缩进深度.</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">case</span>
+</span><span class='line'>    <span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;Misty&#39;</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s1">&#39;Not again!&#39;</span>
+</span><span class='line'>    <span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">duration</span> <span class="o">&gt;</span> <span class="mi">120</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s1">&#39;Too long!&#39;</span>
+</span><span class='line'>    <span class="k">when</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">hour</span> <span class="o">&gt;</span> <span class="mi">21</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;It&#39;s too late&quot;</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">song</span><span class="o">.</span><span class="n">play</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="c1"># another style</span>
+</span><span class='line'>    <span class="n">kind</span> <span class="o">=</span> <span class="k">case</span> <span class="n">year</span>
+</span><span class='line'>           <span class="k">when</span> <span class="mi">1850</span><span class="o">.</span><span class="n">.</span><span class="mi">1889</span> <span class="k">then</span> <span class="s1">&#39;Blues&#39;</span>
+</span><span class='line'>           <span class="k">when</span> <span class="mi">1890</span><span class="o">.</span><span class="n">.</span><span class="mi">1909</span> <span class="k">then</span> <span class="s1">&#39;Ragtime&#39;</span>
+</span><span class='line'>           <span class="k">when</span> <span class="mi">1910</span><span class="o">.</span><span class="n">.</span><span class="mi">1929</span> <span class="k">then</span> <span class="s1">&#39;New Orleans Jazz&#39;</span>
+</span><span class='line'>           <span class="k">when</span> <span class="mi">1930</span><span class="o">.</span><span class="n">.</span><span class="mi">1939</span> <span class="k">then</span> <span class="s1">&#39;Swing&#39;</span>
+</span><span class='line'>           <span class="k">when</span> <span class="mi">1940</span><span class="o">.</span><span class="n">.</span><span class="mi">1950</span> <span class="k">then</span> <span class="s1">&#39;Bebop&#39;</span>
+</span><span class='line'>           <span class="k">else</span> <span class="s1">&#39;Jazz&#39;</span>
+</span><span class='line'>           <span class="k">end</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<ul>
+<li>使用空行来隔离区分一个方法内部的逻辑。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">def</span> <span class="nf">some_method</span>
+</span><span class='line'>      <span class="n">data</span> <span class="o">=</span> <span class="kp">initialize</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">data</span><span class="o">.</span><span class="n">manipulate!</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">data</span><span class="o">.</span><span class="n">result</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">some_method</span>
+</span><span class='line'>     <span class="n">result</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>文档 (Documentation)</h4>
+
+<hr />
+
+<p><strong> 最好使用<a href="http://tomdoc.org/">TomDoc</a>来规范你的文档格式 </strong></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># Public: Duplicate some text an arbitrary number of times.</span>
+</span><span class='line'>  <span class="c1">#</span>
+</span><span class='line'>  <span class="c1"># text  - The String to be duplicated.</span>
+</span><span class='line'>  <span class="c1"># count - The Integer number of times to duplicate the text.</span>
+</span><span class='line'>  <span class="c1">#</span>
+</span><span class='line'>  <span class="c1"># Examples </span>
+</span><span class='line'>  <span class="c1">#</span>
+</span><span class='line'>  <span class="c1">#   multiplex(&#39;Tom&#39;, 4)</span>
+</span><span class='line'>  <span class="c1">#   # =&gt; &#39;TomTomTomTom&#39;</span>
+</span><span class='line'>  <span class="c1">#</span>
+</span><span class='line'>  <span class="c1"># Returns the duplicated String.</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">multiplex</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">text</span> <span class="o">*</span> <span class="n">count</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>语法 (Syntax)</h4>
+
+<hr />
+
+<ul>
+<li>当在def方法不接受任何参数的时候省略括号。 当有参数的时候， 使用括号。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method_with_arguments</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>不要使用For.</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">arr</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">elem</span> <span class="k">in</span> <span class="n">arr</span> <span class="k">do</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="n">elem</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">arr</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">elem</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在if/unless语句中不要用then.</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">some_condition</span> <span class="k">then</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">some_condition</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在条件极其琐碎比较多的情况下应该避免三元操作符(?:)， 但是单行条件的情况下是可以用三元操作符的。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="k">if</span> <span class="n">some_condition</span> <span class="k">then</span> <span class="n">something</span> <span class="k">else</span> <span class="n">something_else</span> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="n">some_condition</span> <span class="p">?</span> <span class="n">something</span> <span class="p">:</span> <span class="n">something_else</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>不要嵌套使用三元操作符(?:), 要用if/unless语句分开。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">some_condition</span> <span class="p">?</span> <span class="p">(</span><span class="n">nested_condition</span> <span class="p">?</span> <span class="n">nested_something</span> <span class="p">:</span> <span class="n">nested_something_else</span><span class="p">)</span> <span class="p">:</span> <span class="n">something_else</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">some_condition</span>
+</span><span class='line'>    <span class="n">nested_condition</span> <span class="p">?</span> <span class="n">nested_something</span> <span class="p">:</span> <span class="n">nested_something_else</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">something_else</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>禁止使用and和or, 要使用 &amp;&amp;和||</li>
+<li>避免多行的三元操作符(?:)， 用if/unless语句代替</li>
+<li>单行语句的情况下，使用如下形式:</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">some_condition</span>
+</span><span class='line'>    <span class="n">do_something</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">do_something</span> <span class="k">if</span> <span class="n">some_condition</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>禁止在unless语句中使用else。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">unless</span> <span class="n">success?</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s1">&#39;failure&#39;</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s1">&#39;success&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">success?</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s1">&#39;success&#39;</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s1">&#39;failure&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>if/unless/while语句后面的条件不要用括号包上， 除非这个条件里面有赋值运算。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># ok</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">next_value</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>单行的blocks要用{&#8230;}代替do&#8230;end， 在多行blocks下面应该用do&#8230;end. 在流程控制和方法定义方面应总是使用 do&#8230;end ， 有方法链式调用情况下应该使用{&#8230;}</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">names</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Bozhidar&quot;</span><span class="p">,</span> <span class="s2">&quot;Steve&quot;</span><span class="p">,</span> <span class="s2">&quot;Sarah&quot;</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">names</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span> <span class="nb">puts</span> <span class="nb">name</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">names</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="nb">name</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">names</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span> <span class="nb">name</span><span class="o">.</span><span class="n">start_with?</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span> <span class="nb">name</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">names</span><span class="o">.</span><span class="n">select</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">name</span><span class="o">.</span><span class="n">start_with?</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span> <span class="nb">name</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在不需要的地方避免使用return。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">some_arr</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">some_arr</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">some_arr</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">some_arr</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>当方法的参数中设置默认值的时候， 在=操作符前后使用空格。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">arg1</span><span class="o">=</span><span class="ss">:default</span><span class="p">,</span> <span class="n">arg2</span><span class="o">=</span><span class="kp">nil</span><span class="p">,</span> <span class="n">arg3</span><span class="o">=[]</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># do something...</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">arg1</span> <span class="o">=</span> <span class="ss">:default</span><span class="p">,</span> <span class="n">arg2</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">arg3</span> <span class="o">=</span> <span class="o">[]</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># do something...</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>条件中使用了赋值操作符应该用括号包围。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># good - shows intented use of assignment</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">))</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">v</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">)</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># also good - shows intended use of assignment and has correct precedence.</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">next_value</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;hello&quot;</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>用 ||= 来初始化变量.</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># set name to Bozhidar, only if it&#39;s nil or false</span>
+</span><span class='line'>  <span class="nb">name</span> <span class="o">||=</span> <span class="s1">&#39;Bozhidar&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>不要用 ||= 去初始化boolean型变量。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad - would set enabled to true even if it was false</span>
+</span><span class='line'>  <span class="n">enabled</span> <span class="o">||=</span> <span class="kp">true</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">enabled</span> <span class="o">=</span> <span class="kp">true</span> <span class="k">if</span> <span class="n">enabled</span><span class="o">.</span><span class="n">nil?</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>不要使用Perl式的特殊变量（像$0-9, $, 等）。 应该使用比较长的，就像 $PROGRAM_NAME.</li>
+<li>在方法名和括号之间不要有空格。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">f</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">f</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>如果方法的第一个参数是括号， 那么这个方法总是应该使用括号。就像 f((3 + 2) + 1) 这样。</p></li>
+<li><p>使用 _ 符号来表示不使用的block参数。</p></li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="nb">hash</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="n">v</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="nb">hash</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">_</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="n">v</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>命名 (Naming)</h4>
+
+<hr />
+
+<ul>
+<li>为方法和变量使用蛇形 snake_case</li>
+<li>为类和模块使用骆驼形 CamelCase (HTTP,RFC,XML 应该大写)</li>
+<li>自定义的常量使用全大写蛇形 SCREAMING_SNAKE_CASE</li>
+<li>断言类方法（返回boolean值）的命名应该以问号结尾。就像 Array#empty?</li>
+<li>有潜在‘危险’的方法（修改self或者是参数，类似于 exit! 这样的）， 应该以叹号结尾!. 这类方法叫Bang method.</li>
+</ul>
+
+
+<h4>类 (Classes)</h4>
+
+<hr />
+
+<ul>
+<li>避免使用类变量 @@variables，因为他们在继承中表现的比较猥亵。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Parent</span>
+</span><span class='line'>    <span class="vc">@@class_var</span> <span class="o">=</span> <span class="s1">&#39;parent&#39;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">print_class_var</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="vc">@@class_var</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Child</span> <span class="o">&lt;</span> <span class="no">Parent</span>
+</span><span class='line'>    <span class="vc">@@class_var</span> <span class="o">=</span> <span class="s1">&#39;child&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="no">Parent</span><span class="o">.</span><span class="n">print_class_var</span> <span class="c1"># =&gt; will print &quot;child&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一个父类的类变量在其继承体系的所有类里面都是共用的，类实例变量@class_vers, 才是per-class的， 当我们使用的时候， 优先选用类实例变量。</p>
+
+<ul>
+<li>使用 def self.method 来定义单例方法(singleton methods)， 这样会使重构的时候更加方便。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">TestClass</span>
+</span><span class='line'>    <span class="c1"># bad</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">TestClass</span><span class="o">.</span><span class="nf">some_method</span>
+</span><span class='line'>      <span class="c1"># body omitted</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># good</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">some_other_method</span>
+</span><span class='line'>      <span class="c1"># body omitted</span>
+</span><span class='line'>    <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>避免使用 class &lt;&lt; self ， 除非是必须的， 比如单独的accessors和aliased属性。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">TestClass</span>
+</span><span class='line'>    <span class="c1"># bad</span>
+</span><span class='line'>    <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">first_method</span>
+</span><span class='line'>        <span class="c1"># body omitted</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">second_method_etc</span>
+</span><span class='line'>        <span class="c1"># body omitted</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># good</span>
+</span><span class='line'>    <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>      <span class="kp">attr_accessor</span> <span class="ss">:per_page</span>
+</span><span class='line'>      <span class="n">alias_method</span> <span class="ss">:nwo</span><span class="p">,</span> <span class="ss">:find_by_name_with_owner</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">first_method</span>
+</span><span class='line'>      <span class="c1"># body omitted</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">second_method_etc</span>
+</span><span class='line'>      <span class="c1"># body omitted</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>public, protected, 和 private 应该和方法定义缩进一样， 并且在其上方留一空行。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">SomeClass</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">public_method</span>
+</span><span class='line'>      <span class="c1"># ...</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kp">private</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">private_method</span>
+</span><span class='line'>      <span class="c1"># ...</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>异常 (Exceptions)</h4>
+
+<hr />
+
+<ul>
+<li>不要用异常来控制流程</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>    <span class="n">n</span> <span class="o">/</span> <span class="n">d</span>
+</span><span class='line'>  <span class="k">rescue</span> <span class="no">ZeroDivisionError</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Cannot divide by 0!&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">zero?</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Cannot divide by 0!&quot;</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">n</span> <span class="o">/</span> <span class="n">d</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>避免rescuing Exception这个类。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>    <span class="c1"># an exception occurs here</span>
+</span><span class='line'>  <span class="k">rescue</span>
+</span><span class='line'>    <span class="c1"># exception handling</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># still bad</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>    <span class="c1"># an exception occurs here</span>
+</span><span class='line'>  <span class="k">rescue</span> <span class="no">Exception</span>
+</span><span class='line'>    <span class="c1"># exception handling</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>关于异常处理，推荐 Exceptional Ruby这本书。</p>
+
+<h4>集合 (Collections)</h4>
+
+<hr />
+
+<ul>
+<li>当你需要字符串数组的时候，最好使用%w</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="no">STATES</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;draft&#39;</span><span class="p">,</span> <span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="s1">&#39;closed&#39;</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="no">STATES</span> <span class="o">=</span> <span class="sx">%w(draft open closed)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>当需要处理唯一元素的时候，使用Set来代替Array, Set是无重复值的无序集合。它既包含Array的运算功能,同时又兼有Hash的高速搜索功能。</li>
+<li>使用符号类型来代替字符串型来作为Hash的keys。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;one&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span> <span class="o">=&gt;</span> <span class="mi">3</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="n">one</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">two</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">three</span><span class="p">:</span> <span class="mi">3</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>字符串 (Strings)</h4>
+
+<hr />
+
+<ul>
+<li>使用#{}来代替字符串+连接</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">email_with_name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39; &lt;&#39;</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">email_with_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> &lt;</span><span class="si">#{</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>如果不需要转义什么特殊字符什么的， 应该用单引号</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;Bozhidar&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="nb">name</span> <span class="o">=</span> <span class="s1">&#39;Bozhidar&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>当需要构建大的数据块的时候应该避免使用String#+方法， 应该使用 String#&lt;&lt; , 这个方法比String#+快。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># good and also fast</span>
+</span><span class='line'>  <span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;&lt;h1&gt;Page title&lt;/h1&gt;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">paragraphs</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">paragraph</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&lt;p&gt;</span><span class="si">#{</span><span class="n">paragraph</span><span class="si">}</span><span class="s2">&lt;/p&gt;&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>正则表达式 (Regular Expressions)</h4>
+
+<hr />
+
+<ul>
+<li>使用named groups （只支持Ruby1.9+）</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span><span class="sr"></span>
+</span><span class='line'><span class="sr">  /(regexp)/</span> <span class="o">=~</span> <span class="n">string</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="n">process</span> <span class="vg">$1</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span><span class="sr"></span>
+</span><span class='line'><span class="sr">  /(?&lt;meaningful_var&gt;regexp)/</span> <span class="o">=~</span> <span class="n">string</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="n">process</span> <span class="n">meaningful_var</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(下面说明和代码是我自己加的内容：)
+你可以定义每一部分的正则，然后命名成组，并且在后面加上
+{0}，表明不获取匹配内容，然后在使用\g引用对用的组，组成
+大的正则，并且加上/x修饰。这样比较复杂的正则，会有更好的可读性。。另一部分示例代码：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">users</span> <span class="o">=</span> <span class="sx">%w{  </span>
+</span><span class='line'><span class="sx">   alice:10.23.52.112:true  </span>
+</span><span class='line'><span class="sx">   bob:192.168.10.34:false  </span>
+</span><span class='line'><span class="sx"> }</span>
+</span><span class='line'>
+</span><span class='line'> <span class="n">user_regexp</span> <span class="o">=</span> <span class="sr">%r{  </span>
+</span><span class='line'><span class="sr">   (?&lt;username&gt; [a-z]+ ){0}  </span>
+</span><span class='line'><span class="sr">   (?&lt;ip_number&gt; [0-9]{1,3} ){0}  </span>
+</span><span class='line'><span class="sr">   (?&lt;ip_address&gt; (\g&lt;ip_number&gt;\.){3}\g&lt;ip_number&gt; ){0}  </span>
+</span><span class='line'><span class="sr">   (?&lt;admin&gt; true | false ){0}  </span>
+</span><span class='line'><span class="sr">   \g&lt;username&gt;:\g&lt;ip_address&gt;:\g&lt;admin&gt;  </span>
+</span><span class='line'><span class="sr"> }x</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">users</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">u</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">r</span> <span class="o">=</span> <span class="n">user_regexp</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;User </span><span class="si">#{</span><span class="n">r</span><span class="o">[</span><span class="ss">:username</span><span class="o">]</span><span class="si">}</span><span class="s2"> is from </span><span class="si">#{</span><span class="n">r</span><span class="o">[</span><span class="ss">:ip_address</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>小心使用 ^ 和 $ , 它们是来匹配行的开始和结束，不是字符串。 如果你想匹配整个string，则使用 \A和\Z</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;some injection</span><span class="se">\n</span><span class="s2">username&quot;</span>
+</span><span class='line'>  <span class="n">string</span><span class="o">[/^</span><span class="n">username</span><span class="vg">$/</span><span class="o">]</span>   <span class="c1"># matches</span>
+</span><span class='line'>  <span class="n">string</span><span class="o">[/</span><span class="p">\</span><span class="no">Ausername</span><span class="p">\</span><span class="n">Z</span><span class="o">/]</span> <span class="c1"># don&#39;t match</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>使用 x 来修饰复杂的正则， 这样更可读，还可加注释，只是需要小心空格</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">regexp</span> <span class="o">=</span> <span class="sr">%r{</span>
+</span><span class='line'><span class="sr">    start         # some text</span>
+</span><span class='line'><span class="sr">    \s            # white space char</span>
+</span><span class='line'><span class="sr">    (group)       # first group</span>
+</span><span class='line'><span class="sr">    (?:alt1|alt2) # some alternation</span>
+</span><span class='line'><span class="sr">    end</span>
+</span><span class='line'><span class="sr">  }x</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>百分号字面量 (Percent Literals)</h4>
+
+<hr />
+
+<ul>
+<li>使用%w毫无压力</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="no">STATES</span> <span class="o">=</span> <span class="sx">%w(draft open closed)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>使用%()来引用单行字符串，相当于双引号（相当于%Q()），对于多行的字符串，要使用here文档。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad (no interpolation needed)</span>
+</span><span class='line'>  <span class="sx">%(&lt;div class=&quot;text&quot;&gt;Some text&lt;/div&gt;)</span>
+</span><span class='line'>  <span class="c1"># should be &#39;&lt;div class=&quot;text&quot;&gt;Some text&lt;/div&gt;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad (no double-quotes)</span>
+</span><span class='line'>  <span class="sx">%(This is </span><span class="si">#{</span><span class="n">quality</span><span class="si">}</span><span class="sx"> style)</span>
+</span><span class='line'>  <span class="c1"># should be &quot;This is #{quality} style&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad (multiple lines)</span>
+</span><span class='line'>  <span class="sx">%(&lt;div&gt;</span><span class="se">\n</span><span class="sx">&lt;span class=&quot;big&quot;&gt;</span><span class="si">#{</span><span class="n">exclamation</span><span class="si">}</span><span class="sx">&lt;/span&gt;</span><span class="se">\n</span><span class="sx">&lt;/div&gt;)</span>
+</span><span class='line'>  <span class="c1"># should be a heredoc.</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good (requires interpolation, has quotes, single line)</span>
+</span><span class='line'>  <span class="sx">%(&lt;tr&gt;&lt;td class=&quot;name&quot;&gt;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="sx">&lt;/td&gt;)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>超过一个/符合的正则应该使用 %r</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="sr">%r(\s+)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># still bad</span>
+</span><span class='line'>  <span class="sr">%r(^/(.*)$)</span>
+</span><span class='line'>  <span class="c1"># should be /^\/(.*)$/</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="sr">%r(^/blog/2011/(.*)$)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Above all else</h4>
+
+<hr />
+
+<p>Follow your <img src="https://a248.e.akamai.net/assets.github.com/images/icons/emoji/heart.png?v5" alt="" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SublimeText2 使用指南]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/03/14/sublimetext2-shi-yong-zhi-nan/"/>
+    <updated>2012-03-14T14:17:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/03/14/sublimetext2-shi-yong-zhi-nan</id>
+    <content type="html"><![CDATA[<h4>引子:</h4>
+
+<p>昨天<a href="blog.irubi.com">idecent</a>向我推荐了一款编辑器 - <a href="http://www.sublimetext.com/">Sublime Text 2</a>。
+经过试用，发现真的不错， 打开项目、文件的速度超快， 让Textmate汗颜， 于是毫不吝惜的把Textmate抛弃了。</p>
+
+<p><strong>注： SublimeText2是收费的，但不限制使用时间，只是不定时弹出让你付费的提醒。</strong></p>
+
+<hr />
+
+<h2>使用指南:</h2>
+
+<h4>为了方便在终端使用SublimeText2打开文件，需要加Link：</h4>
+
+<pre><code>sudo ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/bin/st
+</code></pre>
+
+<h2>使用技巧</h2>
+
+<p><strong> 一、启用vim模式 </strong></p>
+
+<ul>
+<li><p>打开配置文件： Preferences -> Settings User  或者使用快捷键：cmd + ,</p></li>
+<li><p>在配置文件中添加：</p>
+
+<pre><code>  "ignored_packages": []
+</code></pre></li>
+<li><p>重启Sublime Text2就可以了。</p></li>
+</ul>
+
+
+<p><strong> 二、 Package Control </strong></p>
+
+<p>Sublime Text 2拥有良好的扩展功能，这就是安装包(Package), 通过安装这个插件： <a href="http://wbond.net/sublime_packages/package_control">Sublime Package Control</a></p>
+
+<p>安装方法：</p>
+
+<ul>
+<li><p>Control + ` 命令调出console.</p></li>
+<li><p>把下面的代码输入，并回车执行。</p>
+
+<pre><code>  import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print 'Please restart Sublime Text to finish installation'
+</code></pre></li>
+<li><p>重启Sublime Text2， 如果在 Preferences -> Package Settings中见到Package Control这一项，就说明安装成功了。</p></li>
+</ul>
+
+
+<p><strong> 三、 通过Package Control 来安装其他插件</strong></p>
+
+<ul>
+<li><p>cmd + shift + p  调出命令框</p></li>
+<li><p>输入 install 调出 Package Control: Install Package 选项，按下回车。</p></li>
+<li><p>列表中查找你想安装的插件， 按下回车就会自动安装。 （某些插件是收费的）</p></li>
+<li><p>安装完记得重启Sublime Text 2.</p></li>
+</ul>
+
+
+<p><strong> 推荐插件： 右键菜单增强： SideBarEnhancements </strong></p>
+
+<p><strong> 四、 无干扰模式(Distraction Free Mode) </strong></p>
+
+<p>在 Sublime Text 2 中，只要按下 Control + Shift + Command + F 或是在菜单 View 中选择 Enter Distraction Free Mode 就可以进入这个 UI 最小化模式了。如果是在用 Mac OS X Lion 的话，Sublime Text 2 还同时支持 Lion 的原生全屏模式。</p>
+
+<p>通过修改 “Preferences” -> “File Settings - More” -> “Distraction Free - User” 可以对防干扰模式进行一些设置：</p>
+
+<pre><code>{
+"line_numbers": false,      //是否显示行号
+"gutter": false,            //是否显示边列
+"draw_centered": true,      //是否居中显示
+"wrap_width": 80,           //换行宽度(单位：字符)
+"word_wrap": true,          //是否自动换行
+"scroll_past_end": true     //滚动能否超过结尾
+}
+</code></pre>
+
+<p><strong> 五、 Textmate Bundle </strong></p>
+
+<p>Sublime Text 2 很给力的一点就是它同时支持一些 TextMate 的 Bundle。</p>
+
+<p>Sublime Text 2 对于 TextMate Bundle 中的 Snippet 有着良好的原生支持，把 Bundle 放到 Packages 目录里就能用。但对 Bundle 中的 command 并不支持.</p>
+
+<p>我自己没有在Sublime Text2中使用textmate的bundle。</p>
+
+<p><strong> 六、 安装主题 </strong></p>
+
+<p>可以使用Package Control来查找Theme，选择主题安装， 但是安装完之后，需要看你下载的theme插件的Readme来进行配置。</p>
+
+<p><strong> 七、 快捷键 </strong></p>
+
+<p>Navigation</p>
+
+<pre><code>* Command palette: Command + Shift + P   
+*  Fuzzy finder: Command + P
+*  Function crawling: Command + R
+*  Go to line number: Control + G
+*  Find in files: Command + Shift + F
+</code></pre>
+
+<p>Text manipulation</p>
+
+<pre><code>* Replace in file: Command + Alt + F (Control + H on Windows)
+* Select current line: Command + L
+* Duplicate line: Command + Shift + D
+* Multi-select words: Command + D, multiple times
+* Swipe lines: Command + Shift + L, or Control + Shift + Up/Down
+* Join lines: Command + J
+* Delete to beginning of word: Control + Backspace
+* Delete to end of word: Control + Delete
+</code></pre>
+
+<p>Coding</p>
+
+<pre><code>* Edit occurrences : Command + Control + G (Alt + F3 on Windows)
+* Auto-align assignments: Command + Shift + A
+* Select scope: Command + Shift + Space, multiple times
+* Jump to matching bracket: Control + M
+* Toggle comment: Command + /
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Edge - 使用Rails来做API-Only App]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app/"/>
+    <updated>2012-03-12T16:03:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/03/12/shi-yong-railslai-zuo-api-only-app</id>
+    <content type="html"><![CDATA[<h4>原文地址:  <a href="https://github.com/rails/rails/blob/efd557a60cd976ac17be9e238111a551599caeb5/railties/guides/source/api_app.textile">点这里</a> 或者 <a href="http://edgeguides.rubyonrails.org/api_app.html">这里Edge Guides</a></h4>
+
+<p><strong> 本文并非原文翻译 </strong></p>
+
+<hr />
+
+<h2>这个导读你会学到：</h2>
+
+<ul>
+<li><p>什么是仅提供API的Rails应用</p></li>
+<li><p>开始如何配置没有任何浏览器特性的Rails</p></li>
+<li><p>如何选择你想包含的middlewares</p></li>
+<li><p>如何选择你的controller里使用哪个modules</p></li>
+</ul>
+
+
+<p><strong> 注意： 这个导读引入的特性并没有被全部实现。 先当文档来看 </strong></p>
+
+<h2>什么是一个API app？</h2>
+
+<p>传统意义上来说， 当人们说他用了Rails实现了一个“API”， 意味着他们的web应用提供一个程序可访问的API接口。就像Github提供的<a href="http://developer.github.com/">这个API</a>， 你可以在你自己定制的客户端来使用它。</p>
+
+<p>随着移动互联网时代的到来，以及各种客户端框架的出现， 越来越多的开发者使用Rails来构建后端， 供Web应用和本地应用(Native App)一起使用。例如， Twitter就在Web Application中和其他本地应用客户端（Native App）一样，都消耗着由自己的<a href="https://dev.twitter.com/">公共API</a>提供的JSON资源,  而不是通过Rails生成动态的HTML来渲染用于和Server端通信的表单和链接。大多少开发者都把Web应用当作由HTML， CSS， Javascript构成的另一种客户端来处理，只是通过JSON来通信。</p>
+
+<!--more-->
+
+
+<h2>为什么使用Rails来提供JSON APIs？</h2>
+
+<p>很多人在使用Rails构建一个JSON API时候思考的第一个问题就是：使用Rails输出JSON是不是有种杀鸡用牛刀的感觉？ 是不是应该用Siantra这类轻量级的框架就好了？</p>
+
+<p>对于简单的API应用， 这些考虑可能适用， 但是复杂的， Rails更适合。</p>
+
+<p>大多数人使用Rails的原因是它提供了默认的套件帮助我们快速的起步不用在烦杂的琐碎的东西上浪费时间。让我们看看适合API应用使用的东西：</p>
+
+<h4>中间件层</h4>
+
+<ul>
+<li>Reloading:   R
+ails应用支持transparent reloading. 不管是你的应用因为新增了文件变大还是重启了server，它都会工作。</li>
+<li>Development Mode: 开发模式。</li>
+<li>Test Mode:    测试模式。</li>
+<li>Logging:   Rails会详细的记录每次请求的日志信息。开发环境下， Rails记录的信息包含请求的环境，数据库查询和基本的性能等信息。</li>
+<li>Security:  Rails有效的防范<a href="http://en.wikipedia.org/wiki/IP_address_spoofing">IP欺诈</a>和<a href="http://en.wikipedia.org/wiki/Timing_attack">时序攻击</a>.</li>
+<li>Parameter Parsing:  想要指定你的参数是JSON来代替URL编码字符串吗？没问题， Rails会帮你解码JSON成为你可用的参数。</li>
+<li>Conditional GETs:   Rails可以处理条件GET， 操作请求头并且返回正确的响应头和状态码。你可以使用<a href="http://api.rubyonrails.org/classes/ActionController/ConditionalGet.html#method-i-stale-3F">stale?</a>来处理全部HTTP详细信息。</li>
+<li>Caching:   Rails让你方便的配置缓存。</li>
+<li>HEAD requests:   Rails会透明的把HEAD request转化为GET request， 并只返回header信息。</li>
+</ul>
+
+
+<h4>ActionPack层</h4>
+
+<ul>
+<li>Resourceful Routing:  如果你正在构建一个RESTFul的JSON API， 你要用Rails router,   干净利落方便的帮你从HTTP方法映射到Controller。</li>
+<li>URL Generation:   Routing对应的是URL Generation。 一个好的API是对HTTP方法友好的URLs， 例如<a href="http://developer.github.com/v3/gists/">Github gist API</a>。</li>
+<li>Header and Redirection Responses:    head :no_content 和 redirect_to_user_url(current_user), 这两方法迟早有用。</li>
+<li>Content Negotiation: Rails的respond_to和respond_with方法，会自动的根据请求的Accept header和可用类型去提供相应的MIME Type。</li>
+<li>Caching:  Rails提供页面， action和片段缓存。 片段缓存有利用构建内嵌的JSON对象。</li>
+<li>Basic, Digest and Token Authentication:  Rails支持这三种类型的HTTP验证。</li>
+<li>Instrumentation: Rails3.0 提供了一个Instrumentation API用于触发一些注册事件，类似于action处理过程， 发送文件或者数据， 重定向和数据查询等事件,  可用于Notifications等功能。</li>
+<li>Generators:  生成器， 对高级别的Rails用户来说没啥用， 但是它可以一键生成相关的资源。</li>
+<li>Plugins:   有好多优秀的Rails第三方插件可以拿来用。</li>
+</ul>
+
+
+<h2>基本配置</h2>
+
+<p>如果你正在构建一个基本只提供API服务的Rails应用， 那么你可以从一个定制的Rails子集版本开始， 只添加自己需要的特性。</p>
+
+<h4>你可以直接生成一个bare rails应用：</h4>
+
+<pre><code>$ rails new my_api  -api
+</code></pre>
+
+<p>这条命令会帮你生成三条主要的部分：</p>
+
+<ol>
+<li>帮你配置包含更少中间件的应用， 尤其是不包含任何和浏览器相关的特性，比如cookie支持等。</li>
+<li>使 ApplicationController继承于ApplicationController::API， 而不是ApplicationController::Base.  ApplicationController::API已经剔除了任何包含浏览器相关特性的功能。</li>
+<li>配置生成器， 在你生成新的资源的时候，跳过生成views， helpers和assets。</li>
+</ol>
+
+
+<h4>如果你想让已经存在的Rails Application变成一个API App， 那么按下面步骤来做：</h4>
+
+<p><strong> 在config/application.rb中增加下面两行：</strong></p>
+
+<pre><code>config.middleware.api_only!
+config.generators.api_only!
+</code></pre>
+
+<p><strong> 改变app/controller/application_controller.rb 为下列语句： </strong></p>
+
+<figure class='code'><figcaption><span>application_controller.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
+</span><span class='line'>      <span class="c1"># ...</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>选择中间件</h2>
+
+<p>一个API A
+pp应该默认包含下面Middlewares：</p>
+
+<ul>
+<li>Rack::Cache:   利用Cache-Control机制来缓存响应。</li>
+<li>Rack::Sendfile:   提供文件传输支持。</li>
+<li>Rack::Lock:  如果你的应用没有标记使用线程安全 (config.threadsafe!), 这个middleware会在你的请求上增加一个互斥锁， 用于保证在任一时刻，只能有一个线程访问改对象。</li>
+<li>ActionDispatch::RequestId:</li>
+<li>Rails::Rack::Logger:</li>
+<li>ActionDispatch::ShowExceptions:</li>
+<li>ActionDispatch::DebugExceptions:</li>
+<li>ActionDispatch::RemoteIp: IP欺诈保护</li>
+<li>ActionDispatch::Reloader: 在开发环境下支持code reloading。</li>
+<li>ActionDispatch::ParamsParser: 根据请求类型Content-Type来解析XML, YAML, JSON。</li>
+<li>ActionDispatch::Head:  指派HEAD requests为GET requests,并只返回header信息和状态码。</li>
+<li>Rack::ConditionalGet:  在Rails controller里支持stale?特性</li>
+<li>Rack::ETag:  自动为所有的字符串响应设置ETag。 主要被用来优化客户端。</li>
+</ul>
+
+
+<h4>你可以通过下面命令来列出你应用里用到的所有Middlewares：</h4>
+
+<pre><code>$ rake middleware
+</code></pre>
+
+<p>还有一些其他的Middlewares及其说明， 可以查看<a href="https://github.com/rails/rails/blob/efd557a60cd976ac17be9e238111a551599caeb5/railties/guides/source/api_app.textile">原文链接</a>。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Solr简要指南]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/03/07/solrjian-yao-zhi-nan/"/>
+    <updated>2012-03-07T14:38:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/03/07/solrjian-yao-zhi-nan</id>
+    <content type="html"><![CDATA[<h2>一、 安装</h2>
+
+<p>服务器环境， CentOS, 需要的软件有：  jdk 1.6.0 、apache-solr-3.1.0 、apache-tomcat-7.0.26 、 mmseg4j</p>
+
+<h4>Solr与Sphinx相比较的优势：</h4>
+
+<ul>
+<li><p> Solr 可以精确控制对索引进行局部更新，而Sphinx只能全局更新.</p></li>
+<li><p> Solr 可以对几乎任何对象进行索引，该对象甚至可以不是ActiveRecord.而Sphinx和RDBMS耦合过于紧密.</p></li>
+<li><p> Solr 索引的对象ID可以非空或者是字符串，而Sphinx要求被索引对象必须拥有非0整数作为ID.</p></li>
+<li><p> Solr 支持Boolean作为查询条件搜索,更加方便</p></li>
+<li><p> Solr 支持Facets,而Sphinx为此需要做更多工作</p></li>
+<li><p> Solr 是对lucene的包装。所以他可以享受lucene每次升级带来的便利。</p></li>
+</ul>
+
+
+<!--more-->
+
+
+<h4>安装Java：</h4>
+
+<pre><code>sudo yum install java-1.6.0-openjdk.x86_64
+</code></pre>
+
+<h4>下载Solr和Tomcat</h4>
+
+<pre><code>1. wget  http://labs.renren.com/apache-mirror/tomcat/tomcat-7/v7.0.26/bin/apache-tomcat-7.0.26.tar.gz
+
+2. wget http://mirror.bjtu.edu.cn/apache/lucene/solr/3.1.0/apache-solr-3.1.0.tgz
+</code></pre>
+
+<p> 下载完之后解压并放到/usr/local下:</p>
+
+<pre><code> tar zxvf apache-solr-3.1.0.tgz
+ tar zxvf apache-tomcat-7.0.26.tar.gz
+ mv  apache-solr-3.1.0 /usr/local/solr
+ mv  apache-tomcat-7.0.26 /usr/local/tomcat
+</code></pre>
+
+<h4>下载mmseg4j， 中文分词用。</h4>
+
+<pre><code> 地址： http://code.google.com/p/mmseg4j/downloads/list
+</code></pre>
+
+<h2>二、 配置</h2>
+
+<h4>配置环境变量</h4>
+
+<p>编辑profile文件：</p>
+
+<pre><code>sudo vi /etc/profile
+</code></pre>
+
+<p>添加内容:</p>
+
+<pre><code>export JAVA_HOME=/usr/lib/jvm/jre-1.6.0
+export CLASSPATH=.:$JAVA_HOME/lib/rt.jar
+export PATH=$PATH:$JAVA_HOME/bin
+export TOMCAT_HOME=/usr/local/tomcat
+export JAVA_OPT="$JAVA_OPTS -Dsolr.solr.home=/usr/local/tomcat/solr_home"
+</code></pre>
+
+<h4>复制solr.war到tomcat/webapps下面</h4>
+
+<pre><code>cp /usr/local/solr/dist/apache-solr-3.1.0.war /usr/local/tomcat/webapps/solr.war
+</code></pre>
+
+<h4>配置solr.xml文件，先创建Catalina/localhost目录：</h4>
+
+<p>编辑文件：</p>
+
+<pre><code> vi /usr/local/tomcat/conf/Catalina/localhost/solr.xml
+</code></pre>
+
+<p>添加内容：</p>
+
+<pre><code>&lt;Context docBase="/usr/local/tomcat/webapps/solr.war" debug="0" crossContext="true"&gt;
+
+    &lt;Environment name="solr/home" type="java.lang.String" value="/usr/local/tomcat/solr_home" override="true" /&gt;
+
+&lt;/Context&gt;
+</code></pre>
+
+<h4>配置tomcat user</h4>
+
+<p>编辑文件：</p>
+
+<pre><code>vi /usr/local/tomcat/conf/tomcat-users.xml
+</code></pre>
+
+<p>去掉注释块,加入以下内容:</p>
+
+<pre><code>&lt;role rolename="admin-gui"/&gt;
+&lt;role rolename="admin-script"/&gt;
+&lt;role rolename="manager-gui"/&gt;
+&lt;role rolename="manager-script"/&gt;
+&lt;role rolename="manager-jmx"/&gt;
+&lt;role rolename="manager-status"/&gt;
+&lt;user username="tomcat" password="123456" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-script,admin-gui"/&gt;
+</code></pre>
+
+<p><strong>注意： 这里tomcat/123456 是tomcat的用户名，密码， 在你访问tomcat管理页面的时候需要。</strong></p>
+
+<h4>进入tomcat根目录:</h4>
+
+<p>创建solr_home文件夹. 然后将/usr/local/solr/example/solr下的conf、data、bin三个文件夹复制到solr_home下;</p>
+
+<h4>进入webapps/solr/WEB-INF，打开web.xml，第37行，注释打开，修改如下：</h4>
+
+<pre><code>&lt;env-entry]]]]&gt;  
+   &lt;env-entry-name]]]]&gt;solr/home&lt;/env-entry-name]]]]&gt;  
+   &lt;env-entry-value]]]]&gt;/usr/local/tomcat/solr_home&lt;/env-entry-value]]]]&gt;  
+   &lt;env-entry-type]]]]&gt;java.lang.String&lt;/env-entry-type]]]]&gt;  
+ &lt;/env-entry]]]]&gt;
+</code></pre>
+
+<h4>解压下载好的mmseg4j-1.8.4.zip:</h4>
+
+<p>复制mmseg4j-all-1.8.4.jar到/usr/local/tomcat/webapps/solr/WEB-INF/lib下</p>
+
+<h4>进入/usr/local/tomcat/solr_home/conf，打开schema.xml, 在<types></types>之间加入：</h4>
+
+<pre><code>&lt;fieldType name="textComplex" class="solr.TextField" ]]&gt;  
+&lt;analyzer]]&gt;  
+    &lt;tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="complex" dicPath="data/"/&gt;  
+&lt;/analyzer]]&gt;  
+&lt;/fieldType]]&gt;  
+&lt;fieldType name="textMaxWord" class="solr.TextField" ]]&gt;  
+        &lt;analyzer]]&gt;  
+           &lt;tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="max-word"dicPath="data/"/&gt;  
+        &lt;/analyzer]]&gt;  
+&lt;/fieldType]]&gt;  
+&lt;fieldType name="textSimple" class="solr.TextField" ]]&gt;  
+        &lt;analyzer]]&gt;  
+           &lt;tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="simple" dicPath="data/"/&gt;  
+       &lt;/analyzer]]&gt;  
+&lt;/fieldType]]&gt;
+</code></pre>
+
+<h4>然后在解压好的mmseg4j文件夹中找到data文件夹</h4>
+
+<p>将其内的chars.dic、units.dic、words.dic三个字典文件复制到/usr/local/tomcat/solr_home/data中</p>
+
+<h4>启动tomcat</h4>
+
+<pre><code>/usr/local/tomcat/bin/startup.sh
+</code></pre>
+
+<p><strong>当然你也可以自己写启动脚本</strong></p>
+
+<h4>检测</h4>
+
+<p>访问 http://localhost:8080/manager/status  输入之前的用户名和密码，就可以看到正常的tomcat首页，然后访问http://localhost:8080/solr/admin/analysis.jsp，选择Field下拉选项中的type，后面输入textComplex，然后在Field value中随便复制一段中文文字，点击Analyz，就可以看到mmseg4j的分词结果了。</p>
+
+<h4>配置 solrconfig.xml ,   打开 /usr/local/tomcat/solr_admin/conf/solrconfig.xml :</h4>
+
+<pre><code> &lt;dataDir&gt;${solr.data.dir:/usr/local/tomcat/solr_home/data}&lt;/dataDir&gt;
+</code></pre>
+
+<p>添加auto_commit配置， 找到<updateHandler class="solr.DirectUpdateHandler2">位置， 打开注释：</p>
+
+<pre><code>&lt;autoCommit&gt; 
+    &lt;maxDocs&gt;10000&lt;/maxDocs&gt;
+    &lt;maxTime&gt;1000&lt;/maxTime&gt; 
+&lt;/autoCommit&gt;
+</code></pre>
+
+<p><strong>说明：</strong></p>
+
+<ul>
+<li><p>maxDocs：当内存索引数量达到指定值的时候，将内存的索引DUMP到硬盘中，并通知searcher类加载新的索引。</p></li>
+<li><p>maxTime:每隔指定的时间段，自动的COMMIT内存中的索引数据，并通知Searcher类加载新的索引。</p></li>
+<li><p>以上两种方式，以最先达到条件执行为准。</p></li>
+</ul>
+
+
+<h2>三、 Rails</h2>
+
+<h4><a href="http://sunspot.github.com/">Sunspot</a></h4>
+
+<h4><a href="https://github.com/outoftime/sunspot/tree/master/sunspot_rails">sunspot_rails</a></h4>
+
+<h4>与Model集成示例：</h4>
+
+<figure class='code'><figcaption><span>post.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:links</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">searchable</span> <span class="ss">:auto_index</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:auto_remove</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">text</span> <span class="ss">:ab</span>  <span class="c1">#可以被fulltext或者keywords搜索出来。btw,ywords是fulltext的别名。其实是同一个方法。</span>
+</span><span class='line'>    <span class="n">string</span> <span class="ss">:location</span>
+</span><span class='line'>    <span class="n">integer</span> <span class="ss">:blog_id</span>
+</span><span class='line'>    <span class="n">boolean</span> <span class="ss">:generated</span>   <span class="c1">#支持boolean查询</span>
+</span><span class='line'>    <span class="n">time</span> <span class="ss">:published_at</span><span class="p">,</span> <span class="ss">:stored</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="n">text</span> <span class="ss">:links</span> <span class="k">do</span>   <span class="c1"># 支持这种虚拟属性。</span>
+</span><span class='line'>      <span class="n">links</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">link</span><span class="o">|</span> <span class="n">link</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">link</span><span class="o">.</span><span class="n">title</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong> 请留意auto_index,auto_remove,配置了这两个选项以后，程序就能够自动检测程序，数据是否变得脏了。数据脏又分为dirty?和delete_dirty?,自动方式会自动根据这两种脏脏状态决定是否自动更新索引,还是自动删除。如果这两个选项被设置成false,那么就需要你手动更新索引。 </strong></p>
+
+<h4>增量更新：</h4>
+
+<p><strong> sunspot会将新增、更新的记录发送至solr，但不会发送commit(只有运行reindex才会发送commit命令,  只有commit之后， 索引才会发生变化)， 可以配置 solr/conf/solrconfig.xml ，启用 autoCommit 参数，设置更新的记录数或者时间(ms)， 更新时如果 solr 服务出问题，则会导致rails操作不成功，所以要把更新操作放到resque后台执行， 这里使用<a href="http://stdout.heyzap.com/2011/08/17/sunspot-resque-session-proxy/">Sunspot-Resque Session Proxy</a> </strong></p>
+
+<h4>关于solr中commit和optimize的概念:</h4>
+
+<pre><code>-    commit
+
+   当你像solr提交索引更新时，只有运行了commit，索引才会发生变化。              
+   当然也并不意味着你每次提交都要commit，如果不是那么紧急，你可以多次提交之后，再执行commit操作。
+
+-   optimize
+
+   optimize有点像硬盘上整理磁盘碎片的操作。       
+   为了提高搜索速度，它会将索引重组在一起，然后移除需要被删除删除或是更新的文档，请注意，solr是没有update的这种操作的，只有增加与删除。       
+   solr在优化时，将需要删除或是被替换的索引标记为deleted，然后再创建新的文档替换掉需要被替换的。optimize就是执行此操作。       
+   所以在优化的时候，你的索引会增大，然后再减小。optimize操作会创建一个全新的的索引结构，所以，你需要预备出2倍于你commit时索引大小的空间。
+</code></pre>
+
+<h2>参考资料：</h2>
+
+<p> <a href="http://wiki.apache.org/solr/SolrTomcat">SolrTomcat Wiki</a></p>
+
+<p> <a href="http://asciicasts.com/episodes/278-search-with-sunspot">Episodes 278</a></p>
+
+<p> <a href="http://stdout.heyzap.com/2011/08/17/sunspot-resque-session-proxy/">Sunspot-Resque Session Proxy</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[bcrypt与密码安全]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/01/05/bcryptyu-mi-ma-an-quan/"/>
+    <updated>2012-01-05T17:30:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/01/05/bcryptyu-mi-ma-an-quan</id>
+    <content type="html"><![CDATA[<p>最近闹的沸沸扬扬的各大网站用户密码泄露事件， 让网民们震惊了，尽然都是明文保存密码。因为存在某些漏洞，比如sql注入， 可能让Hacker拿到全字段的数据列表，如果是明文密码， 那就帮Hacker省事了， Hacker都不需要暴力破解了。</p>
+
+<p>其实对于密码有很多加密手段，但是最安全的莫过于Bcrypt这种算法了， 详细的参看<a href="http://codahale.com/how-to-safely-store-a-password/">Coda Hala的这篇文章</a>, 也有<a href="http://coolshell.cn/articles/2078.html/comment-page-2#comment-121752">中文版</a>。 其实安全也是相对的， 对于Bcrypt这种算法的优势再于它的慢， 延缓了Hacker暴力破解的时间， 对于用户来说，就相对安全了。</p>
+
+<p>用Rails的同学就有福了。 <a href="https://github.com/plataformatec/devise">devise</a>默认就是支持Bcrypt的。</p>
+
+<figure class='code'><figcaption><span>initializers/devise.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">stretches</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里的stretches被用来做work factor, 数值越大越慢， 如果你发现一个crypt生成值在20毫秒之内，那这个stretches就正好。</p>
+
+<p>另一个措施就是可以在用户输入12345之类的弱密码的时候，禁止其注册，并提示其使用强度比较高的密码。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[内心]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2011/12/30/nei-xin/"/>
+    <updated>2011-12-30T15:48:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2011/12/30/nei-xin</id>
+    <content type="html"><![CDATA[<p>在微博上看到<a href="http://weibo.com/joboto">@周伯通招聘</a>发的这个帖子<a href="http://www.joboto.com/thread/15408">设立职业生涯目标的14步练习法</a>,  就看了看， 并且按照这个步骤完成了自己的练习。结果发现自己内心的那个想法竟然如此墙裂 。。。</p>
+
+<h2>步骤1． （省略,参考上面帖子地址）</h2>
+
+<p>我想拥有的：</p>
+
+<p>一个公司， 不算很大， 最好不要超过20个人。 公司以技术为重， 公司的产品导向是通过科技手段改善人类的生活，做最实用又最有创意的产品。 基于互联网，又高于互联网， 贴近生活与大众, 或者某个垂直行业， 充满了想象力， 去发现生活中美与不同的一面， 带给用户简单，美与便利。</p>
+
+<p>公司里没有HR， 或者说没有那些只会记录员工工作时间的HR， 我觉得真正的HR更像一个保姆，公司的保姆， 除了那些日常的事务， 还应该做的是，维持公司内部员工的工作环境，工作心情， 解决公司员工碰到的各种困难。 公司的企业文化是大家一起来创造的，工作时间随意， 前提是保质保量完成工作任务。 我觉得，只有公司把员工当成家人， 员工才有可能把公司当做家。 公司每周都组织家庭聚会， 一起去郊外旅游， 聚餐， 交流思想。 公司不以上市做为目标， 所以公司不会拿所谓的期权来忽悠人， 每个月的财务会公开， 年底人人都会有分红。分红不是按等级分配，也不是按劳分配， 是按功劳分配， 对公司产品有贡献的人， 才能拿到高比例的分红。 如何去衡量对产品有贡献，可以通过多种手段， 比如，一个漂亮的对策解决了用户反馈的产品问题， 一个漂亮的营销策划方案， 一个漂亮的产品功能改进， 一个漂亮的家庭聚会活动组织，一个漂亮的技术分享或者是贡献等等， 当然漂亮不漂亮，公司的每位同事都会参与打分， 这也是公司人少的好处。</p>
+
+<p>同事间的协作方式，可以是远程协作。 比如，今天不舒服， 可以在家办公，或者是去咖啡馆， 只要是任何有网络的地方。像北京这类地方， 交通拥堵， 在北京郊区或者周边买房租房的优秀人才也不少。 没必要每天都往一个办公室挤。  每周保持2 的天正常会面就ok了。 这样的话， 同事们就不必要每天为了想在北京买房而发愁了， 你在北京周边买也一样， 公司支持你（精神上，公司文化，金钱上估计前三五年还没那个实力）。</p>
+
+<p>我觉得公司也应该有理想， 公司的理想应该反映在其产品上，就向苹果的产品一样， 果粉所热爱的苹果，绝对不是其可以用来装逼的价格， 真正的果粉懂得，因为其提升了人们的审美， 告诉大众什么是美，带给人们好心情； 带给了人们方便， 手势， 快捷键等提升了工作效率。所以，公司的理想通过产品反映给大众， 能提升大众生活精神质量的公司理想， 大众肯定可以接受， 产品自然就会有市场。</p>
+
+<ol>
+<li><p>在你生活中，你认为哪五件事情最有价值？</p>
+
+<ul>
+<li>做有意义的工作</li>
+<li>和家人共处的时光， 能多抽时间陪父母， 抽空去看望老朋友， 多交流。</li>
+<li>信仰（基督教）</li>
+<li>健康。 每周适度的锻炼。（不包括挤公车地铁）</li>
+<li>学习。 必不可少。</li>
+</ul>
+</li>
+<li><p>在你的生活中，有哪三个最重要的目标？</p>
+
+<ul>
+<li>创业。 去建立一个我上面所描写的公司。</li>
+<li>经营一个和谐幸福的家庭。</li>
+<li>保持一个健康的身体。</li>
+</ul>
+</li>
+<li><p>假如你只有六个月的生命，你会如何地运用这六个月？</p>
+
+<ul>
+<li>去旅行。 带着我的爱人， 父母， 岳父岳母和我弟弟。给我的亲戚和其他朋友们邮寄明信片。</li>
+</ul>
+</li>
+<li><p>假如你立刻成为百万富翁，在哪些事情上，你的做法会和今天不一样？</p>
+
+<ul>
+<li>可能对创业的想法更坚定了， 也许会马上踏出那一步.</li>
+</ul>
+</li>
+<li><p>有哪些事是你一直想做，但却不敢尝试去做的？</p>
+
+<ul>
+<li>去创上面描述的公司（虽然以前也创过业）</li>
+</ul>
+</li>
+<li><p>在生活中，有哪些活动，你觉得最重要的？</p>
+
+<ul>
+<li>交流（或者头脑风暴）， 聚餐， 一起去郊游，健身， 做礼拜。</li>
+</ul>
+</li>
+<li><p>假如你确定自己不会失败（拥有充实的时间、资源、能力等），你会敢于梦想哪一件事情？</p>
+
+<ul>
+<li>第一 ， 当然是去创建上面描述的那个公司。</li>
+<li>第二，  去旅行。 带着我的爱人， 父母， 岳父岳母和我弟弟。给我的亲戚和其他朋友们邮寄明信片。</li>
+</ul>
+</li>
+</ol>
+
+
+<h2>步骤2．</h2>
+
+<ul>
+<li>以上所写，我希望可以在10年之内达成。2012 - 2022。</li>
+</ul>
+
+
+<h2>步骤3．</h2>
+
+<p>2012年主要目标:</p>
+
+<ol>
+<li>在AR方向上，能做一些东西出来。  （时限一年， 年底正式发布， 之前会出测试）</li>
+<li>抽出来时间，去看老朋友。</li>
+<li>和老婆的蜜月旅行。（国庆长假+年假）</li>
+<li>坚持锻炼，减肥。</li>
+<li>每个月坚持看一本书。</li>
+</ol>
+
+
+<h2>步骤4．</h2>
+
+<ol>
+<li>用肯定的语气来预期你的结果，说出你希望的而非不希望的； √</li>
+<li>结果要尽可能具体，还要明确订出完成的期限与项目； √</li>
+<li>事情完成时你要能知道完成了； √</li>
+<li>要能抓住主动权，而非任人左右；√</li>
+<li>是否对社会有利。   √</li>
+</ol>
+
+
+<h2>步骤5．</h2>
+
+<ul>
+<li>比较执着， 不撞南墙不回头。脾气急躁， 但是在改。 碰到问题的时候， 缺乏冷静。  合作伙伴已有，财力支持也比较确定。 时限有一些吃紧， 能力，应该达标了。</li>
+</ul>
+
+
+<h2>步骤6．</h2>
+
+<ol>
+<li>专业能力</li>
+<li>同一个志向,或者愿望</li>
+<li>经常性的交流</li>
+<li>利益驱动</li>
+<li>对用户来说， 我做出了正宗并实惠的东西， 不存在欺骗用户的行为。</li>
+<li>业界大佬来帮忙。 是我用真诚换来的。虽然之后的发展让人失望。</li>
+</ol>
+
+
+<h2>步骤7．</h2>
+
+<ul>
+<li>团队， 起步的财力， 共同的目标， 坚持。</li>
+</ul>
+
+
+<h2>步骤8．</h2>
+
+<ul>
+<li>没有足够的财力支持。 补救办法， 参考 《Rework》。</li>
+</ul>
+
+
+<h2>步骤9．</h2>
+
+<ol>
+<li><p>在AR方向上，能做一些东西出来。  （时限一年， 年底正式发布， 之前会出测试)</p>
+
+<ul>
+<li>正式发布</li>
+<li>测试数据采集， 修正bug</li>
+<li>发布beta版</li>
+<li>构建产品， 先出测试版</li>
+<li>产品功能确定</li>
+<li>UE设计</li>
+<li>技术考察</li>
+<li>人员集结, 投资到位</li>
+</ul>
+</li>
+<li><p>抽出来时间，去看老朋友。</p>
+
+<ul>
+<li>每一个月找个周末。</li>
+</ul>
+</li>
+<li><p>和老婆的蜜月旅行。</p>
+
+<ul>
+<li>国庆长假+年假, 2012来年就需要办理签证事宜。</li>
+</ul>
+</li>
+<li><p>坚持锻炼，减肥。</p>
+
+<ul>
+<li>春夏秋，小区会所游泳</li>
+<li>冬，  小区周围跑步</li>
+</ul>
+</li>
+<li><p>每个月坚持看一本书</p>
+
+<ul>
+<li><a href="http://blog.changebox.me/blog/2011/12/28/2012shu-dan/">2012上半年书单</a>已经列出。</li>
+</ul>
+</li>
+</ol>
+
+
+<h2>步骤10．</h2>
+
+<ul>
+<li>向<a href="http://37signals.com">37Signals</a> 看齐。 开始《rework》</li>
+</ul>
+
+
+<h2>步骤11．使目标多样化且有整体意义。 </h2>
+
+<ul>
+<li>已经很多样化了。</li>
+</ul>
+
+
+<h2>步骤12．为自己创造一个适当的环境。 </h2>
+
+<h2>步骤13．经常反省所做的结果。</h2>
+
+<h2>步骤14. </h2>
+
+<ul>
+<li>仔细想了想以后， 要感谢的人有好多。 要学会感恩。在感恩中前进。</li>
+</ul>
+
+
+<h2>总结：</h2>
+
+<p>  <strong>经过这样的练习， 发现自己内心的那个想法竟然那么墙裂。</strong></p>
+
+<p>  <strong>关键的2012， 把握内心所想， 脚踏实地向着目标踏步走！！！</strong></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2012书单]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2011/12/28/2012shu-dan/"/>
+    <updated>2011-12-28T17:51:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2011/12/28/2012shu-dan</id>
+    <content type="html"><![CDATA[<p>2012上半年阅读计划：</p>
+
+<h4>Ruby/Rails类：</h4>
+
+<blockquote><p>《Exceptional Ruby》</p>
+
+<p>《Eloquent Ruby》</p>
+
+<p>《Rails Master源码》(非书)</p></blockquote>
+
+<h4>Node.js 相关</h4>
+
+<blockquote><p>《Pragmatic.CoffeeScript》</p>
+
+<p>《Packtpub.Node.Web.Development》</p></blockquote>
+
+<h4>Ios相关:</h4>
+
+<blockquote><p>《ObjectiveC3rd》</p>
+
+<p>《Big.Nerd.Ranch.iOS.Programming.2nd》</p></blockquote>
+
+<h4>HTML5相关：</h4>
+
+<blockquote><p>《Wrox.HTML5.24-Hour.Trainer》</p>
+
+<p>《Oreilly.HTML5.Cookbook》</p></blockquote>
+
+<h4>SEM:</h4>
+
+<blockquote><p>《Google广告优化与工具》</p></blockquote>
+
+<p>一共九本书， 六个月读完。 平均一个月1.5本。 源码阅读计划分散在每天的时间里。 对于时间，需要进一步统筹计划。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2011年度总结]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2011/12/23/2011nian-du-zong-jie/"/>
+    <updated>2011-12-23T15:18:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2011/12/23/2011nian-du-zong-jie</id>
+    <content type="html"><![CDATA[<p>2011年， 对我的人生来说， 应该算是重要的一年。</p>
+
+<p><strong>有一些好的事情</strong></p>
+
+<blockquote><ol>
+<li>今年我离开了曾经想沉下心和前同事创一番事业的eoe， 跳槽了又跳槽了， 也就是跳了两次，来到了iClick, 开始踏入SEM行业，在iClick，我明白了一个我之前一直不太明白的问题，那就是技术的尽头在哪里。</li>
+<li>今年我拥有了自己人生第一套房子， 要感谢父母， 实话说，凭我自己目前的存款，是买不起房子的，父母给了我这一切， 却不计任何回报。当然，我要好好的回报父母。</li>
+<li>今年我也要结婚成家了， 感谢老婆，感谢老婆陪我走过的这两年多的时光， 感谢老婆为我所做的一切。虽然免不了吵架拌嘴，但是我们的感情越来越深， 我们会越来越幸福。</li>
+<li>今年我也开始信奉基督教， 是受老婆的影响。虽然我一直搞不清楚我该如何去相信上帝的存在，但是我还是祷告，参加了多次教友聚会， 去教堂做礼拜，听牧师证道， 也让我的脾气温和了不少。</li>
+</ol>
+</blockquote>
+
+<p><strong>也有一些比较遗憾的事情</strong></p>
+
+<blockquote><ol>
+<li>因为房子装修的琐碎烦事以及结婚要做的准备， 没有百分百的完成和PCR约定的事情, 比较遗憾。所以，以后不能随便许诺了， 要懂得拒绝，有些事情也不是非我不可。</li>
+<li>时间规划比较混乱， 学习计划没有坚持下来， 来年需要好好改进。人只有不断的学习才能进步， 更何况是程序员。</li>
+<li>没有抽出来时间和多年的朋友交流互通， 很遗憾， 来年一定的抽出时间去看看老朋友们。</li>
+</ol>
+</blockquote>
+
+<p><strong>2012年的目标：</strong></p>
+
+<blockquote><ol>
+<li>需要深入学习了解SEM相关行业知识， 在业务上一定要达到精通。</li>
+<li>每个月坚持看一本书。</li>
+<li>在AR方向上，能做一些东西出来。</li>
+<li>抽出来时间，去看老朋友。</li>
+<li>和老婆的蜜月旅行。</li>
+<li>坚持锻炼，减肥。</li>
+<li>坚持写博。</li>
+</ol>
+</blockquote>
+
+<p>好了， 就以上这七个目标， 2012年坚持不去做计划外的事情。 努力！让2012没有遗憾。</p>
+
+<p>嗨， 未来的自己， 下个圣诞见！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress 使用小记]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2011/12/21/octopress-shi-yong-xiao-ji/"/>
+    <updated>2011-12-21T23:05:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2011/12/21/octopress-shi-yong-xiao-ji</id>
+    <content type="html"><![CDATA[<p>我是从<a href="ruby5.envylabs.com%20Ruby5">Ruby5</a>知道<a href="http://octopress.org/%20Octopress">Octopress</a>的， 之前用rack-Jekyll自己搞过一个blog， 使用起来比较麻烦。看了一下Octopress的文档， 觉得非常棒。 看到<a href="http://blog.xdite.net">Xdite</a>也在推荐使用这个blog系统，也对它感兴趣了。</p>
+
+<p>没费多少时间把它搭建起来了，绑定了blog.changebox.me这个域名。 changebox.me这个域名我买了有一段时间了， 本来想做个养成习惯的web应用， 因为某些原因耽搁了。 现在暂时用来写博吧。</p>
+
+<p>对Octopress感兴趣的同学可以去其<a href="http://octopress.org/%20Octopress">官网</a>看看。</p>
+]]></content>
+  </entry>
+  
+</feed>

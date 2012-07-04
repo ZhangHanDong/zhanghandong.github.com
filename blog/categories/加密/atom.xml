@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 加密 | Change Box]]></title>
+  <link href="http://ZhangHanDong.github.com/blog/categories/加密/atom.xml" rel="self"/>
+  <link href="http://ZhangHanDong.github.com/"/>
+  <updated>2012-07-04T14:51:39+08:00</updated>
+  <id>http://ZhangHanDong.github.com/</id>
+  <author>
+    <name><![CDATA[blackanger]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[bcrypt与密码安全]]></title>
+    <link href="http://ZhangHanDong.github.com/blog/2012/01/05/bcryptyu-mi-ma-an-quan/"/>
+    <updated>2012-01-05T17:30:00+08:00</updated>
+    <id>http://ZhangHanDong.github.com/blog/2012/01/05/bcryptyu-mi-ma-an-quan</id>
+    <content type="html"><![CDATA[<p>最近闹的沸沸扬扬的各大网站用户密码泄露事件， 让网民们震惊了，尽然都是明文保存密码。因为存在某些漏洞，比如sql注入， 可能让Hacker拿到全字段的数据列表，如果是明文密码， 那就帮Hacker省事了， Hacker都不需要暴力破解了。</p>
+
+<p>其实对于密码有很多加密手段，但是最安全的莫过于Bcrypt这种算法了， 详细的参看<a href="http://codahale.com/how-to-safely-store-a-password/">Coda Hala的这篇文章</a>, 也有<a href="http://coolshell.cn/articles/2078.html/comment-page-2#comment-121752">中文版</a>。 其实安全也是相对的， 对于Bcrypt这种算法的优势再于它的慢， 延缓了Hacker暴力破解的时间， 对于用户来说，就相对安全了。</p>
+
+<p>用Rails的同学就有福了。 <a href="https://github.com/plataformatec/devise">devise</a>默认就是支持Bcrypt的。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>initializers/devise.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">stretches</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">10</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>这里的stretches被用来做work factor, 数值越大越慢， 如果你发现一个crypt生成值在20毫秒之内，那这个stretches就正好。</p>
+
+<p>另一个措施就是可以在用户输入12345之类的弱密码的时候，禁止其注册，并提示其使用强度比较高的密码。</p>
+]]></content>
+  </entry>
+  
+</feed>

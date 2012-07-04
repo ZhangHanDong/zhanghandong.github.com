@@ -1,0 +1,1361 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ruby Styleguide - Change Box</title>
+  <meta name="author" content="blackanger">
+
+  
+  <meta name="description" content="注： 本文为Github Ruby Styleguide的中文翻译， 边翻译边过了一遍，发现这些风格约定很有其道理。推荐！ 代码风格 (Coding Style) 使用两个空格来保持缩进
+每行应该小于80个字符（Texmate和sublime text2 都可以设置）
+末尾不要留空格
+在操作符前后 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Change Box" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Change Box</a></h1>
+  
+    <h2>生命成为一朵烟花最好，升起在旷野的夜空，明亮而狂野，盲目而绚烂。然后沉寂，消失。 如此干脆。</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ZhangHanDong.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ruby Styleguide</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-11T11:34:00+08:00" pubdate data-updated="true">Apr 11<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>注： 本文为<a href="https://github.com/styleguide/ruby">Github Ruby Styleguide</a>的中文翻译， 边翻译边过了一遍，发现这些风格约定很有其道理。推荐！</h4>
+
+<h4>代码风格 (Coding Style)</h4>
+
+<hr />
+
+<ul>
+<li>使用两个空格来保持缩进</li>
+<li>每行应该小于80个字符（<em>Texmate和sublime text2 都可以设置</em>）</li>
+<li>末尾不要留空格</li>
+<li>在操作符前后， 逗号后面， 冒号和分号前后留空格。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">sum</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
+</span><span class='line'>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+</span><span class='line'>    <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">?</span> <span class="kp">true</span> <span class="p">:</span> <span class="kp">false</span><span class="p">;</span> <span class="nb">puts</span> <span class="s1">&#39;Hi&#39;</span>
+</span><span class='line'>    <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">e</span> <span class="p">}</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在(和[后面, 或者]和)前面不能有空格。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">some</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">.</span><span class="n">other</span>
+</span><span class='line'>    <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">length</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>case和when应该保持同样的缩进深度.</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">case</span>
+</span><span class='line'>    <span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;Misty&#39;</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s1">&#39;Not again!&#39;</span>
+</span><span class='line'>    <span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">duration</span> <span class="o">&gt;</span> <span class="mi">120</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s1">&#39;Too long!&#39;</span>
+</span><span class='line'>    <span class="k">when</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">hour</span> <span class="o">&gt;</span> <span class="mi">21</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;It&#39;s too late&quot;</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">song</span><span class="o">.</span><span class="n">play</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="c1"># another style</span>
+</span><span class='line'>    <span class="n">kind</span> <span class="o">=</span> <span class="k">case</span> <span class="n">year</span>
+</span><span class='line'>           <span class="k">when</span> <span class="mi">1850</span><span class="o">.</span><span class="n">.</span><span class="mi">1889</span> <span class="k">then</span> <span class="s1">&#39;Blues&#39;</span>
+</span><span class='line'>           <span class="k">when</span> <span class="mi">1890</span><span class="o">.</span><span class="n">.</span><span class="mi">1909</span> <span class="k">then</span> <span class="s1">&#39;Ragtime&#39;</span>
+</span><span class='line'>           <span class="k">when</span> <span class="mi">1910</span><span class="o">.</span><span class="n">.</span><span class="mi">1929</span> <span class="k">then</span> <span class="s1">&#39;New Orleans Jazz&#39;</span>
+</span><span class='line'>           <span class="k">when</span> <span class="mi">1930</span><span class="o">.</span><span class="n">.</span><span class="mi">1939</span> <span class="k">then</span> <span class="s1">&#39;Swing&#39;</span>
+</span><span class='line'>           <span class="k">when</span> <span class="mi">1940</span><span class="o">.</span><span class="n">.</span><span class="mi">1950</span> <span class="k">then</span> <span class="s1">&#39;Bebop&#39;</span>
+</span><span class='line'>           <span class="k">else</span> <span class="s1">&#39;Jazz&#39;</span>
+</span><span class='line'>           <span class="k">end</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<ul>
+<li>使用空行来隔离区分一个方法内部的逻辑。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">def</span> <span class="nf">some_method</span>
+</span><span class='line'>      <span class="n">data</span> <span class="o">=</span> <span class="kp">initialize</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">data</span><span class="o">.</span><span class="n">manipulate!</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">data</span><span class="o">.</span><span class="n">result</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">some_method</span>
+</span><span class='line'>     <span class="n">result</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>文档 (Documentation)</h4>
+
+<hr />
+
+<p><strong> 最好使用<a href="http://tomdoc.org/">TomDoc</a>来规范你的文档格式 </strong></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># Public: Duplicate some text an arbitrary number of times.</span>
+</span><span class='line'>  <span class="c1">#</span>
+</span><span class='line'>  <span class="c1"># text  - The String to be duplicated.</span>
+</span><span class='line'>  <span class="c1"># count - The Integer number of times to duplicate the text.</span>
+</span><span class='line'>  <span class="c1">#</span>
+</span><span class='line'>  <span class="c1"># Examples </span>
+</span><span class='line'>  <span class="c1">#</span>
+</span><span class='line'>  <span class="c1">#   multiplex(&#39;Tom&#39;, 4)</span>
+</span><span class='line'>  <span class="c1">#   # =&gt; &#39;TomTomTomTom&#39;</span>
+</span><span class='line'>  <span class="c1">#</span>
+</span><span class='line'>  <span class="c1"># Returns the duplicated String.</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">multiplex</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">text</span> <span class="o">*</span> <span class="n">count</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>语法 (Syntax)</h4>
+
+<hr />
+
+<ul>
+<li>当在def方法不接受任何参数的时候省略括号。 当有参数的时候， 使用括号。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method_with_arguments</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>不要使用For.</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">arr</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">elem</span> <span class="k">in</span> <span class="n">arr</span> <span class="k">do</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="n">elem</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">arr</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">elem</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在if/unless语句中不要用then.</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">some_condition</span> <span class="k">then</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">some_condition</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在条件极其琐碎比较多的情况下应该避免三元操作符(?:)， 但是单行条件的情况下是可以用三元操作符的。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="k">if</span> <span class="n">some_condition</span> <span class="k">then</span> <span class="n">something</span> <span class="k">else</span> <span class="n">something_else</span> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="n">some_condition</span> <span class="p">?</span> <span class="n">something</span> <span class="p">:</span> <span class="n">something_else</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>不要嵌套使用三元操作符(?:), 要用if/unless语句分开。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">some_condition</span> <span class="p">?</span> <span class="p">(</span><span class="n">nested_condition</span> <span class="p">?</span> <span class="n">nested_something</span> <span class="p">:</span> <span class="n">nested_something_else</span><span class="p">)</span> <span class="p">:</span> <span class="n">something_else</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">some_condition</span>
+</span><span class='line'>    <span class="n">nested_condition</span> <span class="p">?</span> <span class="n">nested_something</span> <span class="p">:</span> <span class="n">nested_something_else</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">something_else</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>禁止使用and和or, 要使用 &amp;&amp;和||</li>
+<li>避免多行的三元操作符(?:)， 用if/unless语句代替</li>
+<li>单行语句的情况下，使用如下形式:</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">some_condition</span>
+</span><span class='line'>    <span class="n">do_something</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">do_something</span> <span class="k">if</span> <span class="n">some_condition</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>禁止在unless语句中使用else。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">unless</span> <span class="n">success?</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s1">&#39;failure&#39;</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s1">&#39;success&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">success?</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s1">&#39;success&#39;</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s1">&#39;failure&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>if/unless/while语句后面的条件不要用括号包上， 除非这个条件里面有赋值运算。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># ok</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">next_value</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># body omitted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>单行的blocks要用{&#8230;}代替do&#8230;end， 在多行blocks下面应该用do&#8230;end. 在流程控制和方法定义方面应总是使用 do&#8230;end ， 有方法链式调用情况下应该使用{&#8230;}</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">names</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Bozhidar&quot;</span><span class="p">,</span> <span class="s2">&quot;Steve&quot;</span><span class="p">,</span> <span class="s2">&quot;Sarah&quot;</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">names</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span> <span class="nb">puts</span> <span class="nb">name</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">names</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="nb">name</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">names</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span> <span class="nb">name</span><span class="o">.</span><span class="n">start_with?</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span> <span class="nb">name</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">names</span><span class="o">.</span><span class="n">select</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">name</span><span class="o">.</span><span class="n">start_with?</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span> <span class="nb">name</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在不需要的地方避免使用return。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">some_arr</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">some_arr</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">some_arr</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">some_arr</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>当方法的参数中设置默认值的时候， 在=操作符前后使用空格。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">arg1</span><span class="o">=</span><span class="ss">:default</span><span class="p">,</span> <span class="n">arg2</span><span class="o">=</span><span class="kp">nil</span><span class="p">,</span> <span class="n">arg3</span><span class="o">=[]</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># do something...</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">arg1</span> <span class="o">=</span> <span class="ss">:default</span><span class="p">,</span> <span class="n">arg2</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">arg3</span> <span class="o">=</span> <span class="o">[]</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># do something...</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>条件中使用了赋值操作符应该用括号包围。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># good - shows intented use of assignment</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">))</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">v</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">)</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># also good - shows intended use of assignment and has correct precedence.</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">next_value</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;hello&quot;</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>用 ||= 来初始化变量.</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># set name to Bozhidar, only if it&#39;s nil or false</span>
+</span><span class='line'>  <span class="nb">name</span> <span class="o">||=</span> <span class="s1">&#39;Bozhidar&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>不要用 ||= 去初始化boolean型变量。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad - would set enabled to true even if it was false</span>
+</span><span class='line'>  <span class="n">enabled</span> <span class="o">||=</span> <span class="kp">true</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">enabled</span> <span class="o">=</span> <span class="kp">true</span> <span class="k">if</span> <span class="n">enabled</span><span class="o">.</span><span class="n">nil?</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>不要使用Perl式的特殊变量（像$0-9, $, 等）。 应该使用比较长的，就像 $PROGRAM_NAME.</li>
+<li>在方法名和括号之间不要有空格。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">f</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">f</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>如果方法的第一个参数是括号， 那么这个方法总是应该使用括号。就像 f((3 + 2) + 1) 这样。</p></li>
+<li><p>使用 _ 符号来表示不使用的block参数。</p></li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="nb">hash</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="n">v</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="nb">hash</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">_</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="n">v</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>命名 (Naming)</h4>
+
+<hr />
+
+<ul>
+<li>为方法和变量使用蛇形 snake_case</li>
+<li>为类和模块使用骆驼形 CamelCase (HTTP,RFC,XML 应该大写)</li>
+<li>自定义的常量使用全大写蛇形 SCREAMING_SNAKE_CASE</li>
+<li>断言类方法（返回boolean值）的命名应该以问号结尾。就像 Array#empty?</li>
+<li>有潜在‘危险’的方法（修改self或者是参数，类似于 exit! 这样的）， 应该以叹号结尾!. 这类方法叫Bang method.</li>
+</ul>
+
+
+<h4>类 (Classes)</h4>
+
+<hr />
+
+<ul>
+<li>避免使用类变量 @@variables，因为他们在继承中表现的比较猥亵。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Parent</span>
+</span><span class='line'>    <span class="vc">@@class_var</span> <span class="o">=</span> <span class="s1">&#39;parent&#39;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">print_class_var</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="vc">@@class_var</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Child</span> <span class="o">&lt;</span> <span class="no">Parent</span>
+</span><span class='line'>    <span class="vc">@@class_var</span> <span class="o">=</span> <span class="s1">&#39;child&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="no">Parent</span><span class="o">.</span><span class="n">print_class_var</span> <span class="c1"># =&gt; will print &quot;child&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一个父类的类变量在其继承体系的所有类里面都是共用的，类实例变量@class_vers, 才是per-class的， 当我们使用的时候， 优先选用类实例变量。</p>
+
+<ul>
+<li>使用 def self.method 来定义单例方法(singleton methods)， 这样会使重构的时候更加方便。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">TestClass</span>
+</span><span class='line'>    <span class="c1"># bad</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">TestClass</span><span class="o">.</span><span class="nf">some_method</span>
+</span><span class='line'>      <span class="c1"># body omitted</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># good</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">some_other_method</span>
+</span><span class='line'>      <span class="c1"># body omitted</span>
+</span><span class='line'>    <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>避免使用 class &lt;&lt; self ， 除非是必须的， 比如单独的accessors和aliased属性。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">TestClass</span>
+</span><span class='line'>    <span class="c1"># bad</span>
+</span><span class='line'>    <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">first_method</span>
+</span><span class='line'>        <span class="c1"># body omitted</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">second_method_etc</span>
+</span><span class='line'>        <span class="c1"># body omitted</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># good</span>
+</span><span class='line'>    <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>      <span class="kp">attr_accessor</span> <span class="ss">:per_page</span>
+</span><span class='line'>      <span class="n">alias_method</span> <span class="ss">:nwo</span><span class="p">,</span> <span class="ss">:find_by_name_with_owner</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">first_method</span>
+</span><span class='line'>      <span class="c1"># body omitted</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">second_method_etc</span>
+</span><span class='line'>      <span class="c1"># body omitted</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>public, protected, 和 private 应该和方法定义缩进一样， 并且在其上方留一空行。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">SomeClass</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">public_method</span>
+</span><span class='line'>      <span class="c1"># ...</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kp">private</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">private_method</span>
+</span><span class='line'>      <span class="c1"># ...</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>异常 (Exceptions)</h4>
+
+<hr />
+
+<ul>
+<li>不要用异常来控制流程</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>    <span class="n">n</span> <span class="o">/</span> <span class="n">d</span>
+</span><span class='line'>  <span class="k">rescue</span> <span class="no">ZeroDivisionError</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Cannot divide by 0!&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">zero?</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Cannot divide by 0!&quot;</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">n</span> <span class="o">/</span> <span class="n">d</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>避免rescuing Exception这个类。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>    <span class="c1"># an exception occurs here</span>
+</span><span class='line'>  <span class="k">rescue</span>
+</span><span class='line'>    <span class="c1"># exception handling</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># still bad</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>    <span class="c1"># an exception occurs here</span>
+</span><span class='line'>  <span class="k">rescue</span> <span class="no">Exception</span>
+</span><span class='line'>    <span class="c1"># exception handling</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>关于异常处理，推荐 Exceptional Ruby这本书。</p>
+
+<h4>集合 (Collections)</h4>
+
+<hr />
+
+<ul>
+<li>当你需要字符串数组的时候，最好使用%w</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="no">STATES</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;draft&#39;</span><span class="p">,</span> <span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="s1">&#39;closed&#39;</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="no">STATES</span> <span class="o">=</span> <span class="sx">%w(draft open closed)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>当需要处理唯一元素的时候，使用Set来代替Array, Set是无重复值的无序集合。它既包含Array的运算功能,同时又兼有Hash的高速搜索功能。</li>
+<li>使用符号类型来代替字符串型来作为Hash的keys。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;one&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span> <span class="o">=&gt;</span> <span class="mi">3</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="n">one</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">two</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">three</span><span class="p">:</span> <span class="mi">3</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>字符串 (Strings)</h4>
+
+<hr />
+
+<ul>
+<li>使用#{}来代替字符串+连接</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="n">email_with_name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39; &lt;&#39;</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="n">email_with_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> &lt;</span><span class="si">#{</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>如果不需要转义什么特殊字符什么的， 应该用单引号</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;Bozhidar&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="nb">name</span> <span class="o">=</span> <span class="s1">&#39;Bozhidar&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>当需要构建大的数据块的时候应该避免使用String#+方法， 应该使用 String#&lt;&lt; , 这个方法比String#+快。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># good and also fast</span>
+</span><span class='line'>  <span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;&lt;h1&gt;Page title&lt;/h1&gt;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">paragraphs</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">paragraph</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&lt;p&gt;</span><span class="si">#{</span><span class="n">paragraph</span><span class="si">}</span><span class="s2">&lt;/p&gt;&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>正则表达式 (Regular Expressions)</h4>
+
+<hr />
+
+<ul>
+<li>使用named groups （只支持Ruby1.9+）</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span><span class="sr"></span>
+</span><span class='line'><span class="sr">  /(regexp)/</span> <span class="o">=~</span> <span class="n">string</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="n">process</span> <span class="vg">$1</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span><span class="sr"></span>
+</span><span class='line'><span class="sr">  /(?&lt;meaningful_var&gt;regexp)/</span> <span class="o">=~</span> <span class="n">string</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="n">process</span> <span class="n">meaningful_var</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(下面说明和代码是我自己加的内容：)
+你可以定义每一部分的正则，然后命名成组，并且在后面加上
+{0}，表明不获取匹配内容，然后在使用\g引用对用的组，组成
+大的正则，并且加上/x修饰。这样比较复杂的正则，会有更好的可读性。。另一部分示例代码：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">users</span> <span class="o">=</span> <span class="sx">%w{  </span>
+</span><span class='line'><span class="sx">   alice:10.23.52.112:true  </span>
+</span><span class='line'><span class="sx">   bob:192.168.10.34:false  </span>
+</span><span class='line'><span class="sx"> }</span>
+</span><span class='line'>
+</span><span class='line'> <span class="n">user_regexp</span> <span class="o">=</span> <span class="sr">%r{  </span>
+</span><span class='line'><span class="sr">   (?&lt;username&gt; [a-z]+ ){0}  </span>
+</span><span class='line'><span class="sr">   (?&lt;ip_number&gt; [0-9]{1,3} ){0}  </span>
+</span><span class='line'><span class="sr">   (?&lt;ip_address&gt; (\g&lt;ip_number&gt;\.){3}\g&lt;ip_number&gt; ){0}  </span>
+</span><span class='line'><span class="sr">   (?&lt;admin&gt; true | false ){0}  </span>
+</span><span class='line'><span class="sr">   \g&lt;username&gt;:\g&lt;ip_address&gt;:\g&lt;admin&gt;  </span>
+</span><span class='line'><span class="sr"> }x</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">users</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">u</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">r</span> <span class="o">=</span> <span class="n">user_regexp</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;User </span><span class="si">#{</span><span class="n">r</span><span class="o">[</span><span class="ss">:username</span><span class="o">]</span><span class="si">}</span><span class="s2"> is from </span><span class="si">#{</span><span class="n">r</span><span class="o">[</span><span class="ss">:ip_address</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>小心使用 ^ 和 $ , 它们是来匹配行的开始和结束，不是字符串。 如果你想匹配整个string，则使用 \A和\Z</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;some injection</span><span class="se">\n</span><span class="s2">username&quot;</span>
+</span><span class='line'>  <span class="n">string</span><span class="o">[/^</span><span class="n">username</span><span class="vg">$/</span><span class="o">]</span>   <span class="c1"># matches</span>
+</span><span class='line'>  <span class="n">string</span><span class="o">[/</span><span class="p">\</span><span class="no">Ausername</span><span class="p">\</span><span class="n">Z</span><span class="o">/]</span> <span class="c1"># don&#39;t match</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>使用 x 来修饰复杂的正则， 这样更可读，还可加注释，只是需要小心空格</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">regexp</span> <span class="o">=</span> <span class="sr">%r{</span>
+</span><span class='line'><span class="sr">    start         # some text</span>
+</span><span class='line'><span class="sr">    \s            # white space char</span>
+</span><span class='line'><span class="sr">    (group)       # first group</span>
+</span><span class='line'><span class="sr">    (?:alt1|alt2) # some alternation</span>
+</span><span class='line'><span class="sr">    end</span>
+</span><span class='line'><span class="sr">  }x</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>百分号字面量 (Percent Literals)</h4>
+
+<hr />
+
+<ul>
+<li>使用%w毫无压力</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="no">STATES</span> <span class="o">=</span> <span class="sx">%w(draft open closed)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>使用%()来引用单行字符串，相当于双引号（相当于%Q()），对于多行的字符串，要使用here文档。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad (no interpolation needed)</span>
+</span><span class='line'>  <span class="sx">%(&lt;div class=&quot;text&quot;&gt;Some text&lt;/div&gt;)</span>
+</span><span class='line'>  <span class="c1"># should be &#39;&lt;div class=&quot;text&quot;&gt;Some text&lt;/div&gt;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad (no double-quotes)</span>
+</span><span class='line'>  <span class="sx">%(This is </span><span class="si">#{</span><span class="n">quality</span><span class="si">}</span><span class="sx"> style)</span>
+</span><span class='line'>  <span class="c1"># should be &quot;This is #{quality} style&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># bad (multiple lines)</span>
+</span><span class='line'>  <span class="sx">%(&lt;div&gt;</span><span class="se">\n</span><span class="sx">&lt;span class=&quot;big&quot;&gt;</span><span class="si">#{</span><span class="n">exclamation</span><span class="si">}</span><span class="sx">&lt;/span&gt;</span><span class="se">\n</span><span class="sx">&lt;/div&gt;)</span>
+</span><span class='line'>  <span class="c1"># should be a heredoc.</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good (requires interpolation, has quotes, single line)</span>
+</span><span class='line'>  <span class="sx">%(&lt;tr&gt;&lt;td class=&quot;name&quot;&gt;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="sx">&lt;/td&gt;)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>超过一个/符合的正则应该使用 %r</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># bad</span>
+</span><span class='line'>  <span class="sr">%r(\s+)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># still bad</span>
+</span><span class='line'>  <span class="sr">%r(^/(.*)$)</span>
+</span><span class='line'>  <span class="c1"># should be /^\/(.*)$/</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># good</span>
+</span><span class='line'>  <span class="sr">%r(^/blog/2011/(.*)$)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Above all else</h4>
+
+<hr />
+
+<p>Follow your <img src="https://a248.e.akamai.net/assets.github.com/images/icons/emoji/heart.png?v5" alt="" /></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">blackanger</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-11T11:34:00+08:00" pubdate data-updated="true">Apr 11<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide/" data-via="" data-counturl="http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+  
+    <div class='twitter-share-button'>
+      <script src="/javascripts/weibo_share_button.js"></script>
+    </div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/03/14/sublimetext2-shi-yong-zhi-nan/" title="Previous Post: SublimeText2 使用指南">&laquo; SublimeText2 使用指南</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/04/24/rubyde-bing-fa-shi-jie/" title="Next Post: Ruby的并发世界">Ruby的并发世界 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/07/04/chuang-ye/">创业</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/02/42ge-rails-tips/">42个Rails Tips</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/24/rubyquan-ju-bian-liang-biao/">ruby全局变量表</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/24/rubyde-bing-fa-shi-jie/">Ruby的并发世界</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/ruby-styleguide/">Ruby Styleguide</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - blackanger -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'changeboxblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide/';
+        var disqus_url = 'http://ZhangHanDong.github.com/blog/2012/04/11/ruby-styleguide/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
